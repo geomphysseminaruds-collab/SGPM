@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Événements | Séminaire de Géométrie</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="university-name">Université de Sherbrooke · Département de mathématiques</div>
+            <h1 class="lang-content lang-fr active">Séminaire de Géométrie</h1>
+            <h1 class="lang-content lang-en">Geometry Seminar</h1>
+            <div class="lang-switch">
+                <button class="active" onclick="switchLanguage('fr')" data-lang="fr">Français</button>
+                <button onclick="switchLanguage('en')" data-lang="en">English</button>
+            </div>
+        </header>
+
+        <nav class="lang-content lang-fr active">
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="upcoming.html">Séminaires à venir</a></li>
+                <li><a href="past.html">Séminaires passés</a></li>
+                <li><a href="members.html">Membres du groupe</a></li>
+                <li><a href="events.html" class="active">Événements</a></li>
+                <li><a href="gallery.html">Galerie</a></li>
+            </ul>
+        </nav>
+
+        <nav class="lang-content lang-en">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="upcoming.html">Upcoming Seminars</a></li>
+                <li><a href="past.html">Past Seminars</a></li>
+                <li><a href="members.html">Group Members</a></li>
+                <li><a href="events.html" class="active">Events</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+            </ul>
+        </nav>
+
+        <!-- VERSION FRANÇAISE -->
+        <div class="lang-content lang-fr active">
+            <h2 class="section-title">Événements spéciaux</h2>
+
+            <div class="event-card">
+                <div class="event-title">Semaine intensive en géométrie symplectique</div>
+                <div class="event-date">📅 3-7 mars 2026 | 📍 Campus principal, UdeS</div>
+                <p>Une semaine intensive de cours et de conférences sur les développements récents en géométrie symplectique. Programme incluant des mini-cours par des experts internationaux, des sessions de problèmes et des présentations de doctorants.</p>
+                <p style="margin-top: 1rem;"><strong>Conférenciers invités :</strong></p>
+                <ul style="margin-left: 2rem; margin-top: 0.5rem;">
+                    <li>Prof. Ana Cannas da Silva (ETH Zürich)</li>
+                    <li>Prof. Dusa McDuff (Columbia University)</li>
+                    <li>Prof. Yakov Eliashberg (Stanford University)</li>
+                </ul>
+            </div>
+
+            <div class="event-card">
+                <div class="event-title">Atelier sur les groupes de Poisson-Lie</div>
+                <div class="event-date">📅 15-17 mai 2026 | 📍 Département de mathématiques</div>
+                <p>Atelier de trois jours consacré aux structures de Poisson sur les groupes de Lie, avec des applications en physique mathématique et en théorie de la quantification. Conférenciers invités du Canada et d'Europe.</p>
+                <p style="margin-top: 1rem;"><strong>Thèmes principaux :</strong></p>
+                <ul style="margin-left: 2rem; margin-top: 0.5rem;">
+                    <li>Classification des structures de Poisson</li>
+                    <li>Quantification par déformation</li>
+                    <li>Applications aux systèmes intégrables</li>
+                </ul>
+            </div>
+
+            <div class="event-card">
+                <div class="event-title">Conférence annuelle de géométrie algébrique du Québec</div>
+                <div class="event-date">📅 10-12 juin 2026 | 📍 En rotation (cette année à l'UdeS)</div>
+                <p>La conférence annuelle rassemble des chercheurs en géométrie algébrique de tout le Québec. Programme couvrant les schémas, la cohomologie, les variétés algébriques et leurs applications.</p>
+                <p style="margin-top: 1rem;"><strong>Comité d'organisation :</strong></p>
+                <ul style="margin-left: 2rem; margin-top: 0.5rem;">
+                    <li>Prof. Jean Bertrand (UdeS)</li>
+                    <li>Prof. Catherine Leblanc (UdeM)</li>
+                    <li>Prof. David Chen (ULaval)</li>
+                </ul>
+            </div>
+
+            <h2 class="section-title">Événements passés</h2>
+
+            <div class="event-card" style="opacity: 0.8;">
+                <div class="event-title">École d'été en géométrie différentielle</div>
+                <div class="event-date">📅 15-19 juillet 2025 | 📍 Campus principal, UdeS</div>
+                <p>École d'été de 5 jours pour étudiants gradués et postdoctorants. Cours intensifs sur les variétés différentielles, les formes différentielles, et les connexions.</p>
+            </div>
+
+            <div class="event-card" style="opacity: 0.8;">
+                <div class="event-title">Colloque de géométrie symplectique</div>
+                <div class="event-date">📅 20-22 mai 2025 | 📍 Département de mathématiques</div>
+                <p>Trois jours de présentations sur les dernières avancées en topologie symplectique et homologie de Floer.</p>
+            </div>
+        </div>
+
+        <!-- VERSION ANGLAISE -->
+        <div class="lang-content lang-en">
+            <h2 class="section-title">Special Events</h2>
+
+            <div class="event-card">
+                <div class="event-title">Intensive Week in Symplectic Geometry</div>
+                <div class="event-date">📅 March 3-7, 2026 | 📍 Main Campus, UdeS</div>
+                <p>An intensive week of courses and conferences on recent developments in symplectic geometry. Program includes mini-courses by international experts, problem sessions, and PhD student presentations.</p>
+                <p style="margin-top: 1rem;"><strong>Invited speakers:</strong></p>
+                <ul style="margin-left: 2rem; margin-top: 0.5rem;">
+                    <li>Prof. Ana Cannas da Silva (ETH Zürich)</li>
+                    <li>Prof. Dusa McDuff (Columbia University)</li>
+                    <li>Prof. Yakov Eliashberg (Stanford University)</li>
+                </ul>
+            </div>
+
+            <div class="event-card">
+                <div class="event-title">Workshop on Poisson-Lie Groups</div>
+                <div class="event-date">📅 May 15-17, 2026 | 📍 Department of Mathematics</div>
+                <p>Three-day workshop dedicated to Poisson structures on Lie groups, with applications in mathematical physics and quantization theory. Invited speakers from Canada and Europe.</p>
+                <p style="margin-top: 1rem;"><strong>Main themes:</strong></p>
+                <ul style="margin-left: 2rem; margin-top: 0.5rem;">
+                    <li>Classification of Poisson structures</li>
+                    <li>Deformation quantization</li>
+                    <li>Applications to integrable systems</li>
+                </ul>
+            </div>
+
+            <div class="event-card">
+                <div class="event-title">Annual Quebec Algebraic Geometry Conference</div>
+                <div class="event-date">📅 June 10-12, 2026 | 📍 Rotating (this year at UdeS)</div>
+                <p>The annual conference brings together algebraic geometry researchers from across Quebec. Program covering schemes, cohomology, algebraic varieties and their applications.</p>
+                <p style="margin-top: 1rem;"><strong>Organizing committee:</strong></p>
+                <ul style="margin-left: 2rem; margin-top: 0.5rem;">
+                    <li>Prof. Jean Bertrand (UdeS)</li>
+                    <li>Prof. Catherine Leblanc (UdeM)</li>
+                    <li>Prof. David Chen (ULaval)</li>
+                </ul>
+            </div>
+
+            <h2 class="section-title">Past Events</h2>
+
+            <div class="event-card" style="opacity: 0.8;">
+                <div class="event-title">Summer School in Differential Geometry</div>
+                <div class="event-date">📅 July 15-19, 2025 | 📍 Main Campus, UdeS</div>
+                <p>Five-day summer school for graduate students and postdocs. Intensive courses on differential manifolds, differential forms, and connections.</p>
+            </div>
+
+            <div class="event-card" style="opacity: 0.8;">
+                <div class="event-title">Symplectic Geometry Colloquium</div>
+                <div class="event-date">📅 May 20-22, 2025 | 📍 Department of Mathematics</div>
+                <p>Three days of presentations on the latest advances in symplectic topology and Floer homology.</p>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2025 Université de Sherbrooke - Département de mathématiques</p>
+            <p style="margin-top: 0.5rem;">Contact: <a href="mailto:geometrie.seminaire@usherbrooke.ca" style="color: #00703c; text-decoration: none;">geometrie.seminaire@usherbrooke.ca</a></p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
