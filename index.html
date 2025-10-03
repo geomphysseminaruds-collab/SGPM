@@ -3,15 +3,247 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Séminaire de Géométrie | Université de Sherbrooke</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Séminaire en géométrie et physique mathématique | Université de Sherbrooke</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f8f8;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        header {
+            background: #00703c;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .university-name {
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            font-weight: normal;
+            margin: 1rem 0;
+        }
+
+        .lang-switch {
+            margin-top: 1rem;
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+
+        .lang-switch button {
+            background: transparent;
+            border: 1px solid white;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+        }
+
+        .lang-switch button.active {
+            background: white;
+            color: #00703c;
+        }
+
+        .lang-switch button:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        nav {
+            background: #f5f5f5;
+            border-bottom: 3px solid #00703c;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 0;
+        }
+
+        nav li {
+            margin: 0;
+        }
+
+        nav a {
+            display: block;
+            padding: 1rem 1.5rem;
+            color: #333;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            background: #00703c;
+            color: white;
+        }
+
+        .organizers {
+            background: #e8f5e9;
+            padding: 1rem;
+            margin: 2rem;
+            border-left: 4px solid #00703c;
+            font-size: 0.95rem;
+        }
+
+        .organizers a {
+            color: #00703c;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .organizers a:hover {
+            text-decoration: underline;
+        }
+
+        .info-box {
+            background: #fff9e6;
+            padding: 1.5rem;
+            margin: 2rem;
+            border: 1px solid #ffd54f;
+            border-radius: 4px;
+        }
+
+        .info-box p {
+            margin-bottom: 0.8rem;
+        }
+
+        .info-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .lang-content {
+            display: none;
+            padding: 2rem;
+        }
+
+        .lang-content.active {
+            display: block;
+        }
+
+        .section-title {
+            color: #00703c;
+            font-size: 1.6rem;
+            font-weight: normal;
+            margin: 2rem 0 1rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #00703c;
+        }
+
+        .seminar-item {
+            background: #fafafa;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid #00703c;
+            position: relative;
+        }
+
+        .upcoming-label {
+            display: inline-block;
+            background: #00703c;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            font-size: 0.75rem;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.8rem;
+        }
+
+        .seminar-title {
+            color: #00703c;
+            font-size: 1.3rem;
+            font-weight: normal;
+            margin-bottom: 0.8rem;
+        }
+
+        .seminar-meta {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .seminar-speaker {
+            font-size: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .seminar-speaker a {
+            color: #00703c;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .seminar-speaker a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        footer a {
+            color: #00703c;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            .lang-content {
+                padding: 1rem;
+            }
+
+            .organizers,
+            .info-box {
+                margin: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <header>
             <div class="university-name">Université de Sherbrooke · Département de mathématiques</div>
-            <h1 class="lang-content lang-fr active">Séminaire de Géométrie</h1>
-            <h1 class="lang-content lang-en">Geometry Seminar</h1>
+            <h1 class="lang-content lang-fr active">Séminaire en géométrie et physique mathématique</h1>
+            <h1 class="lang-content lang-en">Seminar in Geometry and Mathematical Physics</h1>
             <div class="lang-switch">
                 <button class="active" onclick="switchLanguage('fr')" data-lang="fr">Français</button>
                 <button onclick="switchLanguage('en')" data-lang="en">English</button>
@@ -44,26 +276,27 @@
         <div class="lang-content lang-fr active">
             <div class="organizers">
                 <strong>Organisateurs :</strong> 
-                <a href="#">Prof. Jean Bertrand</a>, 
-                <a href="#">Prof. Marie Lafontaine</a>, et 
-                <a href="#">Dr. Alexandre Dubois</a>
+                <a href="#">Mohamed Moussadek Maiza</a>, 
+                <a href="#">Yassine Ait Mohamed</a>
             </div>
 
             <div class="info-box">
                 <p><strong>Horaire :</strong> Les mardis à 15h30 au local D1-2009</p>
                 <p>Un café est servi avant la conférence au salon du 4e étage.</p>
-                <p>Le séminaire couvre la géométrie algébrique, la géométrie symplectique, les groupes de Poisson-Lie et la géométrie complexe.</p>
+                <p>Le séminaire couvre la géométrie algébrique symplectique, la théorie de Lie, les structures de Poisson, la géométrie complexe et hyperkählérienne, et la physique mathématique.</p>
             </div>
 
             <h2 class="section-title">Bienvenue</h2>
-            <p>Le Séminaire de Géométrie de l'Université de Sherbrooke est un forum de recherche hebdomadaire dédié aux développements récents en géométrie différentielle, algébrique et symplectique.</p>
+            <p>Le Séminaire en géométrie et physique mathématique de l'Université de Sherbrooke est un forum de recherche hebdomadaire dédié aux développements récents en géométrie et physique mathématique.</p>
             
             <p style="margin-top: 1rem;">Nos recherches couvrent un large spectre incluant :</p>
             <ul style="margin: 1rem 0 1rem 2rem; line-height: 1.8;">
-                <li><strong>Géométrie algébrique :</strong> cohomologie des schémas, variétés de modules, géométrie birationnelle</li>
-                <li><strong>Géométrie symplectique :</strong> topologie symplectique, homologie de Floer, difféomorphismes hamiltoniens</li>
-                <li><strong>Structures de Poisson :</strong> groupes de Poisson-Lie, quantification, systèmes intégrables</li>
-                <li><strong>Géométrie complexe :</strong> métriques extrémales, variétés kählériennes, symétrie miroir</li>
+                <li><strong>Géométrie algébrique symplectique :</strong> variétés symplectiques, structures de Poisson, quantification</li>
+                <li><strong>Théorie de Lie :</strong> groupes de Lie, algèbres de Lie, représentations</li>
+                <li><strong>Géométrie de Poisson :</strong> structures de Poisson, groupoïdes symplectiques, feuilletages</li>
+                <li><strong>Géométrie complexe et hyperkählérienne :</strong> variétés de Calabi-Yau, métriques spéciales</li>
+                <li><strong>Physique mathématique :</strong> mécanique quantique, théorie des champs, théorie des cordes</li>
+                <li><strong>Algèbre quantique :</strong> groupes quantiques, déformations, catégorification</li>
             </ul>
 
             <h2 class="section-title">Prochains séminaires</h2>
@@ -87,26 +320,27 @@
         <div class="lang-content lang-en">
             <div class="organizers">
                 <strong>Organizers:</strong> 
-                <a href="#">Prof. Jean Bertrand</a>, 
-                <a href="#">Prof. Marie Lafontaine</a>, and 
-                <a href="#">Dr. Alexandre Dubois</a>
+              <a href="#">Mohamed Moussadek Maiza</a>, 
+                <a href="#">Yassine Ait Mohamed</a>
             </div>
 
             <div class="info-box">
                 <p><strong>Schedule:</strong> Tuesdays at 3:30 PM in room D1-2009</p>
                 <p>Coffee is served before the talk in the 4th floor lounge.</p>
-                <p>The seminar covers algebraic geometry, symplectic geometry, Poisson-Lie groups, and complex geometry.</p>
+                <p>The seminar covers symplectic algebraic geometry, Lie theory, Poisson structures, complex and hyperkähler geometry, and mathematical physics.</p>
             </div>
 
             <h2 class="section-title">Welcome</h2>
-            <p>The Geometry Seminar at Université de Sherbrooke is a weekly research forum dedicated to recent developments in differential, algebraic, and symplectic geometry.</p>
+            <p>The Seminar in Geometry and Mathematical Physics at Université de Sherbrooke is a weekly research forum dedicated to recent developments in geometry and mathematical physics.</p>
             
             <p style="margin-top: 1rem;">Our research covers a broad spectrum including:</p>
             <ul style="margin: 1rem 0 1rem 2rem; line-height: 1.8;">
-                <li><strong>Algebraic geometry:</strong> cohomology of schemes, moduli spaces, birational geometry</li>
-                <li><strong>Symplectic geometry:</strong> symplectic topology, Floer homology, Hamiltonian diffeomorphisms</li>
-                <li><strong>Poisson structures:</strong> Poisson-Lie groups, quantization, integrable systems</li>
-                <li><strong>Complex geometry:</strong> extremal metrics, Kähler manifolds, mirror symmetry</li>
+                <li><strong>Symplectic algebraic geometry:</strong> symplectic manifolds, Poisson structures, quantization</li>
+                <li><strong>Lie theory:</strong> Lie groups, Lie algebras, representations</li>
+                <li><strong>Poisson geometry:</strong> Poisson structures, symplectic groupoids, foliations</li>
+                <li><strong>Complex and hyperkähler geometry:</strong> Calabi-Yau manifolds, special metrics</li>
+                <li><strong>Mathematical physics:</strong> quantum mechanics, field theory, string theory</li>
+                <li><strong>Quantum algebra:</strong> quantum groups, deformations, categorification</li>
             </ul>
 
             <h2 class="section-title">Upcoming Seminars</h2>
@@ -128,10 +362,35 @@
 
         <footer>
             <p>&copy; 2025 Université de Sherbrooke - Département de mathématiques</p>
-            <p style="margin-top: 0.5rem;">Contact: <a href="mailto:geometrie.seminaire@usherbrooke.ca" style="color: #00703c; text-decoration: none;">geometrie.seminaire@usherbrooke.ca</a></p>
+            <p style="margin-top: 0.5rem;">Contact: <a href="mailto:geomphys.seminar.uds@gmail.com" style="color: #00703c; text-decoration: none;">geomphys.seminar.uds@gmail.com</a></p>
         </footer>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        function switchLanguage(lang) {
+            document.querySelectorAll('.lang-content').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            document.querySelectorAll('.lang-' + lang).forEach(el => {
+                el.classList.add('active');
+            });
+            
+            document.querySelectorAll('.lang-switch button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector('.lang-switch button[data-lang="' + lang + '"]').classList.add('active');
+            
+            localStorage.setItem('preferredLanguage', lang);
+            document.documentElement.lang = lang;
+        }
+        
+        window.addEventListener('DOMContentLoaded', function() {
+            const savedLang = localStorage.getItem('preferredLanguage');
+            if (savedLang && savedLang !== 'fr') {
+                switchLanguage(savedLang);
+            }
+        });
+    </script>
 </body>
 </html>
