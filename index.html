@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Séminaire de Géométrie | Université de Sherbrooke</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="university-name">Université de Sherbrooke · Département de mathématiques</div>
+            <h1 class="lang-content lang-fr active">Séminaire de Géométrie</h1>
+            <h1 class="lang-content lang-en">Geometry Seminar</h1>
+            <div class="lang-switch">
+                <button class="active" onclick="switchLanguage('fr')" data-lang="fr">Français</button>
+                <button onclick="switchLanguage('en')" data-lang="en">English</button>
+            </div>
+        </header>
+
+        <nav class="lang-content lang-fr active">
+            <ul>
+                <li><a href="index.html" class="active">Accueil</a></li>
+                <li><a href="upcoming.html">Séminaires à venir</a></li>
+                <li><a href="past.html">Séminaires passés</a></li>
+                <li><a href="members.html">Membres du groupe</a></li>
+                <li><a href="events.html">Événements</a></li>
+                <li><a href="gallery.html">Galerie</a></li>
+            </ul>
+        </nav>
+
+        <nav class="lang-content lang-en">
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="upcoming.html">Upcoming Seminars</a></li>
+                <li><a href="past.html">Past Seminars</a></li>
+                <li><a href="members.html">Group Members</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+            </ul>
+        </nav>
+
+        <!-- VERSION FRANÇAISE -->
+        <div class="lang-content lang-fr active">
+            <div class="organizers">
+                <strong>Organisateurs :</strong> 
+                <a href="#">Prof. Jean Bertrand</a>, 
+                <a href="#">Prof. Marie Lafontaine</a>, et 
+                <a href="#">Dr. Alexandre Dubois</a>
+            </div>
+
+            <div class="info-box">
+                <p><strong>Horaire :</strong> Les mardis à 15h30 au local D1-2009</p>
+                <p>Un café est servi avant la conférence au salon du 4e étage.</p>
+                <p>Le séminaire couvre la géométrie algébrique, la géométrie symplectique, les groupes de Poisson-Lie et la géométrie complexe.</p>
+            </div>
+
+            <h2 class="section-title">Bienvenue</h2>
+            <p>Le Séminaire de Géométrie de l'Université de Sherbrooke est un forum de recherche hebdomadaire dédié aux développements récents en géométrie différentielle, algébrique et symplectique.</p>
+            
+            <p style="margin-top: 1rem;">Nos recherches couvrent un large spectre incluant :</p>
+            <ul style="margin: 1rem 0 1rem 2rem; line-height: 1.8;">
+                <li><strong>Géométrie algébrique :</strong> cohomologie des schémas, variétés de modules, géométrie birationnelle</li>
+                <li><strong>Géométrie symplectique :</strong> topologie symplectique, homologie de Floer, difféomorphismes hamiltoniens</li>
+                <li><strong>Structures de Poisson :</strong> groupes de Poisson-Lie, quantification, systèmes intégrables</li>
+                <li><strong>Géométrie complexe :</strong> métriques extrémales, variétés kählériennes, symétrie miroir</li>
+            </ul>
+
+            <h2 class="section-title">Prochains séminaires</h2>
+            <div class="seminar-item">
+                <span class="upcoming-label">À VENIR</span>
+                <h3 class="seminar-title">Invariants de Vafa-Witten et anomalies modulaires</h3>
+                <div class="seminar-meta">
+                    <span><strong>Date :</strong> Mardi 14 octobre 2025, 15h30</span>
+                </div>
+                <div class="seminar-speaker">
+                    <a href="#">Prof. Sergey Alexandrov</a>, Université de Montpellier
+                </div>
+            </div>
+
+            <p style="margin-top: 1.5rem;">
+                <a href="upcoming.html" style="color: #00703c; font-weight: 600; text-decoration: none; border-bottom: 2px solid #00703c;">Voir tous les séminaires à venir →</a>
+            </p>
+        </div>
+
+        <!-- VERSION ANGLAISE -->
+        <div class="lang-content lang-en">
+            <div class="organizers">
+                <strong>Organizers:</strong> 
+                <a href="#">Prof. Jean Bertrand</a>, 
+                <a href="#">Prof. Marie Lafontaine</a>, and 
+                <a href="#">Dr. Alexandre Dubois</a>
+            </div>
+
+            <div class="info-box">
+                <p><strong>Schedule:</strong> Tuesdays at 3:30 PM in room D1-2009</p>
+                <p>Coffee is served before the talk in the 4th floor lounge.</p>
+                <p>The seminar covers algebraic geometry, symplectic geometry, Poisson-Lie groups, and complex geometry.</p>
+            </div>
+
+            <h2 class="section-title">Welcome</h2>
+            <p>The Geometry Seminar at Université de Sherbrooke is a weekly research forum dedicated to recent developments in differential, algebraic, and symplectic geometry.</p>
+            
+            <p style="margin-top: 1rem;">Our research covers a broad spectrum including:</p>
+            <ul style="margin: 1rem 0 1rem 2rem; line-height: 1.8;">
+                <li><strong>Algebraic geometry:</strong> cohomology of schemes, moduli spaces, birational geometry</li>
+                <li><strong>Symplectic geometry:</strong> symplectic topology, Floer homology, Hamiltonian diffeomorphisms</li>
+                <li><strong>Poisson structures:</strong> Poisson-Lie groups, quantization, integrable systems</li>
+                <li><strong>Complex geometry:</strong> extremal metrics, Kähler manifolds, mirror symmetry</li>
+            </ul>
+
+            <h2 class="section-title">Upcoming Seminars</h2>
+            <div class="seminar-item">
+                <span class="upcoming-label">UPCOMING</span>
+                <h3 class="seminar-title">Vafa-Witten invariants from modular anomaly</h3>
+                <div class="seminar-meta">
+                    <span><strong>Date:</strong> Tuesday, October 14, 2025, 3:30 PM</span>
+                </div>
+                <div class="seminar-speaker">
+                    <a href="#">Prof. Sergey Alexandrov</a>, University of Montpellier
+                </div>
+            </div>
+
+            <p style="margin-top: 1.5rem;">
+                <a href="upcoming.html" style="color: #00703c; font-weight: 600; text-decoration: none; border-bottom: 2px solid #00703c;">See all upcoming seminars →</a>
+            </p>
+        </div>
+
+        <footer>
+            <p>&copy; 2025 Université de Sherbrooke - Département de mathématiques</p>
+            <p style="margin-top: 0.5rem;">Contact: <a href="mailto:geometrie.seminaire@usherbrooke.ca" style="color: #00703c; text-decoration: none;">geometrie.seminaire@usherbrooke.ca</a></p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
