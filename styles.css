@@ -1,0 +1,344 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: #fff;
+    padding: 20px;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+header {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+nav {
+    background: #f9f9f9;
+    border-bottom: 3px solid #00703c;
+    margin-bottom: 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+
+nav li {
+    margin: 0;
+}
+
+nav a {
+    display: block;
+    padding: 1rem 1.5rem;
+    color: #333;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+    border-bottom: 3px solid transparent;
+}
+
+nav a:hover {
+    background: #f0f0f0;
+    color: #00703c;
+}
+
+nav a.active {
+    color: #00703c;
+    border-bottom-color: #00703c;
+    font-weight: 600;
+}
+
+.university-name {
+    color: #00703c;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.5rem;
+}
+
+h1 {
+    font-size: 2rem;
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.lang-switch {
+    margin-top: 1rem;
+}
+
+.lang-switch button {
+    background: transparent;
+    border: 1px solid #00703c;
+    color: #00703c;
+    padding: 0.4rem 1rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-right: 0.5rem;
+    transition: all 0.3s;
+}
+
+.lang-switch button:hover {
+    background: #00703c;
+    color: white;
+}
+
+.lang-switch button.active {
+    background: #00703c;
+    color: white;
+}
+
+.organizers {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: #f9f9f9;
+    border-left: 4px solid #00703c;
+}
+
+.organizers strong {
+    color: #00703c;
+    font-weight: 600;
+}
+
+.organizers a {
+    color: #00703c;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-bottom 0.2s;
+}
+
+.organizers a:hover {
+    border-bottom: 1px solid #00703c;
+}
+
+.info-box {
+    background: #f0f7f4;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border-radius: 4px;
+}
+
+.info-box p {
+    margin-bottom: 0.8rem;
+}
+
+.info-box p:last-child {
+    margin-bottom: 0;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    color: #00703c;
+    font-weight: 600;
+    margin: 3rem 0 1.5rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #00703c;
+}
+
+.seminar-item {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.seminar-item:last-child {
+    border-bottom: none;
+}
+
+.seminar-title {
+    font-size: 1.3rem;
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+    line-height: 1.4;
+}
+
+.seminar-meta {
+    color: #666;
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+}
+
+.seminar-meta span {
+    margin-right: 1.5rem;
+}
+
+.seminar-meta strong {
+    color: #00703c;
+    font-weight: 600;
+}
+
+.seminar-speaker {
+    font-size: 1.05rem;
+    color: #00703c;
+    margin-bottom: 0.5rem;
+}
+
+.seminar-speaker a {
+    color: #00703c;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-bottom 0.2s;
+}
+
+.seminar-speaker a:hover {
+    border-bottom: 1px solid #00703c;
+}
+
+.seminar-abstract {
+    color: #555;
+    line-height: 1.7;
+    text-align: justify;
+}
+
+.upcoming-label {
+    display: inline-block;
+    background: #00703c;
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 3px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.members-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.member-card {
+    background: #f9f9f9;
+    padding: 1.5rem;
+    border-radius: 4px;
+    border: 1px solid #e0e0e0;
+    transition: all 0.3s;
+}
+
+.member-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 112, 60, 0.15);
+    transform: translateY(-2px);
+}
+
+.member-name {
+    color: #00703c;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.member-title {
+    color: #666;
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+}
+
+.member-research {
+    color: #555;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.event-card {
+    background: #f0f7f4;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-left: 4px solid #00703c;
+    border-radius: 4px;
+}
+
+.event-title {
+    color: #00703c;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.event-date {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 0.8rem;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.gallery-item {
+    background: #f5f5f5;
+    aspect-ratio: 4/3;
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    font-size: 0.9rem;
+    border: 1px solid #e0e0e0;
+}
+
+.gallery-caption {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #666;
+    text-align: center;
+}
+
+footer {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid #ddd;
+    text-align: center;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.lang-content {
+    display: none;
+}
+
+.lang-content.active {
+    display: block;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.6rem;
+    }
+
+    .section-title {
+        font-size: 1.3rem;
+    }
+
+    .seminar-title {
+        font-size: 1.1rem;
+    }
+}
