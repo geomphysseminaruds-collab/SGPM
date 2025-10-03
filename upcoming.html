@@ -3,15 +3,298 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Séminaires à venir | Séminaire de Géométrie</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Séminaires à venir | Séminaire en géométrie et physique mathématique</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.7;
+            color: #333;
+            background: #f8f8f8;
+            font-size: 18px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        header {
+            background: linear-gradient(135deg, #00703c 0%, #008d4c 50%, #00a35c 100%);
+            color: white;
+            padding: 1.2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 40%),
+                radial-gradient(circle at 60% 20%, rgba(255,255,255,0.12) 0%, transparent 45%),
+                radial-gradient(circle at 40% 70%, rgba(255,255,255,0.08) 0%, transparent 35%);
+            animation: quantum-wave 20s ease-in-out infinite;
+        }
+
+        @keyframes quantum-wave {
+            0%, 100% { 
+                transform: translate(0, 0) rotate(0deg); 
+                opacity: 0.6;
+            }
+            25% { 
+                transform: translate(15px, -15px) rotate(3deg); 
+                opacity: 0.8;
+            }
+            50% { 
+                transform: translate(-10px, 10px) rotate(-2deg); 
+                opacity: 0.7;
+            }
+            75% { 
+                transform: translate(20px, 5px) rotate(4deg); 
+                opacity: 0.9;
+            }
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,0.03) 35px, rgba(255,255,255,0.03) 70px),
+                repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(255,255,255,0.02) 35px, rgba(255,255,255,0.02) 70px);
+            animation: manifold-shift 30s linear infinite;
+        }
+
+        @keyframes manifold-shift {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(70px, 70px); }
+        }
+
+        .university-name {
+            font-size: 0.95rem;
+            margin-bottom: 0.4rem;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            font-weight: normal;
+            margin: 0.8rem 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .lang-switch {
+            margin-top: 0.8rem;
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .lang-switch button {
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.4);
+            color: white;
+            padding: 0.4rem 1rem;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            backdrop-filter: blur(5px);
+        }
+
+        .lang-switch button.active {
+            background: rgba(255,255,255,0.95);
+            color: #00703c;
+            border-color: white;
+        }
+
+        .lang-switch button:hover {
+            background: rgba(255,255,255,0.25);
+            transform: translateY(-2px);
+        }
+
+        .lang-switch button.active:hover {
+            background: white;
+        }
+
+        nav {
+            background: #f5f5f5;
+            border-bottom: 3px solid #00703c;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 0;
+        }
+
+        nav li {
+            margin: 0;
+        }
+
+        nav a {
+            display: block;
+            padding: 1rem 1.5rem;
+            color: #333;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            background: #00703c;
+            color: white;
+        }
+
+        .lang-content {
+            display: none;
+            padding: 2rem;
+        }
+
+        .lang-content.active {
+            display: block;
+        }
+
+        .section-title {
+            color: #00703c;
+            font-size: 1.8rem;
+            font-weight: normal;
+            margin: 2rem 0 1.5rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #00703c;
+        }
+
+        .seminar-item {
+            background: #fafafa;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid #00703c;
+            position: relative;
+        }
+
+        .upcoming-label {
+            display: inline-block;
+            background: #00703c;
+            color: white;
+            padding: 0.4rem 0.9rem;
+            font-size: 0.8rem;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.8rem;
+        }
+
+        .seminar-title {
+            color: #00703c;
+            font-size: 1.4rem;
+            font-weight: normal;
+            margin-bottom: 0.8rem;
+        }
+
+        .seminar-meta {
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .seminar-meta span {
+            display: inline-block;
+            margin-right: 1.5rem;
+        }
+
+        .seminar-speaker {
+            font-size: 1.05rem;
+            margin-bottom: 1rem;
+        }
+
+        .seminar-speaker a {
+            color: #00703c;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .seminar-speaker a:hover {
+            text-decoration: underline;
+        }
+
+        .seminar-abstract {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #ddd;
+            line-height: 1.8;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            font-size: 0.95rem;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        footer a {
+            color: #00a35c;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                font-size: 16px;
+            }
+
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            .lang-content {
+                padding: 1rem;
+            }
+
+            .seminar-meta span {
+                display: block;
+                margin-right: 0;
+                margin-bottom: 0.3rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <header>
             <div class="university-name">Université de Sherbrooke · Département de mathématiques</div>
-            <h1 class="lang-content lang-fr active">Séminaire de Géométrie</h1>
-            <h1 class="lang-content lang-en">Geometry Seminar</h1>
+            <h1 class="lang-content lang-fr active">Séminaire en géométrie et physique mathématique</h1>
+            <h1 class="lang-content lang-en">Seminar in Geometry and Mathematical Physics</h1>
             <div class="lang-switch">
                 <button class="active" onclick="switchLanguage('fr')" data-lang="fr">Français</button>
                 <button onclick="switchLanguage('en')" data-lang="en">English</button>
@@ -142,4 +425,35 @@
 
         <footer>
             <p>&copy; 2025 Université de Sherbrooke - Département de mathématiques</p>
-            <p style="margin-top: 0.5rem;">Contact: <a href="mailto:geometrie.seminaire@usherbrooke.ca" style="color: #00703c; text-decoration: none;">geometrie.
+            <p style="margin-top: 0.5rem;">Contact: <a href="mailto:geomphys.seminar.uds@gmail.com" style="text-decoration: none;">geomphys.seminar.uds@gmail.com</a></p>
+        </footer>
+    </div>
+
+    <script>
+        function switchLanguage(lang) {
+            document.querySelectorAll('.lang-content').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            document.querySelectorAll('.lang-' + lang).forEach(el => {
+                el.classList.add('active');
+            });
+            
+            document.querySelectorAll('.lang-switch button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector('.lang-switch button[data-lang="' + lang + '"]').classList.add('active');
+            
+            localStorage.setItem('preferredLanguage', lang);
+            document.documentElement.lang = lang;
+        }
+        
+        window.addEventListener('DOMContentLoaded', function() {
+            const savedLang = localStorage.getItem('preferredLanguage');
+            if (savedLang && savedLang !== 'fr') {
+                switchLanguage(savedLang);
+            }
+        });
+    </script>
+</body>
+</html>
