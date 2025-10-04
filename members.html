@@ -33,7 +33,22 @@
             position: relative;
             overflow: hidden;
             border-bottom: 5px solid #c9a961;
-            min-height: 300px;
+            min-height: 350px;
+        }
+
+        .uds-logo {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 10;
+            width: 120px;
+            height: auto;
+            opacity: 0.95;
+            transition: opacity 0.3s;
+        }
+
+        .uds-logo:hover {
+            opacity: 1;
         }
 
         #networkCanvas {
@@ -42,7 +57,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            opacity: 0.35;
+            opacity: 0.4;
         }
 
         .university-name {
@@ -52,6 +67,18 @@
             position: relative;
             z-index: 1;
             letter-spacing: 0.5px;
+        }
+
+        .university-name a {
+            color: white;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+            transition: all 0.3s;
+        }
+
+        .university-name a:hover {
+            border-bottom-color: #c9a961;
+            opacity: 1;
         }
 
         header h1 {
@@ -106,37 +133,45 @@
         }
 
         nav {
-            background: #f8f8f5;
-            border-bottom: 4px solid #00703c;
+            background: linear-gradient(135deg, #00703c 0%, #1a4d2e 100%);
+            border-bottom: 4px solid #c9a961;
             border-top: 2px solid #c9a961;
+            overflow-x: auto;
+            overflow-y: hidden;
+            -webkit-overflow-scrolling: touch;
         }
 
         nav ul {
             list-style: none;
             display: flex;
             justify-content: center;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
             padding: 0;
+            margin: 0;
+            min-width: max-content;
         }
 
         nav li {
             margin: 0;
+            flex-shrink: 0;
         }
 
         nav a {
             display: block;
             padding: 1.2rem 2rem;
-            color: #2c2c2c;
+            color: white;
             text-decoration: none;
             font-size: 1.15rem;
             transition: all 0.3s;
             font-weight: 500;
+            white-space: nowrap;
         }
 
         nav a:hover,
         nav a.active {
-            background: #00703c;
-            color: white;
+            background: #c9a961;
+            color: #1a4d2e;
+            font-weight: 600;
         }
 
         .lang-content {
@@ -232,7 +267,7 @@
         .member-links a {
             color: #00703c;
             text-decoration: none;
-            font-size: 1rem;
+            font-size: 0.95rem;
             padding: 0.4rem 0.8rem;
             border: 1px solid #00703c;
             border-radius: 3px;
@@ -240,6 +275,7 @@
             display: inline-flex;
             align-items: center;
             gap: 0.3rem;
+            word-break: break-word;
         }
 
         .member-links a:hover {
@@ -287,8 +323,15 @@
                 font-size: 2rem;
             }
 
-            nav ul {
-                flex-direction: column;
+            .uds-logo {
+                width: 80px;
+                top: 15px;
+                right: 15px;
+            }
+
+            nav a {
+                padding: 1rem 1.5rem;
+                font-size: 1rem;
             }
 
             .lang-content {
@@ -314,8 +357,14 @@
 <body>
     <div class="container">
         <header>
+            <a href="https://www.usherbrooke.ca/" target="_blank" rel="noopener noreferrer">
+                <img src="https://www.usherbrooke.ca/liaison/fileadmin/sites/liaison/images/UdeS_logo_h_blanc.svg" alt="Logo Université de Sherbrooke" class="uds-logo">
+            </a>
             <canvas id="networkCanvas"></canvas>
-            <div class="university-name">Université de Sherbrooke · Département de mathématiques</div>
+            <div class="university-name">
+                <a href="https://www.usherbrooke.ca/" target="_blank" rel="noopener noreferrer">Université de Sherbrooke</a> · 
+                <a href="https://www.usherbrooke.ca/mathematiques/" target="_blank" rel="noopener noreferrer">Département de mathématiques</a>
+            </div>
             <h1 class="lang-content lang-fr active">Séminaire en géométrie et physique mathématique</h1>
             <h1 class="lang-content lang-en">Seminar in Geometry and Mathematical Physics</h1>
             <div class="lang-switch">
@@ -351,29 +400,28 @@
             <div class="members-grid">
                 <div class="member-card">
                     <div class="member-photo">
-                        <!-- Pour ajouter une photo, utilisez: <img src="photos/mohamed.jpg" alt="Mohamed Moussadek Maiza"> -->
-                        MM
+                        <img src="photos/mohamed.jpg" alt="Mohamed Moussadek Maiza">
                     </div>
                     <div class="member-info">
                         <div class="member-name">Mohamed Moussadek Maiza</div>
+                        <div class="member-title">Doctorant</div>
                         <div class="member-research">Structures géométriques, théorie des représentations des groupes, espaces de Teichmüller supérieurs</div>
                         <div class="member-links">
-                            <a href="mailto:mohamed.moussadek.maiza@usherbrooke.ca">✉ Email</a>
-                            <!-- <a href="https://..." target="_blank">🌐 Site web</a> -->
+                            <a href="mailto:mohamed.moussadek.maiza@usherbrooke.ca">mohamed.moussadek.maiza@usherbrooke.ca</a>
                         </div>
                     </div>
                 </div>
 
                 <div class="member-card">
                     <div class="member-photo">
-                        <!-- Pour ajouter une photo, utilisez: <img src="photos/yassine.jpg" alt="Yassine Ait Mohamed"> -->
-                        YA
+                        <img src="photos/yassine.jpg" alt="Yassine Ait Mohamed">
                     </div>
                     <div class="member-info">
                         <div class="member-name">Yassine Ait Mohamed</div>
-                        <div class="member-research">Spécialités : Géométrie algébrique, groupes de Lie, théories des champs quantiques topologiques, géométrie symplectique décalée</div>
+                        <div class="member-title">Doctorant</div>
+                        <div class="member-research">Géométrie algébrique, groupes de Lie, théories des champs quantiques topologiques, géométrie symplectique décalée</div>
                         <div class="member-links">
-                            <a href="mailto:yassine.ait.mohamed@usherbrooke.ca">✉ Email</a>
+                            <a href="mailto:yassine.ait.mohamed@usherbrooke.ca">yassine.ait.mohamed@usherbrooke.ca</a>
                         </div>
                     </div>
                 </div>
@@ -385,27 +433,29 @@
             
             <div class="members-grid">
                 <div class="member-card">
-                    <div class="member-photo">MM</div>
+                    <div class="member-photo">
+                        <img src="photos/maxence.jpg" alt="Maxence Mayrand">
+                    </div>
                     <div class="member-info">
                         <div class="member-name">Maxence Mayrand</div>
                         <div class="member-title">Professeur adjoint</div>
                         <div class="member-research">Géométrie différentielle, groupes de Lie, théories des champs quantiques topologiques, géométrie symplectique décalée</div>
                         <div class="member-links">
-                            <!-- <a href="mailto:...">✉ Email</a> -->
-                            <!-- <a href="https://..." target="_blank">🌐 Site web</a> -->
+                            <a href="mailto:maxence.mayrand@usherbrooke.ca">maxence.mayrand@usherbrooke.ca</a>
                         </div>
                     </div>
                 </div>
 
                 <div class="member-card">
-                    <div class="member-photo">JB</div>
+                    <div class="member-photo">
+                        <img src="photos/jean-philippe.jpg" alt="Jean-Philippe Burelle">
+                    </div>
                     <div class="member-info">
                         <div class="member-name">Jean-Philippe Burelle</div>
                         <div class="member-title">Professeur agrégé</div>
                         <div class="member-research">Sous-groupes discrets des groupes de Lie, théorie de Teichmüller en rang supérieur, structures géométriques localement homogènes</div>
                         <div class="member-links">
-                            <!-- <a href="mailto:...">✉ Email</a> -->
-                            <!-- <a href="https://..." target="_blank">🌐 Site web</a> -->
+                            <a href="mailto:jean-philippe.burelle@usherbrooke.ca">jean-philippe.burelle@usherbrooke.ca</a>
                         </div>
                     </div>
                 </div>
@@ -415,73 +465,57 @@
 
             <div class="members-grid">
                 <div class="member-card">
-                    <div class="member-photo">MM</div>
+                    <div class="member-photo">
+                        <img src="photos/mohamed.jpg" alt="Mohamed Moussadek Maiza">
+                    </div>
                     <div class="member-info">
                         <div class="member-name">Mohamed Moussadek Maiza</div>
                         <div class="member-title">Doctorant</div>
                         <div class="member-research">Structures géométriques, théorie des représentations des groupes, espaces de Teichmüller supérieurs</div>
                         <div class="member-links">
-                            <a href="mailto:mohamed.moussadek.maiza@usherbrooke.ca">✉ Email</a>
+                            <a href="mailto:mohamed.moussadek.maiza@usherbrooke.ca">mohamed.moussadek.maiza@usherbrooke.ca</a>
                         </div>
                     </div>
                 </div>
 
                 <div class="member-card">
-                    <div class="member-photo">YA</div>
+                    <div class="member-photo">
+                        <img src="photos/yassine.jpg" alt="Yassine Ait Mohamed">
+                    </div>
                     <div class="member-info">
                         <div class="member-name">Yassine Ait Mohamed</div>
                         <div class="member-title">Doctorant</div>
                         <div class="member-research">Géométrie algébrique, groupes de Lie, théories des champs quantiques topologiques, géométrie symplectique décalée</div>
                         <div class="member-links">
-                            <a href="mailto:yassine.ait.mohamed@usherbrooke.ca">✉ Email</a>
+                            <a href="mailto:yassine.ait.mohamed@usherbrooke.ca">yassine.ait.mohamed@usherbrooke.ca</a>
                         </div>
                     </div>
                 </div>
 
                 <div class="member-card">
-                    <div class="member-photo">AM</div>
-                    <div class="member-info">
-                        <div class="member-name">Adji Madjou</div>
-                        <div class="member-title">Doctorant</div>
-                        <div class="member-research">Géométrie complexe</div>
-                        <div class="member-links">
-                            <!-- <a href="mailto:...">✉ Email</a> -->
-                        </div>
+                    <div class="member-photo">
+                        <img src="photos/samuel.jpg" alt="Samuel Dobchies">
                     </div>
-                </div>
-
-                <div class="member-card">
-                    <div class="member-photo">SD</div>
                     <div class="member-info">
                         <div class="member-name">Samuel Dobchies</div>
                         <div class="member-title">Doctorant</div>
                         <div class="member-research">Surfaces de Riemann et physique mathématique</div>
                         <div class="member-links">
-                            <!-- <a href="mailto:...">✉ Email</a> -->
+                            <a href="mailto:samuel.dobchies@usherbrooke.ca">samuel.dobchies@usherbrooke.ca</a>
                         </div>
                     </div>
                 </div>
 
                 <div class="member-card">
-                    <div class="member-photo">WD</div>
-                    <div class="member-info">
-                        <div class="member-name">Wenpo Dimoune</div>
-                        <div class="member-title">Doctorant</div>
-                        <div class="member-research">Structures géométriques</div>
-                        <div class="member-links">
-                            <!-- <a href="mailto:...">✉ Email</a> -->
-                        </div>
+                    <div class="member-photo">
+                        <img src="photos/ablanvi.jpg" alt="Ablanvi Songo">
                     </div>
-                </div>
-
-                <div class="member-card">
-                    <div class="member-photo">AS</div>
                     <div class="member-info">
                         <div class="member-name">Ablanvi Songo</div>
                         <div class="member-title">Doctorant</div>
                         <div class="member-research">Équations aux dérivées partielles, physique mathématique</div>
                         <div class="member-links">
-                            <!-- <a href="mailto:...">✉ Email</a> -->
+                            <a href="mailto:ablanvi.songo@usherbrooke.ca">ablanvi.songo@usherbrooke.ca</a>
                         </div>
                     </div>
                 </div>
@@ -494,25 +528,27 @@
             
             <div class="members-grid">
                 <div class="member-card">
-                    <div class="member-photo">MM</div>
+                    <div class="member-photo">
+                        <img src="photos/mohamed.jpg" alt="Mohamed Moussadek Maiza">
+                    </div>
                     <div class="member-info">
                         <div class="member-name">Mohamed Moussadek Maiza</div>
-                        <div class="member-title">PhD Student</div>
-                        <div class="member-research">Specialties: Geometric structures, group representation theory, higher Teichmüller spaces</div>
+                        <div class="member-research">Geometric structures, group representation theory, higher Teichmüller spaces</div>
                         <div class="member-links">
-                            <a href="mailto:mohamed.moussadek.maiza@usherbrooke.ca">✉ Email</a>
+                            <a href="mailto:mohamed.moussadek.maiza@usherbrooke.ca">mohamed.moussadek.maiza@usherbrooke.ca</a>
                         </div>
                     </div>
                 </div>
 
                 <div class="member-card">
-                    <div class="member-photo">YA</div>
+                    <div class="member-photo">
+                        <img src="photos/yassine.jpg" alt="Yassine Ait Mohamed">
+                    </div>
                     <div class="member-info">
                         <div class="member-name">Yassine Ait Mohamed</div>
-                        <div class="member-title">PhD Student</div>
-                        <div class="member-research">Specialties: Algebraic geometry, Lie groups, topological quantum field theories, shifted symplectic geometry</div>
+                        <div class="member-research">Algebraic geometry, Lie groups, topological quantum field theories, shifted symplectic geometry</div>
                         <div class="member-links">
-                            <a href="mailto:yassine.ait.mohamed@usherbrooke.ca">✉ Email</a>
+                            <a href="mailto:yassine.ait.mohamed@usherbrooke.ca">yassine.ait.mohamed@usherbrooke.ca</a>
                         </div>
                     </div>
                 </div>
@@ -524,33 +560,30 @@
             
             <div class="members-grid">
                 <div class="member-card">
-                    <div class="member-photo">MM</div>
+                    <div class="member-photo">
+                        <img src="photos/maxence.jpg" alt="Maxence Mayrand">
+                    </div>
                     <div class="member-info">
                         <div class="member-name">Maxence Mayrand</div>
                         <div class="member-title">Assistant Professor</div>
                         <div class="member-research">Differential geometry, Lie groups, topological quantum field theories, shifted symplectic geometry</div>
+                        <div class="member-links">
+                            <a href="mailto:maxence.mayrand@usherbrooke.ca">maxence.mayrand@usherbrooke.ca</a>
+                        </div>
                     </div>
                 </div>
 
                 <div class="member-card">
-                    <div class="member-photo">JB</div>
+                    <div class="member-photo">
+                        <img src="photos/jean-philippe.jpg" alt="Jean-Philippe Burelle">
+                    </div>
                     <div class="member-info">
                         <div class="member-name">Jean-Philippe Burelle</div>
                         <div class="member-title">Associate Professor</div>
                         <div class="member-research">Discrete subgroups of Lie groups, higher Teichmüller theory, locally homogeneous geometric structures</div>
-                    </div>
-                </div>
-            </div>
-
-            <h3>Postdocs</h3>
-            
-            <div class="members-grid">
-                <div class="member-card">
-                    <div class="member-photo">ST</div>
-                    <div class="member-info">
-                        <div class="member-name">R</div>
-                        <div class="member-title">Postdoctoral Researcher</div>
-                        <div class="member-research">Quantum cohomology, mirror symmetry, toric varieties</div>
+                        <div class="member-links">
+                            <a href="mailto:jean-philippe.burelle@usherbrooke.ca">jean-philippe.burelle@usherbrooke.ca</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -559,75 +592,70 @@
             
             <div class="members-grid">
                 <div class="member-card">
-                    <div class="member-photo">MM</div>
+                    <div class="member-photo">
+                        <img src="photos/mohamed.jpg" alt="Mohamed Moussadek Maiza">
+                    </div>
                     <div class="member-info">
                         <div class="member-name">Mohamed Moussadek Maiza</div>
                         <div class="member-title">PhD Student</div>
                         <div class="member-research">Geometric structures, group representation theory, higher Teichmüller spaces</div>
                         <div class="member-links">
-                            <a href="mailto:mohamed.moussadek.maiza@usherbrooke.ca">✉ Email</a>
+                            <a href="mailto:mohamed.moussadek.maiza@usherbrooke.ca">mohamed.moussadek.maiza@usherbrooke.ca</a>
                         </div>
                     </div>
                 </div>
 
                 <div class="member-card">
-                    <div class="member-photo">YA</div>
+                    <div class="member-photo">
+                        <img src="photos/yassine.jpg" alt="Yassine Ait Mohamed">
+                    </div>
                     <div class="member-info">
                         <div class="member-name">Yassine Ait Mohamed</div>
                         <div class="member-title">PhD Student</div>
                         <div class="member-research">Algebraic geometry, Lie groups, topological quantum field theories, shifted symplectic geometry</div>
                         <div class="member-links">
-                            <a href="mailto:yassine.ait.mohamed@usherbrooke.ca">✉ Email</a>
+                            <a href="mailto:yassine.ait.mohamed@usherbrooke.ca">yassine.ait.mohamed@usherbrooke.ca</a>
                         </div>
                     </div>
                 </div>
 
                 <div class="member-card">
-                    <div class="member-photo">AM</div>
-                    <div class="member-info">
-                        <div class="member-name">Adji Madjou</div>
-                        <div class="member-title">PhD Student</div>
-                        <div class="member-research">Complex geometry</div>
+                    <div class="member-photo">
+                        <img src="photos/samuel.jpg" alt="Samuel Dobchies">
                     </div>
-                </div>
-
-                <div class="member-card">
-                    <div class="member-photo">SD</div>
                     <div class="member-info">
                         <div class="member-name">Samuel Dobchies</div>
                         <div class="member-title">PhD Student</div>
                         <div class="member-research">Riemann surfaces and mathematical physics</div>
+                        <div class="member-links">
+                            <a href="mailto:samuel.dobchies@usherbrooke.ca">samuel.dobchies@usherbrooke.ca</a>
+                        </div>
                     </div>
                 </div>
 
                 <div class="member-card">
-                    <div class="member-photo">WD</div>
-                    <div class="member-info">
-                        <div class="member-name">Wenpo Dimoune</div>
-                        <div class="member-title">PhD Student</div>
-                        <div class="member-research">Geometric structures</div>
+                    <div class="member-photo">
+                        <img src="photos/ablanvi.jpg" alt="Ablanvi Songo">
                     </div>
-                </div>
-
-                <div class="member-card">
-                    <div class="member-photo">AS</div>
                     <div class="member-info">
                         <div class="member-name">Ablanvi Songo</div>
                         <div class="member-title">PhD Student</div>
                         <div class="member-research">Partial differential equations, mathematical physics</div>
+                        <div class="member-links">
+                            <a href="mailto:ablanvi.songo@usherbrooke.ca">ablanvi.songo@usherbrooke.ca</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
         <footer>
-            <p>&copy; 2025 Université de Sherbrooke - Département de mathématiques</p>
+            <p>&copy; 2025 <a href="https://www.usherbrooke.ca/" target="_blank" rel="noopener noreferrer">Université de Sherbrooke</a> - <a href="https://www.usherbrooke.ca/mathematiques/" target="_blank" rel="noopener noreferrer">Département de mathématiques</a></p>
             <p style="margin-top: 0.5rem;">Contact: <a href="mailto:geomphys.seminar.uds@gmail.com">geomphys.seminar.uds@gmail.com</a></p>
         </footer>
     </div>
 
     <script>
-        // Animation de réseau de collaboration (graphe de Dynkin / réseau scientifique)
         const canvas = document.getElementById('networkCanvas');
         const ctx = canvas.getContext('2d');
         
@@ -651,11 +679,9 @@
             }
             
             update(nodes) {
-                // Mouvement brownien
                 this.vx += (Math.random() - 0.5) * 0.1;
                 this.vy += (Math.random() - 0.5) * 0.1;
                 
-                // Limiter la vitesse
                 const speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
                 if (speed > 0.5) {
                     this.vx = (this.vx / speed) * 0.5;
@@ -665,7 +691,6 @@
                 this.x += this.vx;
                 this.y += this.vy;
                 
-                // Rebond sur les bords
                 if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
                 if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
                 
@@ -678,13 +703,11 @@
             draw() {
                 const pulseSize = 1 + Math.sin(this.pulse) * 0.3;
                 
-                // Nœud
                 ctx.fillStyle = `rgba(201, 169, 97, ${0.6 + Math.sin(this.pulse) * 0.2})`;
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.radius * pulseSize, 0, Math.PI * 2);
                 ctx.fill();
                 
-                // Halo
                 ctx.strokeStyle = `rgba(255, 255, 255, ${0.3 + Math.sin(this.pulse) * 0.1})`;
                 ctx.lineWidth = 1;
                 ctx.beginPath();
@@ -702,7 +725,6 @@
                 this.centerY = Math.random() * canvas.height;
                 this.scale = 40 + Math.random() * 30;
                 
-                // Créer un diagramme de Dynkin E6
                 const positions = [
                     [0, 0], [1, 0], [2, 0], [3, 0], [4, 0], [2, -1]
                 ];
@@ -726,7 +748,6 @@
                 ctx.translate(this.centerX, this.centerY);
                 ctx.rotate(this.rotation);
                 
-                // Dessiner les arêtes
                 this.edges.forEach(([i, j]) => {
                     const n1 = this.nodes[i];
                     const n2 = this.nodes[j];
@@ -739,7 +760,6 @@
                     ctx.stroke();
                 });
                 
-                // Dessiner les nœuds
                 this.nodes.forEach(node => {
                     ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
                     ctx.beginPath();
@@ -755,7 +775,6 @@
             }
         }
         
-        // Créer le réseau
         const nodes = [];
         const numNodes = 25;
         
@@ -766,7 +785,6 @@
             ));
         }
         
-        // Créer des connexions
         nodes.forEach((node, i) => {
             const numConnections = 2 + Math.floor(Math.random() * 3);
             for (let j = 0; j < numConnections; j++) {
@@ -777,7 +795,6 @@
             }
         });
         
-        // Créer des diagrammes de Dynkin
         const dynkinDiagrams = [];
         for (let i = 0; i < 2; i++) {
             dynkinDiagrams.push(new DynkinDiagram());
@@ -786,7 +803,6 @@
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
-            // Dessiner les connexions
             nodes.forEach(node => {
                 node.connections.forEach(target => {
                     const distance = Math.sqrt(
@@ -806,13 +822,11 @@
                 });
             });
             
-            // Dessiner les diagrammes de Dynkin
             dynkinDiagrams.forEach(diagram => {
                 diagram.update();
                 diagram.draw();
             });
             
-            // Mettre à jour et dessiner les nœuds
             nodes.forEach(node => {
                 node.update(nodes);
                 node.draw();
@@ -823,7 +837,6 @@
         
         animate();
         
-        // Changement de langue
         function switchLanguage(lang) {
             document.querySelectorAll('.lang-content').forEach(el => {
                 el.classList.remove('active');
