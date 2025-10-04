@@ -434,9 +434,8 @@
             </div>
 
             <div class="info-box">
-                <p><strong>Horaire :</strong> Les mardis à 15h30 au local D1-2009</p>
-                <p>Un café est servi avant la conférence au salon du 4e étage.</p>
-                <p>Le séminaire couvre la géométrie algébrique symplectique, la théorie de Lie, les structures de Poisson, la géométrie complexe et hyperkählérienne, et la physique mathématique.</p>
+                <p><strong>Séminaires :</strong> Les mardis à 15h30 au local D1-2009</p>
+                <p><strong>Heure actuelle :</strong> <span id="current-time-fr" style="color: #00703c; font-weight: 600;"></span></p>
             </div>
 
             <h2 class="section-title">Bienvenue</h2>
@@ -454,14 +453,7 @@
 
             <h2 class="section-title">Prochains séminaires</h2>
             <div class="seminar-item">
-                <span class="upcoming-label">À VENIR</span>
-                <h3 class="seminar-title">Invariants de Vafa-Witten et anomalies modulaires</h3>
-                <div class="seminar-meta">
-                    <span><strong>Date :</strong> Mardi 14 octobre 2025, 15h30</span>
-                </div>
-                <div class="seminar-speaker">
-                    <a href="#">Prof. Sergey Alexandrov</a>, Université de Montpellier
-                </div>
+                <span class="upcoming-label">À VENIR...</span>
             </div>
 
             <p style="margin-top: 1.5rem;">
@@ -479,8 +471,7 @@
 
             <div class="info-box">
                 <p><strong>Schedule:</strong> Tuesdays at 3:30 PM in room D1-2009</p>
-                <p>Coffee is served before the talk in the 4th floor lounge.</p>
-                <p>The seminar covers symplectic algebraic geometry, Lie theory, Poisson structures, complex and hyperkähler geometry, and mathematical physics.</p>
+                <p><strong>Current time:</strong> <span id="current-time-en" style="color: #00703c; font-weight: 600;"></span></p>
             </div>
 
             <h2 class="section-title">Welcome</h2>
@@ -498,14 +489,7 @@
 
             <h2 class="section-title">Upcoming Seminars</h2>
             <div class="seminar-item">
-                <span class="upcoming-label">UPCOMING</span>
-                <h3 class="seminar-title">Vafa-Witten invariants from modular anomaly</h3>
-                <div class="seminar-meta">
-                    <span><strong>Date:</strong> Tuesday, October 14, 2025, 3:30 PM</span>
-                </div>
-                <div class="seminar-speaker">
-                    <a href="#">Prof. Sergey Alexandrov</a>, University of Montpellier
-                </div>
+                <span class="upcoming-label">COMING SOON...</span>
             </div>
 
             <p style="margin-top: 1.5rem;">
@@ -682,6 +666,45 @@
         }
         
         animate(0);
+        
+        // Horloge en temps réel
+        function updateClock() {
+            const now = new Date();
+            
+            // Format français
+            const optionsFr = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                timeZone: 'America/Toronto'
+            };
+            const timeFr = now.toLocaleDateString('fr-CA', optionsFr);
+            const elementFr = document.getElementById('current-time-fr');
+            if (elementFr) elementFr.textContent = timeFr;
+            
+            // Format anglais
+            const optionsEn = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                timeZone: 'America/Toronto'
+            };
+            const timeEn = now.toLocaleDateString('en-CA', optionsEn);
+            const elementEn = document.getElementById('current-time-en');
+            if (elementEn) elementEn.textContent = timeEn;
+        }
+        
+        // Mettre à jour l'horloge toutes les secondes
+        updateClock();
+        setInterval(updateClock, 1000);
         
         // Changement de langue
         function switchLanguage(lang) {
