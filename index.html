@@ -36,6 +36,21 @@
             min-height: 350px;
         }
 
+        .uds-logo {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 10;
+            width: 120px;
+            height: auto;
+            opacity: 0.95;
+            transition: opacity 0.3s;
+        }
+
+        .uds-logo:hover {
+            opacity: 1;
+        }
+
         #geometryCanvas {
             position: absolute;
             top: 0;
@@ -348,6 +363,12 @@
                 font-size: 2rem;
             }
 
+            .uds-logo {
+                width: 80px;
+                top: 15px;
+                right: 15px;
+            }
+
             nav a {
                 padding: 1rem 1.5rem;
                 font-size: 1rem;
@@ -368,6 +389,9 @@
 <body>
     <div class="container">
         <header>
+            <a href="https://www.usherbrooke.ca/" target="_blank" rel="noopener noreferrer">
+                <img src="https://www.usherbrooke.ca/liaison/fileadmin/sites/liaison/images/UdeS_logo_h_blanc.svg" alt="Logo Université de Sherbrooke" class="uds-logo">
+            </a>
             <canvas id="geometryCanvas"></canvas>
             <div class="university-name">
                 <a href="https://www.usherbrooke.ca/" target="_blank" rel="noopener noreferrer">Université de Sherbrooke</a> · 
@@ -419,12 +443,13 @@
             
             <p style="margin-top: 1rem;">Nos recherches couvrent un large spectre incluant :</p>
             <ul style="margin: 1rem 0 1rem 2rem; line-height: 1.8;">
-                <li><strong>Géométrie algébrique symplectique :</strong> variétés symplectiques, structures de Poisson, quantification</li>
-                <li><strong>Théorie de Lie :</strong> groupes de Lie, algèbres de Lie, représentations</li>
-                <li><strong>Géométrie de Poisson :</strong> structures de Poisson, groupoïdes symplectiques, feuilletages</li>
-                <li><strong>Géométrie complexe et hyperkählérienne :</strong> variétés de Calabi-Yau, métriques spéciales</li>
-                <li><strong>Physique mathématique :</strong> mécanique quantique, théorie des champs, théorie des cordes</li>
-                <li><strong>Algèbre quantique :</strong> groupes quantiques, déformations, catégorification</li>
+                <li><strong>Structures géométriques :</strong> structures localement homogènes, théorie de Teichmüller en rang supérieur, espaces de Teichmüller supérieurs</li>
+                <li><strong>Théorie de Lie et représentations :</strong> groupes de Lie, algèbres de Lie, sous-groupes discrets, théorie des représentations des groupes</li>
+                <li><strong>Géométrie différentielle et symplectique :</strong> variétés symplectiques, géométrie symplectique décalée, structures de Poisson</li>
+                <li><strong>Géométrie algébrique :</strong> variétés algébriques, géométrie complexe</li>
+                <li><strong>Théories des champs quantiques topologiques :</strong> TQFT, applications géométriques</li>
+                <li><strong>Surfaces de Riemann :</strong> géométrie des surfaces, applications à la physique mathématique</li>
+                <li><strong>Physique mathématique :</strong> mécanique quantique, théorie des champs, équations aux dérivées partielles</li>
             </ul>
 
             <h2 class="section-title">Prochains séminaires</h2>
@@ -441,7 +466,7 @@
         <div class="lang-content lang-en">
             <div class="organizers">
                 <strong>Organizers:</strong> 
-                <a href="#">Mohamed Moussadek Maiza</a>, 
+              <a href="#">Mohamed Moussadek Maiza</a>, 
                 <a href="#">Yassine Ait Mohamed</a>
             </div>
 
@@ -455,12 +480,13 @@
             
             <p style="margin-top: 1rem;">Our research covers a broad spectrum including:</p>
             <ul style="margin: 1rem 0 1rem 2rem; line-height: 1.8;">
-                <li><strong>Symplectic algebraic geometry:</strong> symplectic manifolds, Poisson structures, quantization</li>
-                <li><strong>Lie theory:</strong> Lie groups, Lie algebras, representations</li>
-                <li><strong>Poisson geometry:</strong> Poisson structures, symplectic groupoids, foliations</li>
-                <li><strong>Complex and hyperkähler geometry:</strong> Calabi-Yau manifolds, special metrics</li>
-                <li><strong>Mathematical physics:</strong> quantum mechanics, field theory, string theory</li>
-                <li><strong>Quantum algebra:</strong> quantum groups, deformations, categorification</li>
+                <li><strong>Geometric structures:</strong> locally homogeneous structures, higher Teichmüller theory, higher Teichmüller spaces</li>
+                <li><strong>Lie theory and representations:</strong> Lie groups, Lie algebras, discrete subgroups, group representation theory</li>
+                <li><strong>Differential and symplectic geometry:</strong> symplectic manifolds, shifted symplectic geometry, Poisson structures</li>
+                <li><strong>Algebraic geometry:</strong> algebraic varieties, complex geometry</li>
+                <li><strong>Topological quantum field theories:</strong> TQFT, geometric applications</li>
+                <li><strong>Riemann surfaces:</strong> surface geometry, applications to mathematical physics</li>
+                <li><strong>Mathematical physics:</strong> quantum mechanics, field theory, partial differential equations</li>
             </ul>
 
             <h2 class="section-title">Upcoming Seminars</h2>
@@ -524,7 +550,7 @@
             }
         }
         
-        // Formes géométriques 3D (tores, sphères)
+        // Formes géométriques 3D
         class GeometricShape3D {
             constructor() {
                 this.x = Math.random() * canvas.width;
@@ -588,7 +614,6 @@
             drawSphere() {
                 const segments = 12;
                 
-                // Méridiens
                 for (let i = 0; i < segments; i++) {
                     const angle = (i / segments) * Math.PI;
                     ctx.beginPath();
@@ -605,7 +630,6 @@
                     ctx.stroke();
                 }
                 
-                // Parallèles
                 for (let i = 0; i < segments / 2; i++) {
                     const angle = (i / (segments / 2)) * Math.PI;
                     ctx.beginPath();
@@ -695,7 +719,6 @@
                     );
                     ctx.stroke();
                     
-                    // Pointe
                     ctx.fillStyle = 'rgba(201, 169, 97, 0.5)';
                     ctx.beginPath();
                     ctx.arc(
@@ -708,7 +731,6 @@
             }
         }
         
-        // Initialisation
         const particles = Array.from({ length: 50 }, () => new QuantumParticle());
         const shapes = Array.from({ length: 4 }, () => new GeometricShape3D());
         const waves = Array.from({ length: 5 }, () => new QuantumWave());
@@ -717,19 +739,14 @@
         function animate(timestamp) {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
-            // Dessiner les ondes
             waves.forEach(wave => wave.draw(timestamp));
-            
-            // Dessiner le champ de vecteurs
             vectorField.draw(timestamp);
             
-            // Dessiner les formes 3D
             shapes.forEach(shape => {
                 shape.update();
                 shape.draw();
             });
             
-            // Dessiner les particules
             particles.forEach(particle => {
                 particle.update(timestamp);
                 particle.draw();
