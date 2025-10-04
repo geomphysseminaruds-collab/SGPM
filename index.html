@@ -78,54 +78,6 @@
             }
         }
 
-        .vector-field {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-        }
-
-        .vector {
-            position: absolute;
-            width: 40px;
-            height: 2px;
-            background: linear-gradient(90deg, rgba(201, 169, 97, 0.6), transparent);
-            transform-origin: left center;
-            animation: vectorFlow 3s ease-in-out infinite;
-        }
-
-        @keyframes vectorFlow {
-            0%, 100% {
-                opacity: 0.4;
-                transform: translateX(0) rotate(var(--angle));
-            }
-            50% {
-                opacity: 0.8;
-                transform: translateX(10px) rotate(calc(var(--angle) + 15deg));
-            }
-        }
-
-        .geometric-curve {
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            border: 2px solid rgba(201, 169, 97, 0.3);
-            border-radius: 50%;
-            animation: curvePulse 4s ease-in-out infinite;
-        }
-
-        @keyframes curvePulse {
-            0%, 100% {
-                transform: scale(1) rotate(0deg);
-                opacity: 0.3;
-            }
-            50% {
-                transform: scale(1.2) rotate(180deg);
-                opacity: 0.6;
-            }
-        }
-
         .university-name {
             font-size: 1.15rem;
             margin-bottom: 0.8rem;
@@ -133,6 +85,18 @@
             position: relative;
             z-index: 1;
             letter-spacing: 0.5px;
+        }
+
+        .university-name a {
+            color: white;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+            transition: all 0.3s;
+        }
+
+        .university-name a:hover {
+            border-bottom-color: #c9a961;
+            opacity: 1;
         }
 
         header h1 {
@@ -396,7 +360,10 @@
     <div class="container">
         <header>
             <canvas id="geometryCanvas"></canvas>
-            <div class="university-name">Université de Sherbrooke · Département de mathématiques</div>
+            <div class="university-name">
+                <a href="https://www.usherbrooke.ca/" target="_blank" rel="noopener noreferrer">Université de Sherbrooke</a> · 
+                <a href="https://www.usherbrooke.ca/mathematiques/" target="_blank" rel="noopener noreferrer">Département de mathématiques</a>
+            </div>
             <h1 class="lang-content lang-fr active">Séminaire en géométrie et physique mathématique</h1>
             <h1 class="lang-content lang-en">Seminar in Geometry and Mathematical Physics</h1>
             <div class="lang-switch">
@@ -465,7 +432,7 @@
         <div class="lang-content lang-en">
             <div class="organizers">
                 <strong>Organizers:</strong> 
-              <a href="#">Mohamed Moussadek Maiza</a>, 
+                <a href="#">Mohamed Moussadek Maiza</a>, 
                 <a href="#">Yassine Ait Mohamed</a>
             </div>
 
@@ -498,7 +465,7 @@
         </div>
 
         <footer>
-            <p>&copy; 2025 Université de Sherbrooke - Département de mathématiques</p>
+            <p>&copy; 2025 <a href="https://www.usherbrooke.ca/" target="_blank" rel="noopener noreferrer">Université de Sherbrooke</a> - <a href="https://www.usherbrooke.ca/mathematiques/" target="_blank" rel="noopener noreferrer">Département de mathématiques</a></p>
             <p style="margin-top: 0.5rem;">Contact: <a href="mailto:geomphys.seminar.uds@gmail.com" style="text-decoration: none;">geomphys.seminar.uds@gmail.com</a></p>
         </footer>
     </div>
