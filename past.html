@@ -33,16 +33,16 @@
             position: relative;
             overflow: hidden;
             border-bottom: 5px solid #c9a961;
-            min-height: 300px;
+            min-height: 350px;
         }
 
-        #algebraicCanvas {
+        #wormholeCanvas {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            opacity: 0.35;
+            opacity: 0.5;
         }
 
         .university-name {
@@ -94,20 +94,9 @@
             transform: scale(1.05);
         }
 
-        .lang-switch button:hover {
-            background: rgba(201, 169, 97, 0.3);
-            border-color: #c9a961;
-            transform: translateY(-2px);
-        }
-
-        .lang-switch button.active:hover {
-            background: #d4b871;
-            transform: scale(1.05) translateY(-2px);
-        }
-
         nav {
-            background: #f8f8f5;
-            border-bottom: 4px solid #00703c;
+            background: linear-gradient(135deg, #00703c 0%, #1a4d2e 100%);
+            border-bottom: 4px solid #c9a961;
             border-top: 2px solid #c9a961;
         }
 
@@ -119,14 +108,10 @@
             padding: 0;
         }
 
-        nav li {
-            margin: 0;
-        }
-
         nav a {
             display: block;
             padding: 1.2rem 2rem;
-            color: #2c2c2c;
+            color: white;
             text-decoration: none;
             font-size: 1.15rem;
             transition: all 0.3s;
@@ -135,8 +120,9 @@
 
         nav a:hover,
         nav a.active {
-            background: #00703c;
-            color: white;
+            background: #c9a961;
+            color: #1a4d2e;
+            font-weight: 600;
         }
 
         .lang-content {
@@ -160,17 +146,11 @@
         }
 
         footer {
-            background: #1a4d2e;
+            background: #00703C;
             color: white;
             padding: 2.5rem;
             text-align: center;
-            font-size: 1.05rem;
             margin-top: 3rem;
-            border-top: 4px solid #c9a961;
-        }
-
-        footer p {
-            margin-bottom: 0.8rem;
         }
 
         footer a {
@@ -178,26 +158,9 @@
             text-decoration: none;
         }
 
-        footer a:hover {
-            text-decoration: underline;
-            color: #d4b871;
-        }
-
         @media (max-width: 768px) {
-            body {
-                font-size: 18px;
-            }
-
             header h1 {
                 font-size: 2rem;
-            }
-
-            nav ul {
-                flex-direction: column;
-            }
-
-            .lang-content {
-                padding: 1.5rem;
             }
         }
     </style>
@@ -205,7 +168,7 @@
 <body>
     <div class="container">
         <header>
-            <canvas id="algebraicCanvas"></canvas>
+            <canvas id="wormholeCanvas"></canvas>
             <div class="university-name">Université de Sherbrooke · Département de mathématiques</div>
             <h1 class="lang-content lang-fr active">Séminaire en géométrie et physique mathématique</h1>
             <h1 class="lang-content lang-en">Seminar in Geometry and Mathematical Physics</h1>
@@ -235,317 +198,175 @@
             </ul>
         </nav>
 
-        <!-- VERSION FRANÇAISE -->
         <div class="lang-content lang-fr active">
             <h2 class="section-title">Séminaires passés</h2>
         </div>
 
-        <!-- VERSION ANGLAISE -->
         <div class="lang-content lang-en">
             <h2 class="section-title">Past Seminars</h2>
         </div>
 
-       <footer style="background-color: #00703C; padding: 1rem; text-align: center; color: white;">
-  <p>
-    &copy; 2025 
-    <a href="https://www.usherbrooke.ca/" target="_blank" rel="noopener noreferrer" style="color: white; text-decoration: none;">
-      Université de Sherbrooke
-    </a> - 
-    <a href="https://www.usherbrooke.ca/mathematiques/" target="_blank" rel="noopener noreferrer" style="color: white; text-decoration: none;">
-      Département de mathématiques
-    </a>
-  </p>
-
-  <p style="margin-top: 0.5rem;">
-    Contact: <a href="mailto:geomphys.seminar.uds@gmail.com" style="color: white; text-decoration: none;">
-      geomphys.seminar.uds@gmail.com
-    </a>
-  </p>
-
-  <p style="margin-top: 0.5rem; font-size: 0.9rem; color: white;">
-    © Tous droits réservés — Séminaire en géométrie et physique mathématique (ÉCRS)
-  </p>
-</footer>
-
+        <footer>
+            <p>&copy; 2025 
+                <a href="https://www.usherbrooke.ca/" style="color: white;">Université de Sherbrooke</a> - 
+                <a href="https://www.usherbrooke.ca/mathematiques/" style="color: white;">Département de mathématiques</a>
+            </p>
+            <p>Contact: <a href="mailto:geomphys.seminar.uds@gmail.com" style="color: white;">geomphys.seminar.uds@gmail.com</a></p>
+            <p style="font-size: 0.9rem;">© Tous droits réservés — Séminaire en géométrie et physique mathématique (ÉCRS)</p>
+        </footer>
     </div>
 
     <script>
-        // Animations 3D de surfaces algébriques et courbes paramétriques
-        const canvas = document.getElementById('algebraicCanvas');
+        const canvas = document.getElementById('wormholeCanvas');
         const ctx = canvas.getContext('2d');
         
-        function resizeCanvas() {
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+        
+        window.addEventListener('resize', () => {
             canvas.width = canvas.offsetWidth;
             canvas.height = canvas.offsetHeight;
-        }
-        
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
-        
-        // Projection 3D simple
-        function project3D(x, y, z, rotX, rotY) {
-            // Rotation autour de l'axe Y
-            let cosY = Math.cos(rotY);
-            let sinY = Math.sin(rotY);
-            let x1 = x * cosY - z * sinY;
-            let z1 = x * sinY + z * cosY;
-            
-            // Rotation autour de l'axe X
-            let cosX = Math.cos(rotX);
-            let sinX = Math.sin(rotX);
-            let y1 = y * cosX - z1 * sinX;
-            let z2 = y * sinX + z1 * cosX;
-            
-            // Projection perspective
-            let scale = 200 / (200 + z2);
-            return {
-                x: x1 * scale + canvas.width / 2,
-                y: y1 * scale + canvas.height / 2,
-                scale: scale
-            };
-        }
-        
-        class AlgebraicSurface {
+        });
+
+        let time = 0;
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
+
+        class Wormhole {
             constructor() {
-                this.rotation = 0;
-                this.rotationSpeed = 0.005;
-            }
-            
-            update() {
-                this.rotation += this.rotationSpeed;
-            }
-            
-            draw() {
-                // Surface de Boy (projection immersion de plan projectif)
-                const gridSize = 20;
-                const step = 0.3;
+                this.rings = [];
+                this.numRings = 40;
+                this.maxRadius = Math.max(canvas.width, canvas.height);
                 
-                for (let u = -Math.PI; u < Math.PI; u += step) {
-                    ctx.beginPath();
-                    let first = true;
-                    
-                    for (let v = -Math.PI; v < Math.PI; v += step) {
-                        // Paramétrage d'une surface algébrique
-                        const scale = 60;
-                        const x = scale * Math.cos(u) * Math.sin(v);
-                        const y = scale * Math.sin(u) * Math.sin(v);
-                        const z = scale * Math.cos(v) + 20 * Math.sin(2 * u);
-                        
-                        const p = project3D(x, y, z, this.rotation * 0.5, this.rotation);
-                        
-                        if (first) {
-                            ctx.moveTo(p.x, p.y);
-                            first = false;
-                        } else {
-                            ctx.lineTo(p.x, p.y);
-                        }
-                    }
-                    
-                    ctx.strokeStyle = `rgba(201, 169, 97, ${0.2 + Math.sin(u) * 0.1})`;
-                    ctx.lineWidth = 1;
-                    ctx.stroke();
+                for (let i = 0; i < this.numRings; i++) {
+                    this.rings.push({
+                        z: i * 30,
+                        rotation: Math.random() * Math.PI * 2
+                    });
                 }
             }
-        }
-        
-        class ParametricCurve3D {
-            constructor(type) {
-                this.type = type;
-                this.time = 0;
-                this.rotationX = Math.random() * Math.PI;
-                this.rotationY = Math.random() * Math.PI;
-            }
-            
-            update() {
-                this.time += 0.01;
-                this.rotationX += 0.003;
-                this.rotationY += 0.007;
-            }
-            
-            draw() {
-                ctx.beginPath();
-                let first = true;
-                
-                for (let t = 0; t <= Math.PI * 4; t += 0.05) {
-                    let x, y, z;
-                    const scale = 50;
-                    
-                    if (this.type === 'helix') {
-                        // Hélice 3D
-                        x = scale * Math.cos(t + this.time);
-                        y = scale * Math.sin(t + this.time);
-                        z = t * 10 - 60;
-                    } else if (this.type === 'trefoil') {
-                        // Nœud de trèfle
-                        x = scale * (Math.sin(t) + 2 * Math.sin(2 * t));
-                        y = scale * (Math.cos(t) - 2 * Math.cos(2 * t));
-                        z = scale * -Math.sin(3 * t);
-                    } else {
-                        // Courbe de Viviani
-                        x = scale * (1 + Math.cos(t)) * Math.cos(t);
-                        y = scale * (1 + Math.cos(t)) * Math.sin(t);
-                        z = scale * 0.8 * Math.sin(t);
+
+            draw(t) {
+                // Fond noir avec dégradé
+                const bgGradient = ctx.createRadialGradient(
+                    canvas.width / 2, canvas.height / 2, 0,
+                    canvas.width / 2, canvas.height / 2, this.maxRadius
+                );
+                bgGradient.addColorStop(0, 'rgba(20, 10, 30, 0.3)');
+                bgGradient.addColorStop(0.5, 'rgba(40, 20, 60, 0.2)');
+                bgGradient.addColorStop(1, 'rgba(0, 0, 0, 0.4)');
+                ctx.fillStyle = bgGradient;
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                // Dessiner les anneaux du trou de ver
+                this.rings.forEach((ring, index) => {
+                    ring.z -= 2;
+                    if (ring.z < -100) {
+                        ring.z = this.numRings * 30;
+                        ring.rotation = Math.random() * Math.PI * 2;
                     }
+
+                    const perspective = 800 / (800 + ring.z);
+                    const radius = Math.abs(ring.z * 2) * perspective;
+                    const alpha = Math.max(0, 1 - Math.abs(ring.z) / 800);
                     
-                    const p = project3D(x, y, z, this.rotationX, this.rotationY);
+                    // Couleur basée sur la profondeur
+                    const colorProgress = (ring.z + 100) / 1000;
+                    let r, g, b;
                     
-                    if (first) {
-                        ctx.moveTo(p.x, p.y);
-                        first = false;
+                    if (colorProgress < 0.3) {
+                        r = 138 + (255 - 138) * (colorProgress / 0.3);
+                        g = 43 + (140 - 43) * (colorProgress / 0.3);
+                        b = 226;
+                    } else if (colorProgress < 0.7) {
+                        r = 255;
+                        g = 140 + (100 - 140) * ((colorProgress - 0.3) / 0.4);
+                        b = 226 - (226 - 150) * ((colorProgress - 0.3) / 0.4);
                     } else {
-                        ctx.lineTo(p.x, p.y);
+                        r = 255;
+                        g = 100 + (150 - 100) * ((colorProgress - 0.7) / 0.3);
+                        b = 150 - (150 - 50) * ((colorProgress - 0.7) / 0.3);
                     }
-                }
-                
-                ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
-                ctx.lineWidth = 2;
-                ctx.stroke();
-            }
-        }
-        
-        class WireframeCube {
-            constructor() {
-                this.size = 60;
-                this.rotation = 0;
-                this.vertices = [
-                    [-1, -1, -1], [1, -1, -1], [1, 1, -1], [-1, 1, -1],
-                    [-1, -1, 1], [1, -1, 1], [1, 1, 1], [-1, 1, 1]
-                ];
-                this.edges = [
-                    [0, 1], [1, 2], [2, 3], [3, 0],
-                    [4, 5], [5, 6], [6, 7], [7, 4],
-                    [0, 4], [1, 5], [2, 6], [3, 7]
-                ];
-            }
-            
-            update() {
-                this.rotation += 0.008;
-            }
-            
-            draw() {
-                this.edges.forEach(edge => {
-                    const v1 = this.vertices[edge[0]];
-                    const v2 = this.vertices[edge[1]];
-                    
-                    const p1 = project3D(
-                        v1[0] * this.size,
-                        v1[1] * this.size,
-                        v1[2] * this.size,
-                        this.rotation,
-                        this.rotation * 1.3
-                    );
-                    
-                    const p2 = project3D(
-                        v2[0] * this.size,
-                        v2[1] * this.size,
-                        v2[2] * this.size,
-                        this.rotation,
-                        this.rotation * 1.3
-                    );
-                    
-                    ctx.beginPath();
-                    ctx.moveTo(p1.x, p1.y);
-                    ctx.lineTo(p2.x, p2.y);
-                    ctx.strokeStyle = `rgba(201, 169, 97, ${0.4 + p1.scale * 0.3})`;
-                    ctx.lineWidth = 1.5;
-                    ctx.stroke();
+
+                    // Grille circulaire
+                    const segments = 32;
+                    for (let i = 0; i < segments; i++) {
+                        const angle1 = (i / segments) * Math.PI * 2 + ring.rotation;
+                        const angle2 = ((i + 1) / segments) * Math.PI * 2 + ring.rotation;
+                        
+                        const x1 = centerX + Math.cos(angle1) * radius;
+                        const y1 = centerY + Math.sin(angle1) * radius * 0.6;
+                        const x2 = centerX + Math.cos(angle2) * radius;
+                        const y2 = centerY + Math.sin(angle2) * radius * 0.6;
+
+                        ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${alpha * 0.6})`;
+                        ctx.lineWidth = 2 * perspective;
+                        ctx.beginPath();
+                        ctx.moveTo(x1, y1);
+                        ctx.lineTo(x2, y2);
+                        ctx.stroke();
+                    }
+
+                    // Lignes radiales
+                    const radialLines = 16;
+                    for (let i = 0; i < radialLines; i++) {
+                        const angle = (i / radialLines) * Math.PI * 2 + ring.rotation;
+                        const x = centerX + Math.cos(angle) * radius;
+                        const y = centerY + Math.sin(angle) * radius * 0.6;
+
+                        ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${alpha * 0.4})`;
+                        ctx.lineWidth = 1.5 * perspective;
+                        ctx.beginPath();
+                        ctx.moveTo(centerX, centerY);
+                        ctx.lineTo(x, y);
+                        ctx.stroke();
+                    }
                 });
-            }
-        }
-        
-        class LissajousCurve3D {
-            constructor() {
-                this.a = 3;
-                this.b = 4;
-                this.c = 5;
-                this.rotation = 0;
-            }
-            
-            update() {
-                this.rotation += 0.006;
-            }
-            
-            draw() {
-                ctx.beginPath();
-                let first = true;
+
+                // Point lumineux central
+                const centralGlow = ctx.createRadialGradient(
+                    centerX, centerY, 0,
+                    centerX, centerY, 80
+                );
+                centralGlow.addColorStop(0, 'rgba(255, 200, 100, 0.8)');
+                centralGlow.addColorStop(0.3, 'rgba(255, 150, 80, 0.5)');
+                centralGlow.addColorStop(0.6, 'rgba(138, 43, 226, 0.3)');
+                centralGlow.addColorStop(1, 'rgba(0, 0, 0, 0)');
                 
-                for (let t = 0; t <= Math.PI * 2; t += 0.02) {
-                    const scale = 70;
-                    const x = scale * Math.sin(this.a * t + this.rotation);
-                    const y = scale * Math.sin(this.b * t);
-                    const z = scale * Math.sin(this.c * t);
+                ctx.fillStyle = centralGlow;
+                ctx.fillRect(centerX - 80, centerY - 80, 160, 160);
+
+                // Particules lumineuses
+                for (let i = 0; i < 50; i++) {
+                    const particleAngle = (i / 50) * Math.PI * 2 + t * 0.001;
+                    const particleRadius = 100 + Math.sin(t * 0.002 + i) * 50;
+                    const px = centerX + Math.cos(particleAngle) * particleRadius;
+                    const py = centerY + Math.sin(particleAngle) * particleRadius * 0.6;
                     
-                    const p = project3D(x, y, z, this.rotation * 0.5, this.rotation * 0.7);
-                    
-                    if (first) {
-                        ctx.moveTo(p.x, p.y);
-                        first = false;
-                    } else {
-                        ctx.lineTo(p.x, p.y);
-                    }
+                    ctx.fillStyle = `rgba(255, 200, 150, ${0.3 + Math.sin(t * 0.01 + i) * 0.3})`;
+                    ctx.beginPath();
+                    ctx.arc(px, py, 2, 0, Math.PI * 2);
+                    ctx.fill();
                 }
-                
-                ctx.strokeStyle = 'rgba(255, 255, 255, 0.25)';
-                ctx.lineWidth = 2;
-                ctx.stroke();
             }
         }
-        
-        // Créer les objets 3D
-        const surface = new AlgebraicSurface();
-        const helix = new ParametricCurve3D('helix');
-        const trefoil = new ParametricCurve3D('trefoil');
-        const cube = new WireframeCube();
-        const lissajous = new LissajousCurve3D();
-        
+
+        const wormhole = new Wormhole();
+
         function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            surface.update();
-            surface.draw();
-            
-            helix.update();
-            helix.draw();
-            
-            trefoil.update();
-            trefoil.draw();
-            
-            cube.update();
-            cube.draw();
-            
-            lissajous.update();
-            lissajous.draw();
-            
+            wormhole.draw(time);
+            time++;
             requestAnimationFrame(animate);
         }
-        
+
         animate();
-        
-        // Changement de langue
+
         function switchLanguage(lang) {
-            document.querySelectorAll('.lang-content').forEach(el => {
-                el.classList.remove('active');
-            });
-            
-            document.querySelectorAll('.lang-' + lang).forEach(el => {
-                el.classList.add('active');
-            });
-            
-            document.querySelectorAll('.lang-switch button').forEach(btn => {
-                btn.classList.remove('active');
-            });
+            document.querySelectorAll('.lang-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.lang-' + lang).forEach(el => el.classList.add('active'));
+            document.querySelectorAll('.lang-switch button').forEach(btn => btn.classList.remove('active'));
             document.querySelector('.lang-switch button[data-lang="' + lang + '"]').classList.add('active');
-            
-            localStorage.setItem('preferredLanguage', lang);
-            document.documentElement.lang = lang;
         }
-        
-        window.addEventListener('DOMContentLoaded', function() {
-            const savedLang = localStorage.getItem('preferredLanguage');
-            if (savedLang && savedLang !== 'fr') {
-                switchLanguage(savedLang);
-            }
-        });
     </script>
 </body>
 </html>
