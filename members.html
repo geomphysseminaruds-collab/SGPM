@@ -36,13 +36,13 @@
             min-height: 350px;
         }
 
-        #networkCanvas {
+        #spirographCanvas {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            opacity: 0.4;
+            opacity: 0.5;
         }
 
         .university-name {
@@ -52,18 +52,6 @@
             position: relative;
             z-index: 1;
             letter-spacing: 0.5px;
-        }
-
-        .university-name a {
-            color: white;
-            text-decoration: none;
-            border-bottom: 1px solid rgba(255,255,255,0.3);
-            transition: all 0.3s;
-        }
-
-        .university-name a:hover {
-            border-bottom-color: #c9a961;
-            opacity: 1;
         }
 
         header h1 {
@@ -106,39 +94,18 @@
             transform: scale(1.05);
         }
 
-        .lang-switch button:hover {
-            background: rgba(201, 169, 97, 0.3);
-            border-color: #c9a961;
-            transform: translateY(-2px);
-        }
-
-        .lang-switch button.active:hover {
-            background: #d4b871;
-            transform: scale(1.05) translateY(-2px);
-        }
-
         nav {
             background: linear-gradient(135deg, #00703c 0%, #1a4d2e 100%);
             border-bottom: 4px solid #c9a961;
             border-top: 2px solid #c9a961;
-            overflow-x: auto;
-            overflow-y: hidden;
-            -webkit-overflow-scrolling: touch;
         }
 
         nav ul {
             list-style: none;
             display: flex;
             justify-content: center;
-            flex-wrap: nowrap;
+            flex-wrap: wrap;
             padding: 0;
-            margin: 0;
-            min-width: max-content;
-        }
-
-        nav li {
-            margin: 0;
-            flex-shrink: 0;
         }
 
         nav a {
@@ -149,7 +116,6 @@
             font-size: 1.15rem;
             transition: all 0.3s;
             font-weight: 500;
-            white-space: nowrap;
         }
 
         nav a:hover,
@@ -242,13 +208,6 @@
             margin-bottom: 1rem;
         }
 
-        .member-links {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin-top: 1rem;
-        }
-
         .member-links a {
             color: #00703c;
             text-decoration: none;
@@ -257,10 +216,6 @@
             border: 1px solid #00703c;
             border-radius: 3px;
             transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.3rem;
-            word-break: break-word;
         }
 
         .member-links a:hover {
@@ -276,17 +231,11 @@
         }
 
         footer {
-            background: #1a4d2e;
+            background: #00703C;
             color: white;
             padding: 2.5rem;
             text-align: center;
-            font-size: 1.05rem;
             margin-top: 3rem;
-            border-top: 4px solid #c9a961;
-        }
-
-        footer p {
-            margin-bottom: 0.8rem;
         }
 
         footer a {
@@ -294,41 +243,12 @@
             text-decoration: none;
         }
 
-        footer a:hover {
-            text-decoration: underline;
-            color: #d4b871;
-        }
-
         @media (max-width: 768px) {
-            body {
-                font-size: 18px;
-            }
-
             header h1 {
                 font-size: 2rem;
             }
-
-            nav a {
-                padding: 1rem 1.5rem;
-                font-size: 1rem;
-            }
-
-            .lang-content {
-                padding: 1.5rem;
-            }
-
             .members-grid {
                 grid-template-columns: 1fr;
-            }
-
-            .member-card {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
-
-            .member-links {
-                justify-content: center;
             }
         }
     </style>
@@ -336,11 +256,8 @@
 <body>
     <div class="container">
         <header>
-            <canvas id="networkCanvas"></canvas>
-            <div class="university-name">
-                <a href="https://www.usherbrooke.ca/" target="_blank" rel="noopener noreferrer">Université de Sherbrooke</a> · 
-                <a href="https://www.usherbrooke.ca/mathematiques/" target="_blank" rel="noopener noreferrer">Département de mathématiques</a>
-            </div>
+            <canvas id="spirographCanvas"></canvas>
+            <div class="university-name">Université de Sherbrooke · Département de mathématiques</div>
             <h1 class="lang-content lang-fr active">Séminaire en géométrie et physique mathématique</h1>
             <h1 class="lang-content lang-en">Seminar in Geometry and Mathematical Physics</h1>
             <div class="lang-switch">
@@ -369,388 +286,52 @@
             </ul>
         </nav>
 
-        <!-- VERSION FRANÇAISE -->
         <div class="lang-content lang-fr active">
             <h2 class="section-title">Organisateurs du séminaire</h2>
-            
             <div class="members-grid">
                 <div class="member-card">
-                    <div class="member-photo">
-                        <img src="photos/mmm.jpg" alt="Mohamed Moussadek Maiza">
-                    </div>
+                    <div class="member-photo"><img src="photos/mmm.jpg" alt="Mohamed Moussadek Maiza"></div>
                     <div class="member-info">
                         <div class="member-name">Mohamed Moussadek Maiza</div>
-                        <div class="member-research">Structures géométriques, théorie des représentations des groupes, espaces de Teichmüller supérieurs</div>
+                        <div class="member-research">Structures géométriques, théorie des représentations des groupes</div>
                         <div class="member-links">
-                            <a href="mailto:mohamed.moussadek.maiza@usherbrooke.ca">mohamed.moussadek.maiza@usherbrooke.ca</a>
+                            <a href="mailto:mohamed.moussadek.maiza@usherbrooke.ca">Email</a>
                         </div>
                     </div>
                 </div>
-
                 <div class="member-card">
-                    <div class="member-photo">
-                        <img src="photos/yam.jpg" alt="Yassine Ait Mohamed">
-                    </div>
+                    <div class="member-photo"><img src="photos/yam.jpg" alt="Yassine Ait Mohamed"></div>
                     <div class="member-info">
                         <div class="member-name">Yassine Ait Mohamed</div>
-                        <div class="member-research">Géométrie algébrique, groupes de Lie, théories des champs quantiques topologiques, géométrie symplectique décalée</div>
+                        <div class="member-research">Géométrie algébrique, groupes de Lie, TQFT</div>
                         <div class="member-links">
-                            <a href="mailto:yassine.ait.mohamed@usherbrooke.ca">yassine.ait.mohamed@usherbrooke.ca</a>
+                            <a href="mailto:yassine.ait.mohamed@usherbrooke.ca">Email</a>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <h2 class="section-title">Membres du groupe de recherche</h2>
-
-            <h3>Professeurs</h3>
-            
-            <div class="members-grid">
-                <div class="member-card">
-                    <div class="member-photo">
-                        <img src="photos/mm.jpg" alt="Maxence Mayrand">
-                    </div>
-                    <div class="member-info">
-                        <div class="member-name">Maxence Mayrand</div>
-                        <div class="member-title">Professeur adjoint</div>
-                        <div class="member-research">Géométrie différentielle, groupes de Lie, théories des champs quantiques topologiques, géométrie symplectique décalée</div>
-                        <div class="member-links">
-                            <a href="mailto:maxence.mayrand@usherbrooke.ca">maxence.mayrand@usherbrooke.ca</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="member-card">
-                    <div class="member-photo">
-                        <img src="photos/jpb.jpg" alt="Jean-Philippe Burelle">
-                    </div>
-                    <div class="member-info">
-                        <div class="member-name">Jean-Philippe Burelle</div>
-                        <div class="member-title">Professeur agrégé</div>
-                        <div class="member-research">Sous-groupes discrets des groupes de Lie, théorie de Teichmüller en rang supérieur, structures géométriques localement homogènes</div>
-                        <div class="member-links">
-                            <a href="mailto:jean-philippe.burelle@usherbrooke.ca">jean-philippe.burelle@usherbrooke.ca</a>
-                        </div>
-                    </div>
-                </div>
-
-
- <div class="member-card">
-                    <div class="member-photo">
-                        <img src="photos/vasi.jpg" alt="Vasilisa Shramchenko">
-                    </div>
-                    <div class="member-info">
-                        <div class="member-name">Vasilisa Shramchenko</div>
-                        <div class="member-title">Professeure titulaire</div>
-                        <div class="member-research">Variétés de Frobenius, systèmes intégrables, problèmes de Riemann-Hilbert, déformations isomonodromiques de systèmes d'équations différentielles linéaires, théorie des fonctions sur les surfaces de Riemann, algèbres amassées, récurrence topologique d’Eynard-Orantin</div>
-                        <div class="member-links">
-                            <a href="mailto:vasilisa.Shramchenko@USherbrooke.ca">vasilisa.Shramchenko@USherbrooke.ca</a>
-                        </div>
-                    </div>
-                </div>
-        
-
-
- <div class="member-card">
-                    <div class="member-photo">
-                        <img src="photos/alex.jpg" alt="Alex Weekes">
-                    </div>
-                    <div class="member-info">
-                        <div class="member-name">Alex Weekes</div>
-                        <div class="member-title">Professeure agrégé</div>
-                        <div class="member-research">Théorie de la représentation, algèbre, géométrie algébrique, physique mathématique</div>
-                        <div class="member-links">
-                            <a href="mailto:alex.Weekes@USherbrooke.ca">alex.Weekes@USherbrooke.ca</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-
-
-
-
-
-
-            
-
-            <h3>Doctorants</h3>
-
-            <div class="members-grid">
-                <div class="member-card">
-                    <div class="member-photo">
-                        <img src="photos/mmm.jpg" alt="Mohamed Moussadek Maiza">
-                    </div>
-                    <div class="member-info">
-                        <div class="member-name">Mohamed Moussadek Maiza</div>
-                        <div class="member-research">Structures géométriques, théorie des représentations des groupes, espaces de Teichmüller supérieurs</div>
-                        <div class="member-links">
-                            <a href="mailto:mohamed.moussadek.maiza@usherbrooke.ca">mohamed.moussadek.maiza@usherbrooke.ca</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="member-card">
-                    <div class="member-photo">
-                        <img src="photos/yam.jpg" alt="Yassine Ait Mohamed">
-                    </div>
-                    <div class="member-info">
-                        <div class="member-name">Yassine Ait Mohamed</div>
-                        <div class="member-research">Géométrie algébrique, groupes de Lie, théories des champs quantiques topologiques, géométrie symplectique décalée</div>
-                        <div class="member-links">
-                            <a href="mailto:yassine.ait.mohamed@usherbrooke.ca">yassine.ait.mohamed@usherbrooke.ca</a>
-                        </div>
-                    </div>
-                </div>
-
-
-
-
-
-
-                
-                <div class="member-card">
-                    <div class="member-photo">
-                        <img src="photos/adj.jpg" alt="Adji Madjous">
-                    </div>
-                    <div class="member-info">
-                        <div class="member-name">Adji Madjou</div>
-                        <div class="member-research">Géométrie complexe</div>
-                        <div class="member-links">
-                            <a href="mailto:adji.Madjou@usherbrooke.ca">adji.Madjou@usherbrooke.ca</a>
-                        </div>
-                    </div>
-                </div>
-                
-<div class="member-card">
-    <div class="member-photo">
-        <img src="photos/wd.jpg" alt="Wenpo Dimoune">
-    </div>
-    <div class="member-info">
-        <div class="member-name">Wenpo Dimoune</div>
-        <div class="member-research">Structures géométriques</div>
-        <div class="member-links">
-            <a href="mailto:wenpo.Dimoune@USherbrooke.ca">wenpo.Dimoune@USherbrooke.ca</a>
-        </div>
-    </div>
-</div>
-
-
-
-
-                
-
-
-     <div class="member-card">
-                    <div class="member-photo">
-                        <img src="photos/sd.jpg" alt="Samuel Dobchies">
-                    </div>
-                    <div class="member-info">
-                        <div class="member-name">Samuel Dobchies</div>
-                        <div class="member-research">Surfaces de Riemann et physique mathématique</div>
-                        <div class="member-links">
-                            <a href="mailto:samuel.dobchies@usherbrooke.ca">samuel.dobchies@usherbrooke.ca</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="member-card">
-                    <div class="member-photo">
-                        <img src="photos/as.jpg" alt="Ablanvi Songo">
-                    </div>
-                    <div class="member-info">
-                        <div class="member-name">Ablanvi Songo</div>
-                        <div class="member-research">Équations aux dérivées partielles, physique mathématique</div>
-                        <div class="member-links">
-                            <a href="mailto:ablanvi.songo@usherbrooke.ca">ablanvi.songo@usherbrooke.ca</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
         </div>
 
-        <!-- VERSION ANGLAISE -->
         <div class="lang-content lang-en">
             <h2 class="section-title">Seminar Organizers</h2>
-            
             <div class="members-grid">
                 <div class="member-card">
-                    <div class="member-photo">
-                        <img src="photos/mmm.jpg" alt="Mohamed Moussadek Maiza">
-                    </div>
+                    <div class="member-photo"><img src="photos/mmm.jpg" alt="Mohamed Moussadek Maiza"></div>
                     <div class="member-info">
                         <div class="member-name">Mohamed Moussadek Maiza</div>
-                        <div class="member-research">Geometric structures, group representation theory, higher Teichmüller spaces</div>
+                        <div class="member-research">Geometric structures, group representation theory</div>
                         <div class="member-links">
-                            <a href="mailto:mohamed.moussadek.maiza@usherbrooke.ca">mohamed.moussadek.maiza@usherbrooke.ca</a>
+                            <a href="mailto:mohamed.moussadek.maiza@usherbrooke.ca">Email</a>
                         </div>
                     </div>
                 </div>
-
                 <div class="member-card">
-                    <div class="member-photo">
-                        <img src="photos/yam.jpg" alt="Yassine Ait Mohamed">
-                    </div>
+                    <div class="member-photo"><img src="photos/yam.jpg" alt="Yassine Ait Mohamed"></div>
                     <div class="member-info">
                         <div class="member-name">Yassine Ait Mohamed</div>
-                        <div class="member-research">Algebraic geometry, Lie groups, topological quantum field theories, shifted symplectic geometry</div>
+                        <div class="member-research">Algebraic geometry, Lie groups, TQFT</div>
                         <div class="member-links">
-                            <a href="mailto:yassine.ait.mohamed@usherbrooke.ca">yassine.ait.mohamed@usherbrooke.ca</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <h2 class="section-title">Research Group Members</h2>
-
-            <h3>Faculty</h3>
-            
-            <div class="members-grid">
-                <div class="member-card">
-                    <div class="member-photo">
-                        <img src="photos/mm.jpg" alt="Maxence Mayrand">
-                    </div>
-                    <div class="member-info">
-                        <div class="member-name">Maxence Mayrand</div>
-                        <div class="member-title">Assistant Professor</div>
-                        <div class="member-research">Differential geometry, Lie groups, topological quantum field theories, shifted symplectic geometry</div>
-                        <div class="member-links">
-                            <a href="mailto:maxence.mayrand@usherbrooke.ca">maxence.mayrand@usherbrooke.ca</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="member-card">
-                    <div class="member-photo">
-                        <img src="photos/jpb.jpg" alt="Jean-Philippe Burelle">
-                    </div>
-                    <div class="member-info">
-                        <div class="member-name">Jean-Philippe Burelle</div>
-                        <div class="member-title">Associate Professor</div>
-                        <div class="member-research">Discrete subgroups of Lie groups, higher Teichmüller theory, locally homogeneous geometric structures</div>
-                        <div class="member-links">
-                            <a href="mailto:jean-philippe.burelle@usherbrooke.ca">jean-philippe.burelle@usherbrooke.ca</a>
-                        </div>
-                    </div>
-                </div>
-
-
-<div class="member-card">
-    <div class="member-photo">
-        <img src="photos/vasi.jpg" alt="Vasilisa Shramchenko">
-    </div>
-    <div class="member-info">
-        <div class="member-name">Vasilisa Shramchenko</div>
-        <div class="member-title">Full Professor</div>
-        <div class="member-research">Frobenius manifolds, integrable systems, Riemann-Hilbert problems, isomonodromic deformations of linear differential systems, function theory on Riemann surfaces, cluster algebras, Eynard-Orantin topological recursion</div>
-        <div class="member-links">
-            <a href="mailto:vasilisa.Shramchenko@USherbrooke.ca">vasilisa.Shramchenko@USherbrooke.ca</a>
-        </div>
-    </div>
-</div>
-
-<div class="member-card">
-    <div class="member-photo">
-        <img src="photos/alex.jpg" alt="Alex Weekes">
-    </div>
-    <div class="member-info">
-        <div class="member-name">Alex Weekes</div>
-        <div class="member-title">Associate Professor</div>
-        <div class="member-research">Representation theory, algebra, algebraic geometry, mathematical physics</div>
-        <div class="member-links">
-            <a href="mailto:alex.Weekes@USherbrooke.ca">alex.Weekes@USherbrooke.ca</a>
-        </div>
-    </div>
-</div>
-
-
-                
-</div>
-
-            
-            <h3>PhD Students</h3>
-            
-            <div class="members-grid">
-                <div class="member-card">
-                    <div class="member-photo">
-                        <img src="photos/mmm.jpg" alt="Mohamed Moussadek Maiza">
-                    </div>
-                    <div class="member-info">
-                        <div class="member-name">Mohamed Moussadek Maiza</div>
-                        <div class="member-research">Geometric structures, group representation theory, higher Teichmüller spaces</div>
-                        <div class="member-links">
-                            <a href="mailto:mohamed.moussadek.maiza@usherbrooke.ca">mohamed.moussadek.maiza@usherbrooke.ca</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="member-card">
-                    <div class="member-photo">
-                        <img src="photos/yam.jpg" alt="Yassine Ait Mohamed">
-                    </div>
-                    <div class="member-info">
-                        <div class="member-name">Yassine Ait Mohamed</div>
-                        <div class="member-research">Algebraic geometry, Lie groups, topological quantum field theories, shifted symplectic geometry</div>
-                        <div class="member-links">
-                            <a href="mailto:yassine.ait.mohamed@usherbrooke.ca">yassine.ait.mohamed@usherbrooke.ca</a>
-                        </div>
-                    </div>
-                </div>
-
-
-  <div class="member-card">
-                    <div class="member-photo">
-                        <img src="photos/adj.jpg" alt="Adji Madjou">
-                    </div>
-                    <div class="member-info">
-                        <div class="member-name">Adji Madjou</div>
-                        <div class="member-research">Complex geometry</div>
-                        <div class="member-links">
-                            <a href="mailto:adji.Madjou@usherbrooke.ca">adji.Madjou@usherbrooke.ca</a>
-                        </div>
-                    </div>
-                </div>
-
-
-
-  <div class="member-card">
-                    <div class="member-photo">
-                        <img src="photos/wd.jpg" alt="Wenpo Dimoune">
-                    </div>
-                    <div class="member-info">
-                        <div class="member-name">Wenpo Dimoune</div>
-                        <div class="member-research">Geometric structures</div>
-                        <div class="member-links">
-                            <a href="mailto:wenpo.Dimoune@USherbrooke.ca">wenpo.Dimoune@USherbrooke.ca</a>
-                        </div>
-                    </div>
-                </div>
-
-                
-                <div class="member-card">
-                    <div class="member-photo">
-                        <img src="photos/sd.jpg" alt="Samuel Dobchies">
-                    </div>
-                    <div class="member-info">
-                        <div class="member-name">Samuel Dobchies</div>
-                        <div class="member-research">Riemann surfaces and mathematical physics</div>
-                        <div class="member-links">
-                            <a href="mailto:samuel.dobchies@usherbrooke.ca">samuel.dobchies@usherbrooke.ca</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="member-card">
-                    <div class="member-photo">
-                        <img src="photos/as.jpg" alt="Ablanvi Songo">
-                    </div>
-                    <div class="member-info">
-                        <div class="member-name">Ablanvi Songo</div>
-                        <div class="member-research">Partial differential equations, mathematical physics</div>
-                        <div class="member-links">
-                            <a href="mailto:ablanvi.songo@usherbrooke.ca">ablanvi.songo@usherbrooke.ca</a>
+                            <a href="mailto:yassine.ait.mohamed@usherbrooke.ca">Email</a>
                         </div>
                     </div>
                 </div>
@@ -758,217 +339,192 @@
         </div>
 
         <footer>
-            <p>&copy; 2025 <a href="https://www.usherbrooke.ca/" target="_blank" rel="noopener noreferrer">Université de Sherbrooke</a> - <a href="https://www.usherbrooke.ca/mathematiques/" target="_blank" rel="noopener noreferrer">Département de mathématiques</a></p>
-            <p style="margin-top: 0.5rem;">Contact: <a href="mailto:geomphys.seminar.uds@gmail.com">geomphys.seminar.uds@gmail.com</a></p>
+            <p>&copy; 2025 Université de Sherbrooke - Département de mathématiques</p>
+            <p>Contact: <a href="mailto:geomphys.seminar.uds@gmail.com">geomphys.seminar.uds@gmail.com</a></p>
         </footer>
     </div>
 
     <script>
-        const canvas = document.getElementById('networkCanvas');
+        const canvas = document.getElementById('spirographCanvas');
         const ctx = canvas.getContext('2d');
         
-        function resizeCanvas() {
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+        
+        window.addEventListener('resize', () => {
             canvas.width = canvas.offsetWidth;
             canvas.height = canvas.offsetHeight;
-        }
-        
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
-        
-        class Node {
-            constructor(x, y) {
-                this.x = x;
-                this.y = y;
-                this.vx = (Math.random() - 0.5) * 0.3;
-                this.vy = (Math.random() - 0.5) * 0.3;
-                this.radius = 4 + Math.random() * 3;
-                this.connections = [];
-                this.pulse = Math.random() * Math.PI * 2;
+        });
+
+        let time = 0;
+
+        class ParametricCurve3D {
+            constructor(type, offset) {
+                this.type = type;
+                this.offset = offset;
+                this.rotationX = 0;
+                this.rotationY = 0;
+                this.rotationZ = 0;
             }
-            
-            update(nodes) {
-                this.vx += (Math.random() - 0.5) * 0.1;
-                this.vy += (Math.random() - 0.5) * 0.1;
-                
-                const speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
-                if (speed > 0.5) {
-                    this.vx = (this.vx / speed) * 0.5;
-                    this.vy = (this.vy / speed) * 0.5;
+
+            project3D(x, y, z) {
+                const cosX = Math.cos(this.rotationX);
+                const sinX = Math.sin(this.rotationX);
+                const cosY = Math.cos(this.rotationY);
+                const sinY = Math.sin(this.rotationY);
+                const cosZ = Math.cos(this.rotationZ);
+                const sinZ = Math.sin(this.rotationZ);
+
+                let y1 = y * cosX - z * sinX;
+                let z1 = y * sinX + z * cosX;
+                let x1 = x * cosY - z1 * sinY;
+                let z2 = x * sinY + z1 * cosY;
+                let x2 = x1 * cosZ - y1 * sinZ;
+                let y2 = x1 * sinZ + y1 * cosZ;
+
+                const scale = 400 / (400 + z2);
+                return {
+                    x: x2 * scale + canvas.width / 2,
+                    y: y2 * scale + canvas.height / 2,
+                    scale: scale
+                };
+            }
+
+            draw(t) {
+                this.rotationX += 0.002;
+                this.rotationY += 0.003;
+                this.rotationZ += 0.001;
+
+                for (let phase = 0; phase < Math.PI * 2; phase += 0.02) {
+                    const s = phase + this.offset;
+                    let x, y, z;
+                    const scale = 80;
+
+                    if (this.type === 1) {
+                        x = scale * Math.sin(3 * s + t * 0.001) * Math.cos(s);
+                        y = scale * Math.sin(3 * s + t * 0.001) * Math.sin(s);
+                        z = scale * Math.cos(5 * s + t * 0.001);
+                    } else if (this.type === 2) {
+                        x = scale * Math.sin(2 * s) * Math.cos(3 * s + t * 0.001);
+                        y = scale * Math.sin(2 * s) * Math.sin(3 * s + t * 0.001);
+                        z = scale * Math.cos(4 * s);
+                    } else if (this.type === 3) {
+                        x = scale * (Math.cos(s) + Math.cos(3 * s) / 2) * Math.cos(t * 0.0005);
+                        y = scale * (Math.cos(s) + Math.cos(3 * s) / 2) * Math.sin(t * 0.0005);
+                        z = scale * Math.sin(s + t * 0.001);
+                    } else {
+                        x = scale * Math.sin(s + t * 0.001) * Math.cos(2 * s);
+                        y = scale * Math.sin(s + t * 0.001) * Math.sin(2 * s);
+                        z = scale * Math.cos(3 * s + t * 0.001);
+                    }
+
+                    const p = this.project3D(x, y, z);
+                    const hue = (s * 50 + t * 0.1 + this.offset * 60) % 360;
+                    
+                    ctx.strokeStyle = `hsla(${hue}, 80%, 60%, 0.6)`;
+                    ctx.lineWidth = 2 * p.scale;
+                    
+                    if (phase === 0) {
+                        ctx.beginPath();
+                        ctx.moveTo(p.x, p.y);
+                    } else {
+                        ctx.lineTo(p.x, p.y);
+                    }
                 }
-                
-                this.x += this.vx;
-                this.y += this.vy;
-                
-                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
-                
-                this.x = Math.max(0, Math.min(canvas.width, this.x));
-                this.y = Math.max(0, Math.min(canvas.height, this.y));
-                
-                this.pulse += 0.05;
-            }
-            
-            draw() {
-                const pulseSize = 1 + Math.sin(this.pulse) * 0.3;
-                
-                ctx.fillStyle = `rgba(201, 169, 97, ${0.6 + Math.sin(this.pulse) * 0.2})`;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.radius * pulseSize, 0, Math.PI * 2);
-                ctx.fill();
-                
-                ctx.strokeStyle = `rgba(255, 255, 255, ${0.3 + Math.sin(this.pulse) * 0.1})`;
-                ctx.lineWidth = 1;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.radius * pulseSize + 3, 0, Math.PI * 2);
                 ctx.stroke();
             }
         }
-        
-        class DynkinDiagram {
+
+        const curves = [
+            new ParametricCurve3D(1, 0),
+            new ParametricCurve3D(2, Math.PI / 3),
+            new ParametricCurve3D(3, Math.PI * 2 / 3),
+            new ParametricCurve3D(4, Math.PI)
+        ];
+
+        class SpiralParticle {
             constructor() {
-                this.nodes = [];
-                this.edges = [];
-                this.rotation = 0;
-                this.centerX = Math.random() * canvas.width;
-                this.centerY = Math.random() * canvas.height;
-                this.scale = 40 + Math.random() * 30;
-                
-                const positions = [
-                    [0, 0], [1, 0], [2, 0], [3, 0], [4, 0], [2, -1]
-                ];
-                
-                positions.forEach(([x, y]) => {
-                    this.nodes.push({
-                        x: x * this.scale,
-                        y: y * this.scale
-                    });
-                });
-                
-                this.edges = [[0, 1], [1, 2], [2, 3], [3, 4], [2, 5]];
+                this.angle = Math.random() * Math.PI * 2;
+                this.radius = 50 + Math.random() * 100;
+                this.height = (Math.random() - 0.5) * 150;
+                this.speed = 0.01 + Math.random() * 0.02;
+                this.spiralSpeed = 0.005 + Math.random() * 0.01;
+                this.hue = Math.random() * 360;
+                this.size = 2 + Math.random() * 3;
             }
-            
-            update() {
-                this.rotation += 0.003;
+
+            update(t) {
+                this.angle += this.speed;
+                this.height += Math.sin(t * 0.001) * 0.5;
+                this.radius += Math.cos(t * 0.002) * 0.3;
+                this.hue = (this.hue + 0.5) % 360;
             }
-            
-            draw() {
-                ctx.save();
-                ctx.translate(this.centerX, this.centerY);
-                ctx.rotate(this.rotation);
-                
-                this.edges.forEach(([i, j]) => {
-                    const n1 = this.nodes[i];
-                    const n2 = this.nodes[j];
-                    
-                    ctx.strokeStyle = 'rgba(201, 169, 97, 0.25)';
-                    ctx.lineWidth = 2;
-                    ctx.beginPath();
-                    ctx.moveTo(n1.x, n1.y);
-                    ctx.lineTo(n2.x, n2.y);
-                    ctx.stroke();
-                });
-                
-                this.nodes.forEach(node => {
-                    ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
-                    ctx.beginPath();
-                    ctx.arc(node.x, node.y, 5, 0, Math.PI * 2);
-                    ctx.fill();
-                    
-                    ctx.strokeStyle = 'rgba(201, 169, 97, 0.5)';
-                    ctx.lineWidth = 2;
-                    ctx.stroke();
-                });
-                
-                ctx.restore();
+
+            draw(centerX, centerY, rotX, rotY) {
+                const x = this.radius * Math.cos(this.angle);
+                const y = this.height;
+                const z = this.radius * Math.sin(this.angle);
+
+                const cosX = Math.cos(rotX);
+                const sinX = Math.sin(rotX);
+                const cosY = Math.cos(rotY);
+                const sinY = Math.sin(rotY);
+
+                let y1 = y * cosX - z * sinX;
+                let z1 = y * sinX + z * cosX;
+                let x1 = x * cosY - z1 * sinY;
+                let z2 = x * sinY + z1 * cosY;
+
+                const scale = 400 / (400 + z2);
+                const px = x1 * scale + centerX;
+                const py = y1 * scale + centerY;
+
+                const gradient = ctx.createRadialGradient(px, py, 0, px, py, this.size * 3);
+                gradient.addColorStop(0, `hsla(${this.hue}, 80%, 60%, 0.8)`);
+                gradient.addColorStop(1, `hsla(${this.hue}, 80%, 60%, 0)`);
+
+                ctx.fillStyle = gradient;
+                ctx.beginPath();
+                ctx.arc(px, py, this.size * 3, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.fillStyle = `hsla(${this.hue}, 90%, 70%, 0.9)`;
+                ctx.beginPath();
+                ctx.arc(px, py, this.size, 0, Math.PI * 2);
+                ctx.fill();
             }
         }
-        
-        const nodes = [];
-        const numNodes = 25;
-        
-        for (let i = 0; i < numNodes; i++) {
-            nodes.push(new Node(
-                Math.random() * canvas.width,
-                Math.random() * canvas.height
-            ));
-        }
-        
-        nodes.forEach((node, i) => {
-            const numConnections = 2 + Math.floor(Math.random() * 3);
-            for (let j = 0; j < numConnections; j++) {
-                const target = nodes[Math.floor(Math.random() * nodes.length)];
-                if (target !== node && !node.connections.includes(target)) {
-                    node.connections.push(target);
-                }
-            }
-        });
-        
-        const dynkinDiagrams = [];
-        for (let i = 0; i < 2; i++) {
-            dynkinDiagrams.push(new DynkinDiagram());
-        }
-        
+
+        const spiralParticles = Array.from({ length: 80 }, () => new SpiralParticle());
+
         function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            nodes.forEach(node => {
-                node.connections.forEach(target => {
-                    const distance = Math.sqrt(
-                        Math.pow(target.x - node.x, 2) + 
-                        Math.pow(target.y - node.y, 2)
-                    );
-                    
-                    if (distance < 200) {
-                        const opacity = 1 - (distance / 200);
-                        ctx.strokeStyle = `rgba(201, 169, 97, ${opacity * 0.15})`;
-                        ctx.lineWidth = 1;
-                        ctx.beginPath();
-                        ctx.moveTo(node.x, node.y);
-                        ctx.lineTo(target.x, target.y);
-                        ctx.stroke();
-                    }
-                });
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            const rotX = time * 0.002;
+            const rotY = time * 0.003;
+
+            spiralParticles.forEach(p => {
+                p.update(time);
+                p.draw(centerX, centerY, rotX, rotY);
             });
-            
-            dynkinDiagrams.forEach(diagram => {
-                diagram.update();
-                diagram.draw();
-            });
-            
-            nodes.forEach(node => {
-                node.update(nodes);
-                node.draw();
-            });
-            
+
+            curves.forEach(curve => curve.draw(time));
+
+            time++;
             requestAnimationFrame(animate);
         }
-        
+
         animate();
-        
+
         function switchLanguage(lang) {
-            document.querySelectorAll('.lang-content').forEach(el => {
-                el.classList.remove('active');
-            });
-            
-            document.querySelectorAll('.lang-' + lang).forEach(el => {
-                el.classList.add('active');
-            });
-            
-            document.querySelectorAll('.lang-switch button').forEach(btn => {
-                btn.classList.remove('active');
-            });
+            document.querySelectorAll('.lang-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.lang-' + lang).forEach(el => el.classList.add('active'));
+            document.querySelectorAll('.lang-switch button').forEach(btn => btn.classList.remove('active'));
             document.querySelector('.lang-switch button[data-lang="' + lang + '"]').classList.add('active');
-            
-            localStorage.setItem('preferredLanguage', lang);
-            document.documentElement.lang = lang;
         }
-        
-        window.addEventListener('DOMContentLoaded', function() {
-            const savedLang = localStorage.getItem('preferredLanguage');
-            if (savedLang && savedLang !== 'fr') {
-                switchLanguage(savedLang);
-            }
-        });
     </script>
 </body>
 </html>
