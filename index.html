@@ -136,6 +136,23 @@
             position: relative;
             z-index: 1;
             line-height: 1.3;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.2rem;
+        }
+
+        header h1 span {
+            display: inline-block;
+            animation: letter-float 3s ease-in-out infinite;
+            text-shadow: 0 0 20px rgba(255,255,255,0.5);
+        }
+
+        @keyframes letter-float {
+            0%, 100% { transform: translateY(0) rotateX(0deg); }
+            25% { transform: translateY(-10px) rotateX(5deg); }
+            50% { transform: translateY(0) rotateX(0deg); }
+            75% { transform: translateY(10px) rotateX(-5deg); }
         }
 
         .lang-switch {
@@ -410,14 +427,13 @@
 <body>
     <div class="container">
         <header>
-           
             <canvas id="geometryCanvas"></canvas>
             <div class="university-name">
                 <a href="https://www.usherbrooke.ca/" target="_blank" rel="noopener noreferrer">Université de Sherbrooke</a> · 
                 <a href="https://www.usherbrooke.ca/mathematiques/" target="_blank" rel="noopener noreferrer">Département de mathématiques</a>
             </div>
-            <h1 class="lang-content lang-fr active">Séminaire en géométrie et physique mathématique</h1>
-            <h1 class="lang-content lang-en">Seminar in Geometry and Mathematical Physics</h1>
+            <h1 class="lang-content lang-fr active" id="title-fr"></h1>
+            <h1 class="lang-content lang-en" id="title-en"></h1>
             <div class="lang-switch">
                 <button class="active" onclick="switchLanguage('fr')" data-lang="fr">Français</button>
                 <button onclick="switchLanguage('en')" data-lang="en">English</button>
@@ -485,7 +501,7 @@
         <div class="lang-content lang-en">
             <div class="organizers">
                 <strong>Organizers:</strong> 
-              <a href="#">Mohamed Moussadek Maiza</a>, 
+                <a href="#">Mohamed Moussadek Maiza</a>, 
                 <a href="#">Yassine Ait Mohamed</a>
             </div>
 
@@ -518,32 +534,55 @@
             </p>
         </div>
 
-   <footer style="background-color: #00703C; padding: 1rem; text-align: center; color: white;">
-  <p>
-    &copy; 2025 
-    <a href="https://www.usherbrooke.ca/" target="_blank" rel="noopener noreferrer" style="color: white; text-decoration: none;">
-      Université de Sherbrooke
-    </a> - 
-    <a href="https://www.usherbrooke.ca/mathematiques/" target="_blank" rel="noopener noreferrer" style="color: white; text-decoration: none;">
-      Département de mathématiques
-    </a>
-  </p>
+        <footer style="background-color: #00703C; padding: 1rem; text-align: center; color: white;">
+            <p>
+                &copy; 2025 
+                <a href="https://www.usherbrooke.ca/" target="_blank" rel="noopener noreferrer" style="color: white; text-decoration: none;">
+                    Université de Sherbrooke
+                </a> - 
+                <a href="https://www.usherbrooke.ca/mathematiques/" target="_blank" rel="noopener noreferrer" style="color: white; text-decoration: none;">
+                    Département de mathématiques
+                </a>
+            </p>
 
-  <p style="margin-top: 0.5rem;">
-    Contact: <a href="mailto:geomphys.seminar.uds@gmail.com" style="color: white; text-decoration: none;">
-      geomphys.seminar.uds@gmail.com
-    </a>
-  </p>
+            <p style="margin-top: 0.5rem;">
+                Contact: <a href="mailto:geomphys.seminar.uds@gmail.com" style="color: white; text-decoration: none;">
+                    geomphys.seminar.uds@gmail.com
+                </a>
+            </p>
 
-  <p style="margin-top: 0.5rem; font-size: 0.9rem; color: white;">
-    © Tous droits réservés — Séminaire en géométrie et physique mathématique (ÉCRS)
-  </p>
-</footer>
-
-
+            <p style="margin-top: 0.5rem; font-size: 0.9rem; color: white;">
+                © Tous droits réservés — Séminaire en géométrie et physique mathématique (ÉCRS)
+            </p>
+        </footer>
     </div>
 
     <script>
+        // Création des titres avec lettres colorées animées
+        function createAnimatedTitle(text, elementId) {
+            const colors = ['#ff6b35', '#f7931e', '#fdc82f', '#8cc63f', '#00a651', '#00aeef', '#ec008c', '#92278f'];
+            const element = document.getElementById(elementId);
+            const words = text.split(' ');
+            
+            words.forEach((word, wordIndex) => {
+                word.split('').forEach((letter, i) => {
+                    const span = document.createElement('span');
+                    span.textContent = letter;
+                    span.style.color = colors[(wordIndex + i) % colors.length];
+                    span.style.animationDelay = `${(wordIndex + i) * 0.1}s`;
+                    element.appendChild(span);
+                });
+                if (wordIndex < words.length - 1) {
+                    const space = document.createElement('span');
+                    space.innerHTML = '&nbsp;';
+                    element.appendChild(space);
+                }
+            });
+        }
+
+        createAnimatedTitle('Séminaire en géométrie et physique mathématique', 'title-fr');
+        createAnimatedTitle('Seminar in Geometry and Mathematical Physics', 'title-en');
+
         const canvas = document.getElementById('geometryCanvas');
         const ctx = canvas.getContext('2d');
         
@@ -555,157 +594,145 @@
         resizeCanvas();
         window.addEventListener('resize', resizeCanvas);
         
-        // Particules quantiques
-        class QuantumParticle {
+        // Animation 3D de l'expansion de l'univers (Big Bang)
+        class UniverseExpansion {
             constructor() {
-                this.reset();
+                this.centerX = canvas.width / 2;
+                this.centerY = canvas.height / 2;
+                this.rotation = 0;
+                this.particles = [];
+                this.initParticles();
             }
             
-            reset() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.vx = (Math.random() - 0.5) * 0.5;
-                this.vy = (Math.random() - 0.5) * 0.5;
-                this.radius = 2 + Math.random() * 3;
-                this.opacity = Math.random() * 0.5 + 0.3;
-                this.phase = Math.random() * Math.PI * 2;
-            }
-            
-            update(time) {
-                this.x += this.vx + Math.sin(time * 0.001 + this.phase) * 0.3;
-                this.y += this.vy + Math.cos(time * 0.001 + this.phase) * 0.3;
-                
-                if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
-                    this.reset();
+            initParticles() {
+                for (let i = 0; i < 200; i++) {
+                    this.particles.push({
+                        angle: Math.random() * Math.PI * 2,
+                        distance: Math.random() * 100,
+                        speed: 0.2 + Math.random() * 0.5,
+                        size: 1 + Math.random() * 3,
+                        color: this.getGradientColor(Math.random()),
+                        depth: Math.random()
+                    });
                 }
             }
             
-            draw() {
-                ctx.fillStyle = `rgba(201, 169, 97, ${this.opacity})`;
+            getGradientColor(t) {
+                // Dégradé du vert au jaune, orange, rouge
+                if (t < 0.25) return `rgba(0, 166, 81, ${0.3 + t * 2})`;
+                if (t < 0.5) return `rgba(140, 198, 63, ${0.4 + t})`;
+                if (t < 0.75) return `rgba(247, 147, 30, ${0.5 + t})`;
+                return `rgba(255, 107, 53, ${0.6 + t})`;
+            }
+            
+            draw(time) {
+                this.centerX = canvas.width / 2;
+                this.centerY = canvas.height / 2;
+                this.rotation += 0.001;
+                
+                // Dessiner l'entonnoir 3D (trompette cosmique)
+                this.drawCosmicTrumpet(time);
+                
+                // Dessiner les particules en expansion
+                this.particles.forEach(p => {
+                    p.distance += p.speed;
+                    if (p.distance > canvas.width) {
+                        p.distance = 0;
+                        p.angle = Math.random() * Math.PI * 2;
+                    }
+                    
+                    const rotatedAngle = p.angle + this.rotation;
+                    const scale = 0.5 + p.depth * 0.5;
+                    const x = this.centerX + Math.cos(rotatedAngle) * p.distance * scale;
+                    const y = this.centerY + Math.sin(rotatedAngle) * p.distance * scale * 0.6;
+                    
+                    ctx.fillStyle = p.color;
+                    ctx.beginPath();
+                    ctx.arc(x, y, p.size * scale, 0, Math.PI * 2);
+                    ctx.fill();
+                    
+                    // Traînée lumineuse
+                    const gradient = ctx.createRadialGradient(x, y, 0, x, y, p.size * 5);
+                    gradient.addColorStop(0, p.color);
+                    gradient.addColorStop(1, 'rgba(0,0,0,0)');
+                    ctx.fillStyle = gradient;
+                    ctx.beginPath();
+                    ctx.arc(x, y, p.size * 5, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+            }
+            
+            drawCosmicTrumpet(time) {
+                const layers = 15;
+                for (let i = 0; i < layers; i++) {
+                    const progress = i / layers;
+                    const radius = 20 + progress * 200;
+                    const y = this.centerY - 100 + progress * 150;
+                    const opacity = 0.1 + (1 - progress) * 0.3;
+                    
+                    // Déterminer la couleur basée sur la progression
+                    let color;
+                    if (progress < 0.3) color = `rgba(0, 166, 81, ${opacity})`;
+                    else if (progress < 0.5) color = `rgba(140, 198, 63, ${opacity})`;
+                    else if (progress < 0.7) color = `rgba(247, 147, 30, ${opacity})`;
+                    else color = `rgba(255, 107, 53, ${opacity})`;
+                    
+                    // Ellipse rotative pour effet 3D
+                    ctx.save();
+                    ctx.translate(this.centerX, y);
+                    ctx.rotate(time * 0.0003 + progress * 0.5);
+                    ctx.scale(1, 0.4 + progress * 0.3);
+                    
+                    ctx.strokeStyle = color;
+                    ctx.lineWidth = 2 + progress * 3;
+                    ctx.beginPath();
+                    ctx.arc(0, 0, radius, 0, Math.PI * 2);
+                    ctx.stroke();
+                    
+                    // Anneaux lumineux
+                    const gradient = ctx.createRadialGradient(0, 0, radius - 10, 0, 0, radius + 10);
+                    gradient.addColorStop(0, 'rgba(0,0,0,0)');
+                    gradient.addColorStop(0.5, color);
+                    gradient.addColorStop(1, 'rgba(0,0,0,0)');
+                    ctx.strokeStyle = gradient;
+                    ctx.lineWidth = 8;
+                    ctx.stroke();
+                    
+                    ctx.restore();
+                }
+                
+                // Point lumineux central (Big Bang)
+                const gradient = ctx.createRadialGradient(
+                    this.centerX, this.centerY - 100, 0,
+                    this.centerX, this.centerY - 100, 30
+                );
+                gradient.addColorStop(0, 'rgba(255, 255, 255, 0.8)');
+                gradient.addColorStop(0.3, 'rgba(247, 147, 30, 0.6)');
+                gradient.addColorStop(1, 'rgba(255, 107, 53, 0)');
+                ctx.fillStyle = gradient;
                 ctx.beginPath();
-                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.arc(this.centerX, this.centerY - 100, 30 + Math.sin(time * 0.003) * 5, 0, Math.PI * 2);
                 ctx.fill();
             }
         }
         
-        // Formes géométriques 3D
-        class GeometricShape3D {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = 40 + Math.random() * 60;
-                this.rotationX = 0;
-                this.rotationY = 0;
-                this.rotationZ = 0;
-                this.speedX = (Math.random() - 0.5) * 0.01;
-                this.speedY = (Math.random() - 0.5) * 0.01;
-                this.speedZ = (Math.random() - 0.5) * 0.01;
-                this.type = Math.random() > 0.5 ? 'torus' : 'sphere';
-                this.opacity = 0.2 + Math.random() * 0.3;
-            }
-            
-            update() {
-                this.rotationX += this.speedX;
-                this.rotationY += this.speedY;
-                this.rotationZ += this.speedZ;
-            }
-            
-            draw() {
-                ctx.save();
-                ctx.translate(this.x, this.y);
-                
-                if (this.type === 'torus') {
-                    this.drawTorus();
-                } else {
-                    this.drawSphere();
-                }
-                
-                ctx.restore();
-            }
-            
-            drawTorus() {
-                const outerRadius = this.size;
-                const innerRadius = this.size * 0.4;
-                
-                for (let i = 0; i < 20; i++) {
-                    const angle = (i / 20) * Math.PI * 2;
-                    const x1 = Math.cos(angle + this.rotationY) * outerRadius;
-                    const y1 = Math.sin(angle + this.rotationY) * outerRadius * Math.cos(this.rotationX);
-                    const x2 = Math.cos(angle + this.rotationY) * innerRadius;
-                    const y2 = Math.sin(angle + this.rotationY) * innerRadius * Math.cos(this.rotationX);
-                    
-                    ctx.strokeStyle = `rgba(201, 169, 97, ${this.opacity})`;
-                    ctx.lineWidth = 1.5;
-                    ctx.beginPath();
-                    ctx.moveTo(x1, y1);
-                    ctx.lineTo(x2, y2);
-                    ctx.stroke();
-                }
-                
-                ctx.beginPath();
-                ctx.arc(0, 0, outerRadius * Math.cos(this.rotationX), outerRadius, 0, Math.PI * 2);
-                ctx.strokeStyle = `rgba(255, 255, 255, ${this.opacity})`;
-                ctx.lineWidth = 2;
-                ctx.stroke();
-            }
-            
-            drawSphere() {
-                const segments = 12;
-                
-                for (let i = 0; i < segments; i++) {
-                    const angle = (i / segments) * Math.PI;
-                    ctx.beginPath();
-                    for (let j = 0; j <= 20; j++) {
-                        const theta = (j / 20) * Math.PI * 2;
-                        const x = this.size * Math.sin(angle + this.rotationX) * Math.cos(theta + this.rotationY);
-                        const y = this.size * Math.cos(angle + this.rotationX);
-                        
-                        if (j === 0) ctx.moveTo(x, y);
-                        else ctx.lineTo(x, y);
-                    }
-                    ctx.strokeStyle = `rgba(201, 169, 97, ${this.opacity * 0.6})`;
-                    ctx.lineWidth = 1;
-                    ctx.stroke();
-                }
-                
-                for (let i = 0; i < segments / 2; i++) {
-                    const angle = (i / (segments / 2)) * Math.PI;
-                    ctx.beginPath();
-                    const r = this.size * Math.sin(angle);
-                    const z = this.size * Math.cos(angle);
-                    
-                    for (let j = 0; j <= 30; j++) {
-                        const theta = (j / 30) * Math.PI * 2;
-                        const x = r * Math.cos(theta + this.rotationY);
-                        const y = z * Math.cos(this.rotationX) - r * Math.sin(theta + this.rotationY) * Math.sin(this.rotationX);
-                        
-                        if (j === 0) ctx.moveTo(x, y);
-                        else ctx.lineTo(x, y);
-                    }
-                    ctx.strokeStyle = `rgba(255, 255, 255, ${this.opacity * 0.5})`;
-                    ctx.lineWidth = 1;
-                    ctx.stroke();
-                }
-            }
-        }
-        
-        // Ondes quantiques
-        class QuantumWave {
+        // Ondes cosmiques
+        class CosmicWave {
             constructor() {
                 this.y = Math.random() * canvas.height;
-                this.amplitude = 20 + Math.random() * 30;
-                this.frequency = 0.01 + Math.random() * 0.02;
+                this.amplitude = 15 + Math.random() * 25;
+                this.frequency = 0.015 + Math.random() * 0.02;
                 this.phase = Math.random() * Math.PI * 2;
-                this.speed = 0.0005 + Math.random() * 0.001;
-                this.opacity = 0.2 + Math.random() * 0.3;
+                this.speed = 0.0008 + Math.random() * 0.0012;
+                this.hue = Math.random() * 60 + 30; // Orange-Rouge
             }
             
             draw(time) {
-                ctx.strokeStyle = `rgba(201, 169, 97, ${this.opacity})`;
+                ctx.strokeStyle = `hsla(${this.hue}, 100%, 50%, 0.3)`;
                 ctx.lineWidth = 2;
                 ctx.beginPath();
                 
-                for (let x = 0; x < canvas.width; x += 5) {
+                for (let x = 0; x < canvas.width; x += 3) {
                     const y = this.y + Math.sin(x * this.frequency + time * this.speed + this.phase) * this.amplitude;
                     if (x === 0) ctx.moveTo(x, y);
                     else ctx.lineTo(x, y);
@@ -714,81 +741,15 @@
             }
         }
         
-        // Champs de vecteurs
-        class VectorField {
-            constructor() {
-                this.vectors = [];
-                this.initVectors();
-            }
-            
-            initVectors() {
-                const spacing = 80;
-                for (let x = spacing / 2; x < canvas.width; x += spacing) {
-                    for (let y = spacing / 2; y < canvas.height; y += spacing) {
-                        this.vectors.push({
-                            x: x,
-                            y: y,
-                            angle: Math.random() * Math.PI * 2
-                        });
-                    }
-                }
-            }
-            
-            draw(time) {
-                this.vectors.forEach(v => {
-                    const angle = v.angle + Math.sin(time * 0.0005 + v.x * 0.01) * 0.8;
-                    const length = 15 + Math.sin(time * 0.001 + v.y * 0.01) * 10;
-                    
-                    const gradient = ctx.createLinearGradient(
-                        v.x, v.y,
-                        v.x + Math.cos(angle) * length,
-                        v.y + Math.sin(angle) * length
-                    );
-                    gradient.addColorStop(0, 'rgba(201, 169, 97, 0.4)');
-                    gradient.addColorStop(1, 'rgba(201, 169, 97, 0)');
-                    
-                    ctx.strokeStyle = gradient;
-                    ctx.lineWidth = 2;
-                    ctx.beginPath();
-                    ctx.moveTo(v.x, v.y);
-                    ctx.lineTo(
-                        v.x + Math.cos(angle) * length,
-                        v.y + Math.sin(angle) * length
-                    );
-                    ctx.stroke();
-                    
-                    ctx.fillStyle = 'rgba(201, 169, 97, 0.5)';
-                    ctx.beginPath();
-                    ctx.arc(
-                        v.x + Math.cos(angle) * length,
-                        v.y + Math.sin(angle) * length,
-                        2, 0, Math.PI * 2
-                    );
-                    ctx.fill();
-                });
-            }
-        }
-        
-        const particles = Array.from({ length: 50 }, () => new QuantumParticle());
-        const shapes = Array.from({ length: 4 }, () => new GeometricShape3D());
-        const waves = Array.from({ length: 5 }, () => new QuantumWave());
-        const vectorField = new VectorField();
+        const universe = new UniverseExpansion();
+        const waves = Array.from({ length: 8 }, () => new CosmicWave());
         
         function animate(timestamp) {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
             
             waves.forEach(wave => wave.draw(timestamp));
-            vectorField.draw(timestamp);
-            
-            shapes.forEach(shape => {
-                shape.update();
-                shape.draw();
-            });
-            
-            particles.forEach(particle => {
-                particle.update(timestamp);
-                particle.draw();
-            });
+            universe.draw(timestamp);
             
             requestAnimationFrame(animate);
         }
