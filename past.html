@@ -12,135 +12,103 @@
         }
 
         body {
-            font-family: 'Georgia', serif;
-            line-height: 1.7;
-            color: #333;
-            background: #f8f8f8;
-            font-size: 18px;
+            font-family: 'Garamond', 'Georgia', serif;
+            line-height: 1.8;
+            color: #2c2c2c;
+            background: #f5f5f0;
+            font-size: 20px;
         }
 
         .container {
-            max-width: 900px;
+            max-width: 100%;
             margin: 0 auto;
             background: white;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
         }
 
         header {
-            background: linear-gradient(135deg, #00703c 0%, #008d4c 50%, #00a35c 100%);
+            background: linear-gradient(135deg, #00703c 0%, #1a4d2e 100%);
             color: white;
-            padding: 1.2rem;
+            padding: 2.5rem 2rem;
             text-align: center;
             position: relative;
             overflow: hidden;
+            border-bottom: 5px solid #c9a961;
+            min-height: 300px;
         }
 
-        header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.15) 0%, transparent 40%),
-                radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 40%),
-                radial-gradient(circle at 60% 20%, rgba(255,255,255,0.12) 0%, transparent 45%),
-                radial-gradient(circle at 40% 70%, rgba(255,255,255,0.08) 0%, transparent 35%);
-            animation: quantum-wave 20s ease-in-out infinite;
-        }
-
-        @keyframes quantum-wave {
-            0%, 100% { 
-                transform: translate(0, 0) rotate(0deg); 
-                opacity: 0.6;
-            }
-            25% { 
-                transform: translate(15px, -15px) rotate(3deg); 
-                opacity: 0.8;
-            }
-            50% { 
-                transform: translate(-10px, 10px) rotate(-2deg); 
-                opacity: 0.7;
-            }
-            75% { 
-                transform: translate(20px, 5px) rotate(4deg); 
-                opacity: 0.9;
-            }
-        }
-
-        header::after {
-            content: '';
+        #algebraicCanvas {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: 
-                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,0.03) 35px, rgba(255,255,255,0.03) 70px),
-                repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(255,255,255,0.02) 35px, rgba(255,255,255,0.02) 70px);
-            animation: manifold-shift 30s linear infinite;
-        }
-
-        @keyframes manifold-shift {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(70px, 70px); }
+            opacity: 0.35;
         }
 
         .university-name {
-            font-size: 0.95rem;
-            margin-bottom: 0.4rem;
+            font-size: 1.15rem;
+            margin-bottom: 0.8rem;
             opacity: 0.95;
             position: relative;
             z-index: 1;
+            letter-spacing: 0.5px;
         }
 
         header h1 {
-            font-size: 2rem;
-            font-weight: normal;
-            margin: 0.8rem 0;
+            font-size: 2.8rem;
+            font-weight: 400;
+            margin: 1rem 0;
             position: relative;
             z-index: 1;
+            line-height: 1.3;
         }
 
         .lang-switch {
-            margin-top: 0.8rem;
+            margin-top: 1.5rem;
             display: flex;
-            gap: 0.5rem;
+            gap: 1rem;
             justify-content: center;
             position: relative;
             z-index: 1;
         }
 
         .lang-switch button {
-            background: rgba(255,255,255,0.15);
-            border: 1px solid rgba(255,255,255,0.4);
+            background: rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.5);
             color: white;
-            padding: 0.4rem 1rem;
+            padding: 0.7rem 1.8rem;
             cursor: pointer;
-            font-size: 0.9rem;
+            font-size: 1.1rem;
+            font-family: 'Garamond', 'Georgia', serif;
             transition: all 0.3s;
             backdrop-filter: blur(5px);
+            font-weight: 500;
+            letter-spacing: 0.5px;
         }
 
         .lang-switch button.active {
-            background: rgba(255,255,255,0.95);
-            color: #00703c;
-            border-color: white;
+            background: #c9a961;
+            color: #1a4d2e;
+            border-color: #c9a961;
+            font-weight: 600;
+            transform: scale(1.05);
         }
 
         .lang-switch button:hover {
-            background: rgba(255,255,255,0.25);
+            background: rgba(201, 169, 97, 0.3);
+            border-color: #c9a961;
             transform: translateY(-2px);
         }
 
         .lang-switch button.active:hover {
-            background: white;
+            background: #d4b871;
+            transform: scale(1.05) translateY(-2px);
         }
 
         nav {
-            background: #f5f5f5;
-            border-bottom: 3px solid #00703c;
+            background: #f8f8f5;
+            border-bottom: 4px solid #00703c;
+            border-top: 2px solid #c9a961;
         }
 
         nav ul {
@@ -157,11 +125,12 @@
 
         nav a {
             display: block;
-            padding: 1rem 1.5rem;
-            color: #333;
+            padding: 1.2rem 2rem;
+            color: #2c2c2c;
             text-decoration: none;
-            font-size: 1rem;
+            font-size: 1.15rem;
             transition: all 0.3s;
+            font-weight: 500;
         }
 
         nav a:hover,
@@ -172,7 +141,9 @@
 
         .lang-content {
             display: none;
-            padding: 2rem;
+            padding: 2.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
         .lang-content.active {
@@ -180,78 +151,45 @@
         }
 
         .section-title {
-            color: #00703c;
-            font-size: 1.8rem;
-            font-weight: normal;
-            margin: 2rem 0 1.5rem 0;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid #00703c;
-        }
-
-        .seminar-item {
-            background: #fafafa;
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-            border-left: 4px solid #00703c;
-            position: relative;
-        }
-
-        .seminar-title {
-            color: #00703c;
-            font-size: 1.4rem;
-            font-weight: normal;
-            margin-bottom: 0.8rem;
-        }
-
-        .seminar-meta {
-            color: #666;
-            font-size: 1rem;
-            margin-bottom: 0.8rem;
-        }
-
-        .seminar-meta span {
-            display: inline-block;
-            margin-right: 1.5rem;
-        }
-
-        .seminar-speaker {
-            font-size: 1.05rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
-            color: #00703c;
-        }
-
-        .seminar-abstract {
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid #ddd;
-            line-height: 1.8;
+            color: #1a4d2e;
+            font-size: 2.2rem;
+            font-weight: 400;
+            margin: 2.5rem 0 1.5rem 0;
+            padding-bottom: 0.8rem;
+            border-bottom: 3px solid #00703c;
         }
 
         footer {
-            background: #333;
+            background: #1a4d2e;
             color: white;
-            padding: 2rem;
+            padding: 2.5rem;
             text-align: center;
-            font-size: 0.95rem;
+            font-size: 1.05rem;
             margin-top: 3rem;
+            border-top: 4px solid #c9a961;
         }
 
         footer p {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
         }
 
         footer a {
-            color: #00a35c;
+            color: #c9a961;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+            color: #d4b871;
         }
 
         @media (max-width: 768px) {
             body {
-                font-size: 16px;
+                font-size: 18px;
             }
 
             header h1 {
-                font-size: 1.5rem;
+                font-size: 2rem;
             }
 
             nav ul {
@@ -259,13 +197,7 @@
             }
 
             .lang-content {
-                padding: 1rem;
-            }
-
-            .seminar-meta span {
-                display: block;
-                margin-right: 0;
-                margin-bottom: 0.3rem;
+                padding: 1.5rem;
             }
         }
     </style>
@@ -273,6 +205,7 @@
 <body>
     <div class="container">
         <header>
+            <canvas id="algebraicCanvas"></canvas>
             <div class="university-name">Université de Sherbrooke · Département de mathématiques</div>
             <h1 class="lang-content lang-fr active">Séminaire en géométrie et physique mathématique</h1>
             <h1 class="lang-content lang-en">Seminar in Geometry and Mathematical Physics</h1>
@@ -304,125 +237,273 @@
 
         <!-- VERSION FRANÇAISE -->
         <div class="lang-content lang-fr active">
-            <h2 class="section-title">Séminaires passés - Automne 2025</h2>
-
-            <div class="seminar-item">
-                <h3 class="seminar-title">Cohomologie quantique et symétrie miroir pour les variétés toriques</h3>
-                <div class="seminar-meta">
-                    <span><strong>Date :</strong> Mardi 1er octobre 2025</span>
-                </div>
-                <div class="seminar-speaker">
-                    Dr. Sophie Tremblay, Université de Montréal
-                </div>
-                <div class="seminar-abstract">
-                    La cohomologie quantique encode les invariants de Gromov-Witten d'une variété symplectique et fournit une déformation de l'anneau de cohomologie classique. Dans cet exposé, nous avons exploré la construction explicite de l'anneau de cohomologie quantique pour les variétés toriques et discuté de sa relation avec la symétrie miroir. Nous avons présenté des calculs concrets pour ℂP² et les surfaces de Hirzebruch, et expliqué comment la dualité miroir permet de traduire des questions géométriques complexes en problèmes combinatoires plus accessibles.
-                </div>
-            </div>
-
-            <div class="seminar-item">
-                <h3 class="seminar-title">Topologie symplectique et homologie de Floer</h3>
-                <div class="seminar-meta">
-                    <span><strong>Date :</strong> Mardi 24 septembre 2025</span>
-                </div>
-                <div class="seminar-speaker">
-                    Prof. Antoine Rousseau, Université de Sherbrooke
-                </div>
-                <div class="seminar-abstract">
-                    L'homologie de Floer est un invariant fondamental en topologie symplectique qui généralise l'homologie de Morse au contexte des difféomorphismes hamiltoniens. Nous avons présenté la construction de l'homologie de Floer pour les variétés symplectiques fermées et discuté de ses propriétés essentielles. Nous avons également exploré les applications à la conjecture d'Arnold sur les points fixes des difféomorphismes hamiltoniens et les connexions avec la théorie des cordes topologiques.
-                </div>
-            </div>
-
-            <div class="seminar-item">
-                <h3 class="seminar-title">Géométrie des schémas et cohomologie étale</h3>
-                <div class="seminar-meta">
-                    <span><strong>Date :</strong> Mardi 17 septembre 2025</span>
-                </div>
-                <div class="seminar-speaker">
-                    Prof. Catherine Leblanc, Université de Montréal
-                </div>
-                <div class="seminar-abstract">
-                    La cohomologie étale, développée par Grothendieck et ses collaborateurs, est un outil puissant pour étudier les propriétés arithmétiques des schémas. Dans cet exposé, nous avons introduit les concepts de base de la topologie étale et construit les groupes de cohomologie étale. Nous avons discuté des théorèmes de comparaison avec la cohomologie classique et présenté des applications aux conjectures de Weil sur les fonctions zêta des variétés sur les corps finis.
-                </div>
-            </div>
-
-            <div class="seminar-item">
-                <h3 class="seminar-title">Variétés de Fano et rationalité</h3>
-                <div class="seminar-meta">
-                    <span><strong>Date :</strong> Mardi 10 septembre 2025</span>
-                </div>
-                <div class="seminar-speaker">
-                    Dr. Lucas Martin, UQAM
-                </div>
-                <div class="seminar-abstract">
-                    Les variétés de Fano sont des variétés algébriques dont le fibré anticanonique est ample. Ces variétés jouent un rôle central en géométrie birationnelle et dans le programme du modèle minimal. Nous avons exploré les questions de rationalité pour les variétés de Fano, en particulier pour les hypersurfaces cubiques de dimension trois et quatre. Nous avons présenté les techniques modernes utilisant la décomposition en cycles de Chow et les obstructions provenant de la cohomologie non ramifiée.
-                </div>
-            </div>
+            <h2 class="section-title">Séminaires passés</h2>
         </div>
 
         <!-- VERSION ANGLAISE -->
         <div class="lang-content lang-en">
-            <h2 class="section-title">Past Seminars - Fall 2025</h2>
-
-            <div class="seminar-item">
-                <h3 class="seminar-title">Quantum cohomology and mirror symmetry for toric varieties</h3>
-                <div class="seminar-meta">
-                    <span><strong>Date:</strong> Tuesday, October 1, 2025</span>
-                </div>
-                <div class="seminar-speaker">
-                    Dr. Sophie Tremblay, Université de Montréal
-                </div>
-                <div class="seminar-abstract">
-                    Quantum cohomology encodes the Gromov-Witten invariants of a symplectic manifold and provides a deformation of the classical cohomology ring. In this talk, we explored the explicit construction of the quantum cohomology ring for toric varieties and discussed its relationship with mirror symmetry. We presented concrete calculations for ℂP² and Hirzebruch surfaces, and explained how mirror duality allows us to translate complex geometric questions into more accessible combinatorial problems.
-                </div>
-            </div>
-
-            <div class="seminar-item">
-                <h3 class="seminar-title">Symplectic topology and Floer homology</h3>
-                <div class="seminar-meta">
-                    <span><strong>Date:</strong> Tuesday, September 24, 2025</span>
-                </div>
-                <div class="seminar-speaker">
-                    Prof. Antoine Rousseau, Université de Sherbrooke
-                </div>
-                <div class="seminar-abstract">
-                    Floer homology is a fundamental invariant in symplectic topology that generalizes Morse homology to the context of Hamiltonian diffeomorphisms. We presented the construction of Floer homology for closed symplectic manifolds and discussed its essential properties. We also explored applications to Arnold's conjecture on fixed points of Hamiltonian diffeomorphisms and connections with topological string theory.
-                </div>
-            </div>
-
-            <div class="seminar-item">
-                <h3 class="seminar-title">Geometry of schemes and étale cohomology</h3>
-                <div class="seminar-meta">
-                    <span><strong>Date:</strong> Tuesday, September 17, 2025</span>
-                </div>
-                <div class="seminar-speaker">
-                    Prof. Catherine Leblanc, Université de Montréal
-                </div>
-                <div class="seminar-abstract">
-                    Étale cohomology, developed by Grothendieck and his collaborators, is a powerful tool for studying the arithmetic properties of schemes. In this talk, we introduced the basic concepts of the étale topology and constructed the étale cohomology groups. We discussed comparison theorems with classical cohomology and presented applications to the Weil conjectures on zeta functions of varieties over finite fields.
-                </div>
-            </div>
-
-            <div class="seminar-item">
-                <h3 class="seminar-title">Fano varieties and rationality</h3>
-                <div class="seminar-meta">
-                    <span><strong>Date:</strong> Tuesday, September 10, 2025</span>
-                </div>
-                <div class="seminar-speaker">
-                    Dr. Lucas Martin, UQAM
-                </div>
-                <div class="seminar-abstract">
-                    Fano varieties are algebraic varieties whose anticanonical bundle is ample. These varieties play a central role in birational geometry and the minimal model program. We explored rationality questions for Fano varieties, particularly for cubic hypersurfaces of dimension three and four. We presented modern techniques using decomposition of Chow cycles and obstructions coming from unramified cohomology.
-                </div>
-            </div>
+            <h2 class="section-title">Past Seminars</h2>
         </div>
 
         <footer>
             <p>&copy; 2025 Université de Sherbrooke - Département de mathématiques</p>
-            <p style="margin-top: 0.5rem;">Contact: <a href="mailto:geomphys.seminar.uds@gmail.com" style="text-decoration: none;">geomphys.seminar.uds@gmail.com</a></p>
+            <p style="margin-top: 0.5rem;">Contact: <a href="mailto:geomphys.seminar.uds@gmail.com">geomphys.seminar.uds@gmail.com</a></p>
         </footer>
     </div>
 
     <script>
+        // Animations 3D de surfaces algébriques et courbes paramétriques
+        const canvas = document.getElementById('algebraicCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        function resizeCanvas() {
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+        }
+        
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+        
+        // Projection 3D simple
+        function project3D(x, y, z, rotX, rotY) {
+            // Rotation autour de l'axe Y
+            let cosY = Math.cos(rotY);
+            let sinY = Math.sin(rotY);
+            let x1 = x * cosY - z * sinY;
+            let z1 = x * sinY + z * cosY;
+            
+            // Rotation autour de l'axe X
+            let cosX = Math.cos(rotX);
+            let sinX = Math.sin(rotX);
+            let y1 = y * cosX - z1 * sinX;
+            let z2 = y * sinX + z1 * cosX;
+            
+            // Projection perspective
+            let scale = 200 / (200 + z2);
+            return {
+                x: x1 * scale + canvas.width / 2,
+                y: y1 * scale + canvas.height / 2,
+                scale: scale
+            };
+        }
+        
+        class AlgebraicSurface {
+            constructor() {
+                this.rotation = 0;
+                this.rotationSpeed = 0.005;
+            }
+            
+            update() {
+                this.rotation += this.rotationSpeed;
+            }
+            
+            draw() {
+                // Surface de Boy (projection immersion de plan projectif)
+                const gridSize = 20;
+                const step = 0.3;
+                
+                for (let u = -Math.PI; u < Math.PI; u += step) {
+                    ctx.beginPath();
+                    let first = true;
+                    
+                    for (let v = -Math.PI; v < Math.PI; v += step) {
+                        // Paramétrage d'une surface algébrique
+                        const scale = 60;
+                        const x = scale * Math.cos(u) * Math.sin(v);
+                        const y = scale * Math.sin(u) * Math.sin(v);
+                        const z = scale * Math.cos(v) + 20 * Math.sin(2 * u);
+                        
+                        const p = project3D(x, y, z, this.rotation * 0.5, this.rotation);
+                        
+                        if (first) {
+                            ctx.moveTo(p.x, p.y);
+                            first = false;
+                        } else {
+                            ctx.lineTo(p.x, p.y);
+                        }
+                    }
+                    
+                    ctx.strokeStyle = `rgba(201, 169, 97, ${0.2 + Math.sin(u) * 0.1})`;
+                    ctx.lineWidth = 1;
+                    ctx.stroke();
+                }
+            }
+        }
+        
+        class ParametricCurve3D {
+            constructor(type) {
+                this.type = type;
+                this.time = 0;
+                this.rotationX = Math.random() * Math.PI;
+                this.rotationY = Math.random() * Math.PI;
+            }
+            
+            update() {
+                this.time += 0.01;
+                this.rotationX += 0.003;
+                this.rotationY += 0.007;
+            }
+            
+            draw() {
+                ctx.beginPath();
+                let first = true;
+                
+                for (let t = 0; t <= Math.PI * 4; t += 0.05) {
+                    let x, y, z;
+                    const scale = 50;
+                    
+                    if (this.type === 'helix') {
+                        // Hélice 3D
+                        x = scale * Math.cos(t + this.time);
+                        y = scale * Math.sin(t + this.time);
+                        z = t * 10 - 60;
+                    } else if (this.type === 'trefoil') {
+                        // Nœud de trèfle
+                        x = scale * (Math.sin(t) + 2 * Math.sin(2 * t));
+                        y = scale * (Math.cos(t) - 2 * Math.cos(2 * t));
+                        z = scale * -Math.sin(3 * t);
+                    } else {
+                        // Courbe de Viviani
+                        x = scale * (1 + Math.cos(t)) * Math.cos(t);
+                        y = scale * (1 + Math.cos(t)) * Math.sin(t);
+                        z = scale * 0.8 * Math.sin(t);
+                    }
+                    
+                    const p = project3D(x, y, z, this.rotationX, this.rotationY);
+                    
+                    if (first) {
+                        ctx.moveTo(p.x, p.y);
+                        first = false;
+                    } else {
+                        ctx.lineTo(p.x, p.y);
+                    }
+                }
+                
+                ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+            }
+        }
+        
+        class WireframeCube {
+            constructor() {
+                this.size = 60;
+                this.rotation = 0;
+                this.vertices = [
+                    [-1, -1, -1], [1, -1, -1], [1, 1, -1], [-1, 1, -1],
+                    [-1, -1, 1], [1, -1, 1], [1, 1, 1], [-1, 1, 1]
+                ];
+                this.edges = [
+                    [0, 1], [1, 2], [2, 3], [3, 0],
+                    [4, 5], [5, 6], [6, 7], [7, 4],
+                    [0, 4], [1, 5], [2, 6], [3, 7]
+                ];
+            }
+            
+            update() {
+                this.rotation += 0.008;
+            }
+            
+            draw() {
+                this.edges.forEach(edge => {
+                    const v1 = this.vertices[edge[0]];
+                    const v2 = this.vertices[edge[1]];
+                    
+                    const p1 = project3D(
+                        v1[0] * this.size,
+                        v1[1] * this.size,
+                        v1[2] * this.size,
+                        this.rotation,
+                        this.rotation * 1.3
+                    );
+                    
+                    const p2 = project3D(
+                        v2[0] * this.size,
+                        v2[1] * this.size,
+                        v2[2] * this.size,
+                        this.rotation,
+                        this.rotation * 1.3
+                    );
+                    
+                    ctx.beginPath();
+                    ctx.moveTo(p1.x, p1.y);
+                    ctx.lineTo(p2.x, p2.y);
+                    ctx.strokeStyle = `rgba(201, 169, 97, ${0.4 + p1.scale * 0.3})`;
+                    ctx.lineWidth = 1.5;
+                    ctx.stroke();
+                });
+            }
+        }
+        
+        class LissajousCurve3D {
+            constructor() {
+                this.a = 3;
+                this.b = 4;
+                this.c = 5;
+                this.rotation = 0;
+            }
+            
+            update() {
+                this.rotation += 0.006;
+            }
+            
+            draw() {
+                ctx.beginPath();
+                let first = true;
+                
+                for (let t = 0; t <= Math.PI * 2; t += 0.02) {
+                    const scale = 70;
+                    const x = scale * Math.sin(this.a * t + this.rotation);
+                    const y = scale * Math.sin(this.b * t);
+                    const z = scale * Math.sin(this.c * t);
+                    
+                    const p = project3D(x, y, z, this.rotation * 0.5, this.rotation * 0.7);
+                    
+                    if (first) {
+                        ctx.moveTo(p.x, p.y);
+                        first = false;
+                    } else {
+                        ctx.lineTo(p.x, p.y);
+                    }
+                }
+                
+                ctx.strokeStyle = 'rgba(255, 255, 255, 0.25)';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+            }
+        }
+        
+        // Créer les objets 3D
+        const surface = new AlgebraicSurface();
+        const helix = new ParametricCurve3D('helix');
+        const trefoil = new ParametricCurve3D('trefoil');
+        const cube = new WireframeCube();
+        const lissajous = new LissajousCurve3D();
+        
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            surface.update();
+            surface.draw();
+            
+            helix.update();
+            helix.draw();
+            
+            trefoil.update();
+            trefoil.draw();
+            
+            cube.update();
+            cube.draw();
+            
+            lissajous.update();
+            lissajous.draw();
+            
+            requestAnimationFrame(animate);
+        }
+        
+        animate();
+        
+        // Changement de langue
         function switchLanguage(lang) {
             document.querySelectorAll('.lang-content').forEach(el => {
                 el.classList.remove('active');
