@@ -20,10 +20,9 @@
         }
 
         .container {
-            max-width: 1100px;
+            max-width: 100%;
             margin: 0 auto;
             background: white;
-            box-shadow: 0 0 30px rgba(0,0,0,0.15);
         }
 
         header {
@@ -34,6 +33,16 @@
             position: relative;
             overflow: hidden;
             border-bottom: 5px solid #c9a961;
+            min-height: 300px;
+        }
+
+        #geometryCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
         }
 
         header::before {
@@ -66,6 +75,54 @@
             75% { 
                 transform: translate(20px, 5px) rotate(4deg); 
                 opacity: 0.9;
+            }
+        }
+
+        .vector-field {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        .vector {
+            position: absolute;
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(90deg, rgba(201, 169, 97, 0.6), transparent);
+            transform-origin: left center;
+            animation: vectorFlow 3s ease-in-out infinite;
+        }
+
+        @keyframes vectorFlow {
+            0%, 100% {
+                opacity: 0.4;
+                transform: translateX(0) rotate(var(--angle));
+            }
+            50% {
+                opacity: 0.8;
+                transform: translateX(10px) rotate(calc(var(--angle) + 15deg));
+            }
+        }
+
+        .geometric-curve {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border: 2px solid rgba(201, 169, 97, 0.3);
+            border-radius: 50%;
+            animation: curvePulse 4s ease-in-out infinite;
+        }
+
+        @keyframes curvePulse {
+            0%, 100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 0.3;
+            }
+            50% {
+                transform: scale(1.2) rotate(180deg);
+                opacity: 0.6;
             }
         }
 
@@ -166,7 +223,8 @@
         .organizers {
             background: linear-gradient(135deg, #e8f5e9 0%, #f1f8f4 100%);
             padding: 1.8rem;
-            margin: 2.5rem;
+            margin: 2.5rem auto;
+            max-width: 1300px;
             border-left: 5px solid #00703c;
             font-size: 1.15rem;
         }
@@ -185,7 +243,8 @@
         .info-box {
             background: linear-gradient(135deg, #fff9e6 0%, #fffbf0 100%);
             padding: 2rem;
-            margin: 2.5rem;
+            margin: 2.5rem auto;
+            max-width: 1300px;
             border: 2px solid #c9a961;
             border-radius: 4px;
         }
@@ -203,6 +262,8 @@
         .lang-content {
             display: none;
             padding: 2.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
         .lang-content.active {
@@ -326,6 +387,7 @@
             .organizers,
             .info-box {
                 margin: 1.5rem;
+                max-width: calc(100% - 3rem);
             }
         }
     </style>
@@ -333,6 +395,7 @@
 <body>
     <div class="container">
         <header>
+            <canvas id="geometryCanvas"></canvas>
             <div class="university-name">Université de Sherbrooke · Département de mathématiques</div>
             <h1 class="lang-content lang-fr active">Séminaire en géométrie et physique mathématique</h1>
             <h1 class="lang-content lang-en">Seminar in Geometry and Mathematical Physics</h1>
@@ -457,6 +520,170 @@
     </div>
 
     <script>
+        // Animation géométrique
+        const canvas = document.getElementById('geometryCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        function resizeCanvas() {
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+        }
+        
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+        
+        class VectorField {
+            constructor() {
+                this.vectors = [];
+                this.time = 0;
+                this.initVectors();
+            }
+            
+            initVectors() {
+                const spacing = 60;
+                for (let x = 0; x < canvas.width; x += spacing) {
+                    for (let y = 0; y < canvas.height; y += spacing) {
+                        this.vectors.push({
+                            x: x,
+                            y: y,
+                            baseAngle: Math.random() * Math.PI * 2
+                        });
+                    }
+                }
+            }
+            
+            draw() {
+                this.vectors.forEach(v => {
+                    const angle = v.baseAngle + Math.sin(this.time * 0.001 + v.x * 0.01) * 0.5;
+                    const length = 20 + Math.sin(this.time * 0.002 + v.y * 0.01) * 10;
+                    
+                    ctx.strokeStyle = `rgba(201, 169, 97, ${0.3 + Math.sin(this.time * 0.003) * 0.2})`;
+                    ctx.lineWidth = 1.5;
+                    ctx.beginPath();
+                    ctx.moveTo(v.x, v.y);
+                    ctx.lineTo(
+                        v.x + Math.cos(angle) * length,
+                        v.y + Math.sin(angle) * length
+                    );
+                    ctx.stroke();
+                    
+                    // Pointe de flèche
+                    ctx.fillStyle = ctx.strokeStyle;
+                    ctx.beginPath();
+                    ctx.arc(
+                        v.x + Math.cos(angle) * length,
+                        v.y + Math.sin(angle) * length,
+                        2, 0, Math.PI * 2
+                    );
+                    ctx.fill();
+                });
+            }
+        }
+        
+        class GeometricCurves {
+            constructor() {
+                this.curves = [];
+                this.time = 0;
+                this.initCurves();
+            }
+            
+            initCurves() {
+                for (let i = 0; i < 5; i++) {
+                    this.curves.push({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height,
+                        radius: 30 + Math.random() * 50,
+                        speed: 0.0005 + Math.random() * 0.001,
+                        phase: Math.random() * Math.PI * 2
+                    });
+                }
+            }
+            
+            draw() {
+                this.curves.forEach(curve => {
+                    const scale = 1 + Math.sin(this.time * curve.speed + curve.phase) * 0.3;
+                    const rotation = this.time * curve.speed * 50;
+                    
+                    ctx.strokeStyle = `rgba(255, 255, 255, ${0.15 + Math.sin(this.time * curve.speed) * 0.1})`;
+                    ctx.lineWidth = 2;
+                    ctx.beginPath();
+                    
+                    // Dessiner une ellipse rotative
+                    for (let i = 0; i <= 100; i++) {
+                        const angle = (i / 100) * Math.PI * 2;
+                        const x = curve.x + Math.cos(angle + rotation * 0.01) * curve.radius * scale;
+                        const y = curve.y + Math.sin(angle + rotation * 0.01) * curve.radius * scale * 0.6;
+                        
+                        if (i === 0) ctx.moveTo(x, y);
+                        else ctx.lineTo(x, y);
+                    }
+                    ctx.closePath();
+                    ctx.stroke();
+                });
+            }
+        }
+        
+        class FundamentalGroup {
+            constructor() {
+                this.loops = [];
+                this.time = 0;
+                this.initLoops();
+            }
+            
+            initLoops() {
+                for (let i = 0; i < 3; i++) {
+                    this.loops.push({
+                        centerX: canvas.width * (0.2 + i * 0.3),
+                        centerY: canvas.height * 0.5,
+                        radius: 40,
+                        frequency: 3 + i,
+                        phase: i * Math.PI / 3
+                    });
+                }
+            }
+            
+            draw() {
+                this.loops.forEach(loop => {
+                    ctx.strokeStyle = `rgba(201, 169, 97, ${0.2 + Math.sin(this.time * 0.001 + loop.phase) * 0.15})`;
+                    ctx.lineWidth = 1.5;
+                    ctx.beginPath();
+                    
+                    for (let i = 0; i <= 200; i++) {
+                        const t = (i / 200) * Math.PI * 2;
+                        const r = loop.radius + Math.sin(t * loop.frequency + this.time * 0.002) * 15;
+                        const x = loop.centerX + Math.cos(t) * r;
+                        const y = loop.centerY + Math.sin(t) * r;
+                        
+                        if (i === 0) ctx.moveTo(x, y);
+                        else ctx.lineTo(x, y);
+                    }
+                    ctx.closePath();
+                    ctx.stroke();
+                });
+            }
+        }
+        
+        const vectorField = new VectorField();
+        const geometricCurves = new GeometricCurves();
+        const fundamentalGroup = new FundamentalGroup();
+        
+        function animate(timestamp) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            vectorField.time = timestamp;
+            geometricCurves.time = timestamp;
+            fundamentalGroup.time = timestamp;
+            
+            vectorField.draw();
+            geometricCurves.draw();
+            fundamentalGroup.draw();
+            
+            requestAnimationFrame(animate);
+        }
+        
+        animate(0);
+        
+        // Changement de langue
         function switchLanguage(lang) {
             document.querySelectorAll('.lang-content').forEach(el => {
                 el.classList.remove('active');
