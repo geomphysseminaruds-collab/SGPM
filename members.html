@@ -12,135 +12,103 @@
         }
 
         body {
-            font-family: 'Georgia', serif;
-            line-height: 1.7;
-            color: #333;
-            background: #f8f8f8;
-            font-size: 18px;
+            font-family: 'Garamond', 'Georgia', serif;
+            line-height: 1.8;
+            color: #2c2c2c;
+            background: #f5f5f0;
+            font-size: 20px;
         }
 
         .container {
-            max-width: 900px;
+            max-width: 100%;
             margin: 0 auto;
             background: white;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
         }
 
         header {
-            background: linear-gradient(135deg, #00703c 0%, #008d4c 50%, #00a35c 100%);
+            background: linear-gradient(135deg, #00703c 0%, #1a4d2e 100%);
             color: white;
-            padding: 1.2rem;
+            padding: 2.5rem 2rem;
             text-align: center;
             position: relative;
             overflow: hidden;
+            border-bottom: 5px solid #c9a961;
+            min-height: 300px;
         }
 
-        header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.15) 0%, transparent 40%),
-                radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 40%),
-                radial-gradient(circle at 60% 20%, rgba(255,255,255,0.12) 0%, transparent 45%),
-                radial-gradient(circle at 40% 70%, rgba(255,255,255,0.08) 0%, transparent 35%);
-            animation: quantum-wave 20s ease-in-out infinite;
-        }
-
-        @keyframes quantum-wave {
-            0%, 100% { 
-                transform: translate(0, 0) rotate(0deg); 
-                opacity: 0.6;
-            }
-            25% { 
-                transform: translate(15px, -15px) rotate(3deg); 
-                opacity: 0.8;
-            }
-            50% { 
-                transform: translate(-10px, 10px) rotate(-2deg); 
-                opacity: 0.7;
-            }
-            75% { 
-                transform: translate(20px, 5px) rotate(4deg); 
-                opacity: 0.9;
-            }
-        }
-
-        header::after {
-            content: '';
+        #networkCanvas {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: 
-                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,0.03) 35px, rgba(255,255,255,0.03) 70px),
-                repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(255,255,255,0.02) 35px, rgba(255,255,255,0.02) 70px);
-            animation: manifold-shift 30s linear infinite;
-        }
-
-        @keyframes manifold-shift {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(70px, 70px); }
+            opacity: 0.35;
         }
 
         .university-name {
-            font-size: 0.95rem;
-            margin-bottom: 0.4rem;
+            font-size: 1.15rem;
+            margin-bottom: 0.8rem;
             opacity: 0.95;
             position: relative;
             z-index: 1;
+            letter-spacing: 0.5px;
         }
 
         header h1 {
-            font-size: 2rem;
-            font-weight: normal;
-            margin: 0.8rem 0;
+            font-size: 2.8rem;
+            font-weight: 400;
+            margin: 1rem 0;
             position: relative;
             z-index: 1;
+            line-height: 1.3;
         }
 
         .lang-switch {
-            margin-top: 0.8rem;
+            margin-top: 1.5rem;
             display: flex;
-            gap: 0.5rem;
+            gap: 1rem;
             justify-content: center;
             position: relative;
             z-index: 1;
         }
 
         .lang-switch button {
-            background: rgba(255,255,255,0.15);
-            border: 1px solid rgba(255,255,255,0.4);
+            background: rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.5);
             color: white;
-            padding: 0.4rem 1rem;
+            padding: 0.7rem 1.8rem;
             cursor: pointer;
-            font-size: 0.9rem;
+            font-size: 1.1rem;
+            font-family: 'Garamond', 'Georgia', serif;
             transition: all 0.3s;
             backdrop-filter: blur(5px);
+            font-weight: 500;
+            letter-spacing: 0.5px;
         }
 
         .lang-switch button.active {
-            background: rgba(255,255,255,0.95);
-            color: #00703c;
-            border-color: white;
+            background: #c9a961;
+            color: #1a4d2e;
+            border-color: #c9a961;
+            font-weight: 600;
+            transform: scale(1.05);
         }
 
         .lang-switch button:hover {
-            background: rgba(255,255,255,0.25);
+            background: rgba(201, 169, 97, 0.3);
+            border-color: #c9a961;
             transform: translateY(-2px);
         }
 
         .lang-switch button.active:hover {
-            background: white;
+            background: #d4b871;
+            transform: scale(1.05) translateY(-2px);
         }
 
         nav {
-            background: #f5f5f5;
-            border-bottom: 3px solid #00703c;
+            background: #f8f8f5;
+            border-bottom: 4px solid #00703c;
+            border-top: 2px solid #c9a961;
         }
 
         nav ul {
@@ -157,11 +125,12 @@
 
         nav a {
             display: block;
-            padding: 1rem 1.5rem;
-            color: #333;
+            padding: 1.2rem 2rem;
+            color: #2c2c2c;
             text-decoration: none;
-            font-size: 1rem;
+            font-size: 1.15rem;
             transition: all 0.3s;
+            font-weight: 500;
         }
 
         nav a:hover,
@@ -172,7 +141,9 @@
 
         .lang-content {
             display: none;
-            padding: 2rem;
+            padding: 2.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
         .lang-content.active {
@@ -180,77 +151,140 @@
         }
 
         .section-title {
-            color: #00703c;
-            font-size: 1.8rem;
-            font-weight: normal;
-            margin: 2rem 0 1.5rem 0;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid #00703c;
+            color: #1a4d2e;
+            font-size: 2.2rem;
+            font-weight: 400;
+            margin: 2.5rem 0 1.5rem 0;
+            padding-bottom: 0.8rem;
+            border-bottom: 3px solid #00703c;
         }
 
         .members-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin: 1.5rem 0;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
         }
 
         .member-card {
-            background: #fafafa;
-            padding: 1.5rem;
-            border-left: 4px solid #00703c;
+            background: #fafaf8;
+            padding: 2rem;
+            border-left: 5px solid #00703c;
+            border-top: 1px solid #c9a961;
+            display: flex;
+            gap: 1.5rem;
+            align-items: start;
+        }
+
+        .member-photo {
+            flex-shrink: 0;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00703c, #c9a961);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.5rem;
+            font-weight: 300;
+            border: 3px solid #c9a961;
+        }
+
+        .member-photo img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .member-info {
+            flex: 1;
         }
 
         .member-name {
             color: #00703c;
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             font-weight: 600;
             margin-bottom: 0.5rem;
         }
 
         .member-title {
             color: #666;
-            font-size: 1rem;
+            font-size: 1.1rem;
             margin-bottom: 0.8rem;
             font-style: italic;
         }
 
         .member-research {
-            font-size: 0.95rem;
-            line-height: 1.6;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .member-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .member-links a {
+            color: #00703c;
+            text-decoration: none;
+            font-size: 1rem;
+            padding: 0.4rem 0.8rem;
+            border: 1px solid #00703c;
+            border-radius: 3px;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .member-links a:hover {
+            background: #00703c;
+            color: white;
         }
 
         h3 {
             color: #00703c;
-            font-size: 1.2rem;
-            margin: 2rem 0 1rem 0;
+            font-size: 1.5rem;
+            margin: 2.5rem 0 1.5rem 0;
+            font-weight: 500;
         }
 
         footer {
-            background: #333;
+            background: #1a4d2e;
             color: white;
-            padding: 2rem;
+            padding: 2.5rem;
             text-align: center;
-            font-size: 0.95rem;
+            font-size: 1.05rem;
             margin-top: 3rem;
+            border-top: 4px solid #c9a961;
         }
 
         footer p {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
         }
 
         footer a {
-            color: #00a35c;
+            color: #c9a961;
             text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+            color: #d4b871;
         }
 
         @media (max-width: 768px) {
             body {
-                font-size: 16px;
+                font-size: 18px;
             }
 
             header h1 {
-                font-size: 1.5rem;
+                font-size: 2rem;
             }
 
             nav ul {
@@ -258,11 +292,21 @@
             }
 
             .lang-content {
-                padding: 1rem;
+                padding: 1.5rem;
             }
 
             .members-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .member-card {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .member-links {
+                justify-content: center;
             }
         }
     </style>
@@ -270,6 +314,7 @@
 <body>
     <div class="container">
         <header>
+            <canvas id="networkCanvas"></canvas>
             <div class="university-name">Université de Sherbrooke · Département de mathématiques</div>
             <h1 class="lang-content lang-fr active">Séminaire en géométrie et physique mathématique</h1>
             <h1 class="lang-content lang-en">Seminar in Geometry and Mathematical Physics</h1>
@@ -305,23 +350,34 @@
             
             <div class="members-grid">
                 <div class="member-card">
-                    <div class="member-name">Mohamed Moussadek Maiza</div>
-                    <div class="member-title">Doctorant</div>
-                    <div class="member-research">Spécialités :Structures géométriques, théorie des représentations des groupes, espaces de Teichmüller supérieurs</div>
-                    <div style="margin-top: 0.8rem; font-size: 0.9rem;">
-                        <a href="mailto:mohamed.moussadek.maiza@usherbrooke.ca" style="color: #00703c; text-decoration: none;">✉ Email</a>
+                    <div class="member-photo">
+                        <!-- Pour ajouter une photo, utilisez: <img src="photos/mohamed.jpg" alt="Mohamed Moussadek Maiza"> -->
+                        MM
+                    </div>
+                    <div class="member-info">
+                        <div class="member-name">Mohamed Moussadek Maiza</div>
+                        <div class="member-title">Doctorant</div>
+                        <div class="member-research">Spécialités : Structures géométriques, théorie des représentations des groupes, espaces de Teichmüller supérieurs</div>
+                        <div class="member-links">
+                            <a href="mailto:mohamed.moussadek.maiza@usherbrooke.ca">✉ Email</a>
+                            <!-- <a href="https://..." target="_blank">🌐 Site web</a> -->
+                        </div>
                     </div>
                 </div>
 
                 <div class="member-card">
-                    <div class="member-name">Yassine Ait Mohamed</div>
-                    <div class="member-title">Doctorant</div>
-                    <div class="member-research">Spécialités : Géométrie algébrique, groupes de Lie, théories des champs quantiques topologiques, géométrie symplectique décalée.</div>
-                    <div style="margin-top: 0.8rem; font-size: 0.9rem;">
-                    <a href="mailto:yassine.ait.mohamed@usherbrooke.ca" style="color: #00703c; text-decoration: none;">✉ Email</a>       
-                        
-                    <a href="https://yassineeus.github.io/yassine.ait.mohamed/index.htmlm" target="_blank" class="contact-link">🌐</a>
-                        
+                    <div class="member-photo">
+                        <!-- Pour ajouter une photo, utilisez: <img src="photos/yassine.jpg" alt="Yassine Ait Mohamed"> -->
+                        YA
+                    </div>
+                    <div class="member-info">
+                        <div class="member-name">Yassine Ait Mohamed</div>
+                        <div class="member-title">Doctorant</div>
+                        <div class="member-research">Spécialités : Géométrie algébrique, groupes de Lie, théories des champs quantiques topologiques, géométrie symplectique décalée</div>
+                        <div class="member-links">
+                            <a href="mailto:yassine.ait.mohamed@usherbrooke.ca">✉ Email</a>
+                            <a href="https://yassineeus.github.io/yassine.ait.mohamed/index.html" target="_blank">🌐 Site web</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -332,102 +388,154 @@
             
             <div class="members-grid">
                 <div class="member-card">
-                    <div class="member-name">Maxence Mayrand</div>
-                    <div class="member-title">Professeur adjoint</div>
-                    <div class="member-research">Géométrie différentielle</div>
+                    <div class="member-photo">MM</div>
+                    <div class="member-info">
+                        <div class="member-name">Maxence Mayrand</div>
+                        <div class="member-title">Professeur adjoint</div>
+                        <div class="member-research">Géométrie différentielle</div>
+                        <div class="member-links">
+                            <!-- <a href="mailto:...">✉ Email</a> -->
+                            <!-- <a href="https://..." target="_blank">🌐 Site web</a> -->
+                        </div>
+                    </div>
                 </div>
 
                 <div class="member-card">
-                    <div class="member-name">Jean-Philippe Burelle</div>
-                    <div class="member-title">Professeur agrégé</div>
-                    <div class="member-research">Sous-groupes discrets des groupes de Lie, théorie de Teichmüller en rang supérieur, structures géométriques localement homogènes</div>
+                    <div class="member-photo">JB</div>
+                    <div class="member-info">
+                        <div class="member-name">Jean-Philippe Burelle</div>
+                        <div class="member-title">Professeur agrégé</div>
+                        <div class="member-research">Sous-groupes discrets des groupes de Lie, théorie de Teichmüller en rang supérieur, structures géométriques localement homogènes</div>
+                        <div class="member-links">
+                            <!-- <a href="mailto:...">✉ Email</a> -->
+                            <!-- <a href="https://..." target="_blank">🌐 Site web</a> -->
+                        </div>
+                    </div>
                 </div>
+            </div>
 
-             
             <h3>Postdoctorants</h3>
             
             <div class="members-grid">
                 <div class="member-card">
-                    <div class="member-name">Dr. Sophie Tremblay</div>
-                    <div class="member-title">Chercheure postdoctorale</div>
-                    <div class="member-research">Cohomologie quantique, symétrie miroir, variétés toriques</div>
+                    <div class="member-photo">ST</div>
+                    <div class="member-info">
+                        <div class="member-name">Dr. Sophie Tremblay</div>
+                        <div class="member-title">Chercheure postdoctorale</div>
+                        <div class="member-research">Cohomologie quantique, symétrie miroir, variétés toriques</div>
+                        <div class="member-links">
+                            <!-- <a href="mailto:...">✉ Email</a> -->
+                            <!-- <a href="https://..." target="_blank">🌐 Site web</a> -->
+                        </div>
+                    </div>
                 </div>
-
-               
+            </div>
 
             <h3>Doctorants</h3>
 
-                <div class="member-card">
-                    <div class="member-name">Mohamed Moussadek Maiza</div>
-                    <div class="member-title">Doctorant</div>
-                    <div class="member-research">Structures géométriques, théorie des représentations des groupes, espaces de Teichmüller supérieurs</div>
-                </div>
-
-
-            <div class="member-card">
-                    <div class="member-name">Yassine Ait Mohamed</div>
-                    <div class="member-title">Doctorant</div>
-                    <div class="member-research">Géométrie algébrique, groupes de Lie, théories des champs quantiques topologiques, géométrie symplectique décalées</div>
-                </div>
-
-
-
-                
-                
             <div class="members-grid">
                 <div class="member-card">
-                    <div class="member-name">Adji Madjou</div>
-                    <div class="member-title">Doctorant </div>
-                    <div class="member-research">Géométrie complexe</div>
-                </div>
-
-                <div class="member-card">
-                    <div class="member-name">Samuel Dobchies</div>
-                    <div class="member-title">Doctorant</div>
-                    <div class="member-research">Surfaces de Riemann et physique mathématique</div>
-                </div>
-
-                <div class="member-card">
-                    <div class="member-name">Wenpo Dimoune</div>
-                    <div class="member-title">Doctorant</div>
-                    <div class="member-research">Structures géométriques</div>
-                </div>
-
-
-     <div class="member-card">
-                    <div class="member-name">
-                    Ablanvi Songo  
+                    <div class="member-photo">MM</div>
+                    <div class="member-info">
+                        <div class="member-name">Mohamed Moussadek Maiza</div>
+                        <div class="member-title">Doctorant</div>
+                        <div class="member-research">Structures géométriques, théorie des représentations des groupes, espaces de Teichmüller supérieurs</div>
+                        <div class="member-links">
+                            <a href="mailto:mohamed.moussadek.maiza@usherbrooke.ca">✉ Email</a>
+                        </div>
                     </div>
-                    <div class="member-title">Doctorant</div>
-                    <div class="member-research">Équations aux dérivées partielles, physique mathématique</div>
                 </div>
 
+                <div class="member-card">
+                    <div class="member-photo">YA</div>
+                    <div class="member-info">
+                        <div class="member-name">Yassine Ait Mohamed</div>
+                        <div class="member-title">Doctorant</div>
+                        <div class="member-research">Géométrie algébrique, groupes de Lie, théories des champs quantiques topologiques, géométrie symplectique décalée</div>
+                        <div class="member-links">
+                            <a href="mailto:yassine.ait.mohamed@usherbrooke.ca">✉ Email</a>
+                            <a href="https://yassineeus.github.io/yassine.ait.mohamed/index.html" target="_blank">🌐 Site web</a>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="member-card">
+                    <div class="member-photo">AM</div>
+                    <div class="member-info">
+                        <div class="member-name">Adji Madjou</div>
+                        <div class="member-title">Doctorant</div>
+                        <div class="member-research">Géométrie complexe</div>
+                        <div class="member-links">
+                            <!-- <a href="mailto:...">✉ Email</a> -->
+                        </div>
+                    </div>
+                </div>
 
+                <div class="member-card">
+                    <div class="member-photo">SD</div>
+                    <div class="member-info">
+                        <div class="member-name">Samuel Dobchies</div>
+                        <div class="member-title">Doctorant</div>
+                        <div class="member-research">Surfaces de Riemann et physique mathématique</div>
+                        <div class="member-links">
+                            <!-- <a href="mailto:...">✉ Email</a> -->
+                        </div>
+                    </div>
+                </div>
 
-         </div>
+                <div class="member-card">
+                    <div class="member-photo">WD</div>
+                    <div class="member-info">
+                        <div class="member-name">Wenpo Dimoune</div>
+                        <div class="member-title">Doctorant</div>
+                        <div class="member-research">Structures géométriques</div>
+                        <div class="member-links">
+                            <!-- <a href="mailto:...">✉ Email</a> -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="member-card">
+                    <div class="member-photo">AS</div>
+                    <div class="member-info">
+                        <div class="member-name">Ablanvi Songo</div>
+                        <div class="member-title">Doctorant</div>
+                        <div class="member-research">Équations aux dérivées partielles, physique mathématique</div>
+                        <div class="member-links">
+                            <!-- <a href="mailto:...">✉ Email</a> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- VERSION ANGLAISE -->
         <div class="lang-content lang-en">
-            <h2 class="section-title">Seminar Organisers</h2>
+            <h2 class="section-title">Seminar Organizers</h2>
             
             <div class="members-grid">
                 <div class="member-card">
-                    <div class="member-name">Mohamed Moussadek Maiza</div>
-                    <div class="member-title">PhD Student</div>
-                    <div class="member-research">Specialties: Symplectic algebraic geometry, Poisson structures, quantization</div>
-                    <div style="margin-top: 0.8rem; font-size: 0.9rem;">
-                        <a href="mailto:mohamed.moussadek.maiza@usherbrooke.ca" style="color: #00703c; text-decoration: none;">✉ Email</a>
+                    <div class="member-photo">MM</div>
+                    <div class="member-info">
+                        <div class="member-name">Mohamed Moussadek Maiza</div>
+                        <div class="member-title">PhD Student</div>
+                        <div class="member-research">Specialties: Geometric structures, group representation theory, higher Teichmüller spaces</div>
+                        <div class="member-links">
+                            <a href="mailto:mohamed.moussadek.maiza@usherbrooke.ca">✉ Email</a>
+                        </div>
                     </div>
                 </div>
 
                 <div class="member-card">
-                    <div class="member-name">Yassine Ait Mohamed</div>
-                    <div class="member-title">PhD Student</div>
-                    <div class="member-research">Specialties: Lie theory, Poisson geometry, mathematical physics</div>
-                    <div style="margin-top: 0.8rem; font-size: 0.9rem;">
-                        <a href="mailto:yassine.ait.mohamed@usherbrooke.ca" style="color: #00703c; text-decoration: none;">✉ Email</a>
+                    <div class="member-photo">YA</div>
+                    <div class="member-info">
+                        <div class="member-name">Yassine Ait Mohamed</div>
+                        <div class="member-title">PhD Student</div>
+                        <div class="member-research">Specialties: Algebraic geometry, Lie groups, topological quantum field theories, shifted symplectic geometry</div>
+                        <div class="member-links">
+                            <a href="mailto:yassine.ait.mohamed@usherbrooke.ca">✉ Email</a>
+                            <a href="https://yassineeus.github.io/yassine.ait.mohamed/index.html" target="_blank">🌐 Website</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -438,21 +546,21 @@
             
             <div class="members-grid">
                 <div class="member-card">
-                    <div class="member-name">Prof. Antoine Rousseau</div>
-                    <div class="member-title">Full Professor</div>
-                    <div class="member-research">Symplectic topology, Floer invariants, Arnold conjecture</div>
+                    <div class="member-photo">MM</div>
+                    <div class="member-info">
+                        <div class="member-name">Maxence Mayrand</div>
+                        <div class="member-title">Assistant Professor</div>
+                        <div class="member-research">Differential geometry</div>
+                    </div>
                 </div>
 
                 <div class="member-card">
-                    <div class="member-name">Prof. Catherine Leblanc</div>
-                    <div class="member-title">Associate Professor</div>
-                    <div class="member-research">Arithmetic geometry, étale cohomology, varieties over finite fields</div>
-                </div>
-
-                <div class="member-card">
-                    <div class="member-name">Prof. Thomas Beauchamp</div>
-                    <div class="member-title">Associate Professor (Université Laval)</div>
-                    <div class="member-research">Complex geometry, extremal metrics, Kähler manifolds</div>
+                    <div class="member-photo">JB</div>
+                    <div class="member-info">
+                        <div class="member-name">Jean-Philippe Burelle</div>
+                        <div class="member-title">Associate Professor</div>
+                        <div class="member-research">Discrete subgroups of Lie groups, higher Teichmüller theory, locally homogeneous geometric structures</div>
+                    </div>
                 </div>
             </div>
 
@@ -460,15 +568,12 @@
             
             <div class="members-grid">
                 <div class="member-card">
-                    <div class="member-name">Dr. Sophie Tremblay</div>
-                    <div class="member-title">Postdoctoral Researcher</div>
-                    <div class="member-research">Quantum cohomology, mirror symmetry, toric varieties</div>
-                </div>
-
-                <div class="member-card">
-                    <div class="member-name">Dr. Lucas Martin</div>
-                    <div class="member-title">Postdoctoral Researcher</div>
-                    <div class="member-research">Fano varieties, rationality, birational geometry</div>
+                    <div class="member-photo">ST</div>
+                    <div class="member-info">
+                        <div class="member-name">Dr. Sophie Tremblay</div>
+                        <div class="member-title">Postdoctoral Researcher</div>
+                        <div class="member-research">Quantum cohomology, mirror symmetry, toric varieties</div>
+                    </div>
                 </div>
             </div>
 
@@ -476,27 +581,64 @@
             
             <div class="members-grid">
                 <div class="member-card">
-                    <div class="member-name">Émilie Gagnon</div>
-                    <div class="member-title">PhD Student (3rd year)</div>
-                    <div class="member-research">Cohomology of moduli spaces</div>
+                    <div class="member-photo">MM</div>
+                    <div class="member-info">
+                        <div class="member-name">Mohamed Moussadek Maiza</div>
+                        <div class="member-title">PhD Student</div>
+                        <div class="member-research">Geometric structures, group representation theory, higher Teichmüller spaces</div>
+                        <div class="member-links">
+                            <a href="mailto:mohamed.moussadek.maiza@usherbrooke.ca">✉ Email</a>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="member-card">
-                    <div class="member-name">Philippe Morin</div>
-                    <div class="member-title">PhD Student (2nd year)</div>
-                    <div class="member-research">Hamiltonian diffeomorphisms</div>
+                    <div class="member-photo">YA</div>
+                    <div class="member-info">
+                        <div class="member-name">Yassine Ait Mohamed</div>
+                        <div class="member-title">PhD Student</div>
+                        <div class="member-research">Algebraic geometry, Lie groups, topological quantum field theories, shifted symplectic geometry</div>
+                        <div class="member-links">
+                            <a href="mailto:yassine.ait.mohamed@usherbrooke.ca">✉ Email</a>
+                            <a href="https://yassineeus.github.io/yassine.ait.mohamed/index.html" target="_blank">🌐 Website</a>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="member-card">
-                    <div class="member-name">Sarah Chen</div>
-                    <div class="member-title">PhD Student (4th year)</div>
-                    <div class="member-research">Symplectic Floer homology</div>
+                    <div class="member-photo">AM</div>
+                    <div class="member-info">
+                        <div class="member-name">Adji Madjou</div>
+                        <div class="member-title">PhD Student</div>
+                        <div class="member-research">Complex geometry</div>
+                    </div>
                 </div>
 
                 <div class="member-card">
-                    <div class="member-name">Marc Desjardins</div>
-                    <div class="member-title">PhD Student (1st year)</div>
-                    <div class="member-research">Poisson algebras and quantization</div>
+                    <div class="member-photo">SD</div>
+                    <div class="member-info">
+                        <div class="member-name">Samuel Dobchies</div>
+                        <div class="member-title">PhD Student</div>
+                        <div class="member-research">Riemann surfaces and mathematical physics</div>
+                    </div>
+                </div>
+
+                <div class="member-card">
+                    <div class="member-photo">WD</div>
+                    <div class="member-info">
+                        <div class="member-name">Wenpo Dimoune</div>
+                        <div class="member-title">PhD Student</div>
+                        <div class="member-research">Geometric structures</div>
+                    </div>
+                </div>
+
+                <div class="member-card">
+                    <div class="member-photo">AS</div>
+                    <div class="member-info">
+                        <div class="member-name">Ablanvi Songo</div>
+                        <div class="member-title">PhD Student</div>
+                        <div class="member-research">Partial differential equations, mathematical physics</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -508,6 +650,203 @@
     </div>
 
     <script>
+        // Animation de réseau de collaboration (graphe de Dynkin / réseau scientifique)
+        const canvas = document.getElementById('networkCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        function resizeCanvas() {
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+        }
+        
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+        
+        class Node {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.vx = (Math.random() - 0.5) * 0.3;
+                this.vy = (Math.random() - 0.5) * 0.3;
+                this.radius = 4 + Math.random() * 3;
+                this.connections = [];
+                this.pulse = Math.random() * Math.PI * 2;
+            }
+            
+            update(nodes) {
+                // Mouvement brownien
+                this.vx += (Math.random() - 0.5) * 0.1;
+                this.vy += (Math.random() - 0.5) * 0.1;
+                
+                // Limiter la vitesse
+                const speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
+                if (speed > 0.5) {
+                    this.vx = (this.vx / speed) * 0.5;
+                    this.vy = (this.vy / speed) * 0.5;
+                }
+                
+                this.x += this.vx;
+                this.y += this.vy;
+                
+                // Rebond sur les bords
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+                
+                this.x = Math.max(0, Math.min(canvas.width, this.x));
+                this.y = Math.max(0, Math.min(canvas.height, this.y));
+                
+                this.pulse += 0.05;
+            }
+            
+            draw() {
+                const pulseSize = 1 + Math.sin(this.pulse) * 0.3;
+                
+                // Nœud
+                ctx.fillStyle = `rgba(201, 169, 97, ${0.6 + Math.sin(this.pulse) * 0.2})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius * pulseSize, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Halo
+                ctx.strokeStyle = `rgba(255, 255, 255, ${0.3 + Math.sin(this.pulse) * 0.1})`;
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius * pulseSize + 3, 0, Math.PI * 2);
+                ctx.stroke();
+            }
+        }
+        
+        class DynkinDiagram {
+            constructor() {
+                this.nodes = [];
+                this.edges = [];
+                this.rotation = 0;
+                this.centerX = Math.random() * canvas.width;
+                this.centerY = Math.random() * canvas.height;
+                this.scale = 40 + Math.random() * 30;
+                
+                // Créer un diagramme de Dynkin E6
+                const positions = [
+                    [0, 0], [1, 0], [2, 0], [3, 0], [4, 0], [2, -1]
+                ];
+                
+                positions.forEach(([x, y]) => {
+                    this.nodes.push({
+                        x: x * this.scale,
+                        y: y * this.scale
+                    });
+                });
+                
+                this.edges = [[0, 1], [1, 2], [2, 3], [3, 4], [2, 5]];
+            }
+            
+            update() {
+                this.rotation += 0.003;
+            }
+            
+            draw() {
+                ctx.save();
+                ctx.translate(this.centerX, this.centerY);
+                ctx.rotate(this.rotation);
+                
+                // Dessiner les arêtes
+                this.edges.forEach(([i, j]) => {
+                    const n1 = this.nodes[i];
+                    const n2 = this.nodes[j];
+                    
+                    ctx.strokeStyle = 'rgba(201, 169, 97, 0.25)';
+                    ctx.lineWidth = 2;
+                    ctx.beginPath();
+                    ctx.moveTo(n1.x, n1.y);
+                    ctx.lineTo(n2.x, n2.y);
+                    ctx.stroke();
+                });
+                
+                // Dessiner les nœuds
+                this.nodes.forEach(node => {
+                    ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+                    ctx.beginPath();
+                    ctx.arc(node.x, node.y, 5, 0, Math.PI * 2);
+                    ctx.fill();
+                    
+                    ctx.strokeStyle = 'rgba(201, 169, 97, 0.5)';
+                    ctx.lineWidth = 2;
+                    ctx.stroke();
+                });
+                
+                ctx.restore();
+            }
+        }
+        
+        // Créer le réseau
+        const nodes = [];
+        const numNodes = 25;
+        
+        for (let i = 0; i < numNodes; i++) {
+            nodes.push(new Node(
+                Math.random() * canvas.width,
+                Math.random() * canvas.height
+            ));
+        }
+        
+        // Créer des connexions
+        nodes.forEach((node, i) => {
+            const numConnections = 2 + Math.floor(Math.random() * 3);
+            for (let j = 0; j < numConnections; j++) {
+                const target = nodes[Math.floor(Math.random() * nodes.length)];
+                if (target !== node && !node.connections.includes(target)) {
+                    node.connections.push(target);
+                }
+            }
+        });
+        
+        // Créer des diagrammes de Dynkin
+        const dynkinDiagrams = [];
+        for (let i = 0; i < 2; i++) {
+            dynkinDiagrams.push(new DynkinDiagram());
+        }
+        
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Dessiner les connexions
+            nodes.forEach(node => {
+                node.connections.forEach(target => {
+                    const distance = Math.sqrt(
+                        Math.pow(target.x - node.x, 2) + 
+                        Math.pow(target.y - node.y, 2)
+                    );
+                    
+                    if (distance < 200) {
+                        const opacity = 1 - (distance / 200);
+                        ctx.strokeStyle = `rgba(201, 169, 97, ${opacity * 0.15})`;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(node.x, node.y);
+                        ctx.lineTo(target.x, target.y);
+                        ctx.stroke();
+                    }
+                });
+            });
+            
+            // Dessiner les diagrammes de Dynkin
+            dynkinDiagrams.forEach(diagram => {
+                diagram.update();
+                diagram.draw();
+            });
+            
+            // Mettre à jour et dessiner les nœuds
+            nodes.forEach(node => {
+                node.update(nodes);
+                node.draw();
+            });
+            
+            requestAnimationFrame(animate);
+        }
+        
+        animate();
+        
+        // Changement de langue
         function switchLanguage(lang) {
             document.querySelectorAll('.lang-content').forEach(el => {
                 el.classList.remove('active');
