@@ -33,7 +33,7 @@
             position: relative;
             overflow: hidden;
             border-bottom: 5px solid #c9a961;
-            min-height: 300px;
+            min-height: 350px;
         }
 
         #geometryCanvas {
@@ -42,7 +42,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            opacity: 0.3;
+            opacity: 0.4;
         }
 
         header::before {
@@ -151,37 +151,45 @@
         }
 
         nav {
-            background: #f8f8f5;
-            border-bottom: 4px solid #00703c;
+            background: linear-gradient(135deg, #00703c 0%, #1a4d2e 100%);
+            border-bottom: 4px solid #c9a961;
             border-top: 2px solid #c9a961;
+            overflow-x: auto;
+            overflow-y: hidden;
+            -webkit-overflow-scrolling: touch;
         }
 
         nav ul {
             list-style: none;
             display: flex;
             justify-content: center;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
             padding: 0;
+            margin: 0;
+            min-width: max-content;
         }
 
         nav li {
             margin: 0;
+            flex-shrink: 0;
         }
 
         nav a {
             display: block;
             padding: 1.2rem 2rem;
-            color: #2c2c2c;
+            color: white;
             text-decoration: none;
             font-size: 1.15rem;
             transition: all 0.3s;
             font-weight: 500;
+            white-space: nowrap;
         }
 
         nav a:hover,
         nav a.active {
-            background: #00703c;
-            color: white;
+            background: #c9a961;
+            color: #1a4d2e;
+            font-weight: 600;
         }
 
         .organizers {
@@ -340,8 +348,9 @@
                 font-size: 2rem;
             }
 
-            nav ul {
-                flex-direction: column;
+            nav a {
+                padding: 1rem 1.5rem;
+                font-size: 1rem;
             }
 
             .lang-content {
@@ -471,7 +480,6 @@
     </div>
 
     <script>
-        // Animation géométrique
         const canvas = document.getElementById('geometryCanvas');
         const ctx = canvas.getContext('2d');
         
@@ -483,33 +491,202 @@
         resizeCanvas();
         window.addEventListener('resize', resizeCanvas);
         
+        // Particules quantiques
+        class QuantumParticle {
+            constructor() {
+                this.reset();
+            }
+            
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.radius = 2 + Math.random() * 3;
+                this.opacity = Math.random() * 0.5 + 0.3;
+                this.phase = Math.random() * Math.PI * 2;
+            }
+            
+            update(time) {
+                this.x += this.vx + Math.sin(time * 0.001 + this.phase) * 0.3;
+                this.y += this.vy + Math.cos(time * 0.001 + this.phase) * 0.3;
+                
+                if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+                    this.reset();
+                }
+            }
+            
+            draw() {
+                ctx.fillStyle = `rgba(201, 169, 97, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+        
+        // Formes géométriques 3D (tores, sphères)
+        class GeometricShape3D {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = 40 + Math.random() * 60;
+                this.rotationX = 0;
+                this.rotationY = 0;
+                this.rotationZ = 0;
+                this.speedX = (Math.random() - 0.5) * 0.01;
+                this.speedY = (Math.random() - 0.5) * 0.01;
+                this.speedZ = (Math.random() - 0.5) * 0.01;
+                this.type = Math.random() > 0.5 ? 'torus' : 'sphere';
+                this.opacity = 0.2 + Math.random() * 0.3;
+            }
+            
+            update() {
+                this.rotationX += this.speedX;
+                this.rotationY += this.speedY;
+                this.rotationZ += this.speedZ;
+            }
+            
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                
+                if (this.type === 'torus') {
+                    this.drawTorus();
+                } else {
+                    this.drawSphere();
+                }
+                
+                ctx.restore();
+            }
+            
+            drawTorus() {
+                const outerRadius = this.size;
+                const innerRadius = this.size * 0.4;
+                
+                for (let i = 0; i < 20; i++) {
+                    const angle = (i / 20) * Math.PI * 2;
+                    const x1 = Math.cos(angle + this.rotationY) * outerRadius;
+                    const y1 = Math.sin(angle + this.rotationY) * outerRadius * Math.cos(this.rotationX);
+                    const x2 = Math.cos(angle + this.rotationY) * innerRadius;
+                    const y2 = Math.sin(angle + this.rotationY) * innerRadius * Math.cos(this.rotationX);
+                    
+                    ctx.strokeStyle = `rgba(201, 169, 97, ${this.opacity})`;
+                    ctx.lineWidth = 1.5;
+                    ctx.beginPath();
+                    ctx.moveTo(x1, y1);
+                    ctx.lineTo(x2, y2);
+                    ctx.stroke();
+                }
+                
+                ctx.beginPath();
+                ctx.arc(0, 0, outerRadius * Math.cos(this.rotationX), outerRadius, 0, Math.PI * 2);
+                ctx.strokeStyle = `rgba(255, 255, 255, ${this.opacity})`;
+                ctx.lineWidth = 2;
+                ctx.stroke();
+            }
+            
+            drawSphere() {
+                const segments = 12;
+                
+                // Méridiens
+                for (let i = 0; i < segments; i++) {
+                    const angle = (i / segments) * Math.PI;
+                    ctx.beginPath();
+                    for (let j = 0; j <= 20; j++) {
+                        const theta = (j / 20) * Math.PI * 2;
+                        const x = this.size * Math.sin(angle + this.rotationX) * Math.cos(theta + this.rotationY);
+                        const y = this.size * Math.cos(angle + this.rotationX);
+                        
+                        if (j === 0) ctx.moveTo(x, y);
+                        else ctx.lineTo(x, y);
+                    }
+                    ctx.strokeStyle = `rgba(201, 169, 97, ${this.opacity * 0.6})`;
+                    ctx.lineWidth = 1;
+                    ctx.stroke();
+                }
+                
+                // Parallèles
+                for (let i = 0; i < segments / 2; i++) {
+                    const angle = (i / (segments / 2)) * Math.PI;
+                    ctx.beginPath();
+                    const r = this.size * Math.sin(angle);
+                    const z = this.size * Math.cos(angle);
+                    
+                    for (let j = 0; j <= 30; j++) {
+                        const theta = (j / 30) * Math.PI * 2;
+                        const x = r * Math.cos(theta + this.rotationY);
+                        const y = z * Math.cos(this.rotationX) - r * Math.sin(theta + this.rotationY) * Math.sin(this.rotationX);
+                        
+                        if (j === 0) ctx.moveTo(x, y);
+                        else ctx.lineTo(x, y);
+                    }
+                    ctx.strokeStyle = `rgba(255, 255, 255, ${this.opacity * 0.5})`;
+                    ctx.lineWidth = 1;
+                    ctx.stroke();
+                }
+            }
+        }
+        
+        // Ondes quantiques
+        class QuantumWave {
+            constructor() {
+                this.y = Math.random() * canvas.height;
+                this.amplitude = 20 + Math.random() * 30;
+                this.frequency = 0.01 + Math.random() * 0.02;
+                this.phase = Math.random() * Math.PI * 2;
+                this.speed = 0.0005 + Math.random() * 0.001;
+                this.opacity = 0.2 + Math.random() * 0.3;
+            }
+            
+            draw(time) {
+                ctx.strokeStyle = `rgba(201, 169, 97, ${this.opacity})`;
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                
+                for (let x = 0; x < canvas.width; x += 5) {
+                    const y = this.y + Math.sin(x * this.frequency + time * this.speed + this.phase) * this.amplitude;
+                    if (x === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                }
+                ctx.stroke();
+            }
+        }
+        
+        // Champs de vecteurs
         class VectorField {
             constructor() {
                 this.vectors = [];
-                this.time = 0;
                 this.initVectors();
             }
             
             initVectors() {
-                const spacing = 60;
-                for (let x = 0; x < canvas.width; x += spacing) {
-                    for (let y = 0; y < canvas.height; y += spacing) {
+                const spacing = 80;
+                for (let x = spacing / 2; x < canvas.width; x += spacing) {
+                    for (let y = spacing / 2; y < canvas.height; y += spacing) {
                         this.vectors.push({
                             x: x,
                             y: y,
-                            baseAngle: Math.random() * Math.PI * 2
+                            angle: Math.random() * Math.PI * 2
                         });
                     }
                 }
             }
             
-            draw() {
+            draw(time) {
                 this.vectors.forEach(v => {
-                    const angle = v.baseAngle + Math.sin(this.time * 0.001 + v.x * 0.01) * 0.5;
-                    const length = 20 + Math.sin(this.time * 0.002 + v.y * 0.01) * 10;
+                    const angle = v.angle + Math.sin(time * 0.0005 + v.x * 0.01) * 0.8;
+                    const length = 15 + Math.sin(time * 0.001 + v.y * 0.01) * 10;
                     
-                    ctx.strokeStyle = `rgba(201, 169, 97, ${0.3 + Math.sin(this.time * 0.003) * 0.2})`;
-                    ctx.lineWidth = 1.5;
+                    const gradient = ctx.createLinearGradient(
+                        v.x, v.y,
+                        v.x + Math.cos(angle) * length,
+                        v.y + Math.sin(angle) * length
+                    );
+                    gradient.addColorStop(0, 'rgba(201, 169, 97, 0.4)');
+                    gradient.addColorStop(1, 'rgba(201, 169, 97, 0)');
+                    
+                    ctx.strokeStyle = gradient;
+                    ctx.lineWidth = 2;
                     ctx.beginPath();
                     ctx.moveTo(v.x, v.y);
                     ctx.lineTo(
@@ -518,8 +695,8 @@
                     );
                     ctx.stroke();
                     
-                    // Pointe de flèche
-                    ctx.fillStyle = ctx.strokeStyle;
+                    // Pointe
+                    ctx.fillStyle = 'rgba(201, 169, 97, 0.5)';
                     ctx.beginPath();
                     ctx.arc(
                         v.x + Math.cos(angle) * length,
@@ -531,103 +708,32 @@
             }
         }
         
-        class GeometricCurves {
-            constructor() {
-                this.curves = [];
-                this.time = 0;
-                this.initCurves();
-            }
-            
-            initCurves() {
-                for (let i = 0; i < 5; i++) {
-                    this.curves.push({
-                        x: Math.random() * canvas.width,
-                        y: Math.random() * canvas.height,
-                        radius: 30 + Math.random() * 50,
-                        speed: 0.0005 + Math.random() * 0.001,
-                        phase: Math.random() * Math.PI * 2
-                    });
-                }
-            }
-            
-            draw() {
-                this.curves.forEach(curve => {
-                    const scale = 1 + Math.sin(this.time * curve.speed + curve.phase) * 0.3;
-                    const rotation = this.time * curve.speed * 50;
-                    
-                    ctx.strokeStyle = `rgba(255, 255, 255, ${0.15 + Math.sin(this.time * curve.speed) * 0.1})`;
-                    ctx.lineWidth = 2;
-                    ctx.beginPath();
-                    
-                    // Dessiner une ellipse rotative
-                    for (let i = 0; i <= 100; i++) {
-                        const angle = (i / 100) * Math.PI * 2;
-                        const x = curve.x + Math.cos(angle + rotation * 0.01) * curve.radius * scale;
-                        const y = curve.y + Math.sin(angle + rotation * 0.01) * curve.radius * scale * 0.6;
-                        
-                        if (i === 0) ctx.moveTo(x, y);
-                        else ctx.lineTo(x, y);
-                    }
-                    ctx.closePath();
-                    ctx.stroke();
-                });
-            }
-        }
-        
-        class FundamentalGroup {
-            constructor() {
-                this.loops = [];
-                this.time = 0;
-                this.initLoops();
-            }
-            
-            initLoops() {
-                for (let i = 0; i < 3; i++) {
-                    this.loops.push({
-                        centerX: canvas.width * (0.2 + i * 0.3),
-                        centerY: canvas.height * 0.5,
-                        radius: 40,
-                        frequency: 3 + i,
-                        phase: i * Math.PI / 3
-                    });
-                }
-            }
-            
-            draw() {
-                this.loops.forEach(loop => {
-                    ctx.strokeStyle = `rgba(201, 169, 97, ${0.2 + Math.sin(this.time * 0.001 + loop.phase) * 0.15})`;
-                    ctx.lineWidth = 1.5;
-                    ctx.beginPath();
-                    
-                    for (let i = 0; i <= 200; i++) {
-                        const t = (i / 200) * Math.PI * 2;
-                        const r = loop.radius + Math.sin(t * loop.frequency + this.time * 0.002) * 15;
-                        const x = loop.centerX + Math.cos(t) * r;
-                        const y = loop.centerY + Math.sin(t) * r;
-                        
-                        if (i === 0) ctx.moveTo(x, y);
-                        else ctx.lineTo(x, y);
-                    }
-                    ctx.closePath();
-                    ctx.stroke();
-                });
-            }
-        }
-        
+        // Initialisation
+        const particles = Array.from({ length: 50 }, () => new QuantumParticle());
+        const shapes = Array.from({ length: 4 }, () => new GeometricShape3D());
+        const waves = Array.from({ length: 5 }, () => new QuantumWave());
         const vectorField = new VectorField();
-        const geometricCurves = new GeometricCurves();
-        const fundamentalGroup = new FundamentalGroup();
         
         function animate(timestamp) {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
-            vectorField.time = timestamp;
-            geometricCurves.time = timestamp;
-            fundamentalGroup.time = timestamp;
+            // Dessiner les ondes
+            waves.forEach(wave => wave.draw(timestamp));
             
-            vectorField.draw();
-            geometricCurves.draw();
-            fundamentalGroup.draw();
+            // Dessiner le champ de vecteurs
+            vectorField.draw(timestamp);
+            
+            // Dessiner les formes 3D
+            shapes.forEach(shape => {
+                shape.update();
+                shape.draw();
+            });
+            
+            // Dessiner les particules
+            particles.forEach(particle => {
+                particle.update(timestamp);
+                particle.draw();
+            });
             
             requestAnimationFrame(animate);
         }
@@ -638,7 +744,6 @@
         function updateClock() {
             const now = new Date();
             
-            // Format français
             const optionsFr = { 
                 weekday: 'long', 
                 year: 'numeric', 
@@ -653,7 +758,6 @@
             const elementFr = document.getElementById('current-time-fr');
             if (elementFr) elementFr.textContent = timeFr;
             
-            // Format anglais
             const optionsEn = { 
                 weekday: 'long', 
                 year: 'numeric', 
@@ -669,7 +773,6 @@
             if (elementEn) elementEn.textContent = timeEn;
         }
         
-        // Mettre à jour l'horloge toutes les secondes
         updateClock();
         setInterval(updateClock, 1000);
         
