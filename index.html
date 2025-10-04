@@ -51,6 +51,21 @@
             opacity: 1;
         }
 
+        .seminar-logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 10;
+            width: 120px;
+            height: auto;
+            opacity: 0.95;
+            transition: opacity 0.3s;
+        }
+
+        .seminar-logo:hover {
+            opacity: 1;
+        }
+
         #geometryCanvas {
             position: absolute;
             top: 0;
@@ -369,6 +384,12 @@
                 right: 15px;
             }
 
+            .seminar-logo {
+                width: 80px;
+                top: 15px;
+                left: 15px;
+            }
+
             nav a {
                 padding: 1rem 1.5rem;
                 font-size: 1rem;
@@ -389,6 +410,7 @@
 <body>
     <div class="container">
         <header>
+            <img src="logo.png" alt="Logo du séminaire" class="seminar-logo">
             <a href="https://www.usherbrooke.ca/" target="_blank" rel="noopener noreferrer">
                 <img src="https://www.usherbrooke.ca/liaison/fileadmin/sites/liaison/images/UdeS_logo_h_blanc.svg" alt="Logo Université de Sherbrooke" class="uds-logo">
             </a>
