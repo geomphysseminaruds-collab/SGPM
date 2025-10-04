@@ -136,23 +136,12 @@
             position: relative;
             z-index: 1;
             line-height: 1.3;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 0.2rem;
+            animation: title-float 4s ease-in-out infinite;
         }
 
-        header h1 span {
-            display: inline-block;
-            animation: letter-float 3s ease-in-out infinite;
-            text-shadow: 0 0 20px rgba(255,255,255,0.5);
-        }
-
-        @keyframes letter-float {
-            0%, 100% { transform: translateY(0) rotateX(0deg); }
-            25% { transform: translateY(-10px) rotateX(5deg); }
-            50% { transform: translateY(0) rotateX(0deg); }
-            75% { transform: translateY(10px) rotateX(-5deg); }
+        @keyframes title-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
         }
 
         .lang-switch {
@@ -432,8 +421,8 @@
                 <a href="https://www.usherbrooke.ca/" target="_blank" rel="noopener noreferrer">Université de Sherbrooke</a> · 
                 <a href="https://www.usherbrooke.ca/mathematiques/" target="_blank" rel="noopener noreferrer">Département de mathématiques</a>
             </div>
-            <h1 class="lang-content lang-fr active" id="title-fr"></h1>
-            <h1 class="lang-content lang-en" id="title-en"></h1>
+            <h1 class="lang-content lang-fr active">Séminaire en géométrie et physique mathématique</h1>
+            <h1 class="lang-content lang-en">Seminar in Geometry and Mathematical Physics</h1>
             <div class="lang-switch">
                 <button class="active" onclick="switchLanguage('fr')" data-lang="fr">Français</button>
                 <button onclick="switchLanguage('en')" data-lang="en">English</button>
@@ -558,31 +547,6 @@
     </div>
 
     <script>
-        // Création des titres avec lettres colorées animées
-        function createAnimatedTitle(text, elementId) {
-            const colors = ['#ff6b35', '#f7931e', '#fdc82f', '#8cc63f', '#00a651', '#00aeef', '#ec008c', '#92278f'];
-            const element = document.getElementById(elementId);
-            const words = text.split(' ');
-            
-            words.forEach((word, wordIndex) => {
-                word.split('').forEach((letter, i) => {
-                    const span = document.createElement('span');
-                    span.textContent = letter;
-                    span.style.color = colors[(wordIndex + i) % colors.length];
-                    span.style.animationDelay = `${(wordIndex + i) * 0.1}s`;
-                    element.appendChild(span);
-                });
-                if (wordIndex < words.length - 1) {
-                    const space = document.createElement('span');
-                    space.innerHTML = '&nbsp;';
-                    element.appendChild(space);
-                }
-            });
-        }
-
-        createAnimatedTitle('Séminaire en géométrie et physique mathématique', 'title-fr');
-        createAnimatedTitle('Seminar in Geometry and Mathematical Physics', 'title-en');
-
         const canvas = document.getElementById('geometryCanvas');
         const ctx = canvas.getContext('2d');
         
