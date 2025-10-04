@@ -1,151 +1,240 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Membres du groupe | Séminaire en géométrie et physique mathématique</title>
-    <style>
-        /* --- ton CSS original, inchangé --- */
-        * {margin:0;padding:0;box-sizing:border-box;}
-        body {font-family:'Garamond','Georgia',serif;line-height:1.8;color:#2c2c2c;background:#f5f5f0;font-size:20px;}
-        .container {max-width:100%;margin:0 auto;background:white;}
-        header {background:linear-gradient(135deg,#00703c 0%,#1a4d2e 100%);color:white;padding:2.5rem 2rem;text-align:center;position:relative;overflow:hidden;border-bottom:5px solid #c9a961;min-height:350px;}
-        #networkCanvas {position:absolute;top:0;left:0;width:100%;height:100%;opacity:0.4;}
-        .university-name {font-size:1.15rem;margin-bottom:0.8rem;opacity:0.95;position:relative;z-index:1;letter-spacing:0.5px;}
-        .university-name a {color:white;text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.3);transition:all 0.3s;}
-        .university-name a:hover {border-bottom-color:#c9a961;opacity:1;}
-        header h1 {font-size:2.8rem;font-weight:400;margin:1rem 0;position:relative;z-index:1;line-height:1.3;}
-        .lang-switch {margin-top:1.5rem;display:flex;gap:1rem;justify-content:center;position:relative;z-index:1;}
-        .lang-switch button {background:rgba(255,255,255,0.2);border:2px solid rgba(255,255,255,0.5);color:white;padding:0.7rem 1.8rem;cursor:pointer;font-size:1.1rem;font-family:'Garamond','Georgia',serif;transition:all 0.3s;backdrop-filter:blur(5px);font-weight:500;letter-spacing:0.5px;}
-        .lang-switch button.active {background:#c9a961;color:#1a4d2e;border-color:#c9a961;font-weight:600;transform:scale(1.05);}
-        .lang-switch button:hover {background:rgba(201,169,97,0.3);border-color:#c9a961;transform:translateY(-2px);}
-        .lang-switch button.active:hover {background:#d4b871;transform:scale(1.05) translateY(-2px);}
-        nav {background:linear-gradient(135deg,#00703c 0%,#1a4d2e 100%);border-bottom:4px solid #c9a961;border-top:2px solid #c9a961;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;}
-        nav ul {list-style:none;display:flex;justify-content:center;flex-wrap:nowrap;padding:0;margin:0;min-width:max-content;}
-        nav li {margin:0;flex-shrink:0;}
-        nav a {display:block;padding:1.2rem 2rem;color:white;text-decoration:none;font-size:1.15rem;transition:all 0.3s;font-weight:500;white-space:nowrap;}
-        nav a:hover,nav a.active {background:#c9a961;color:#1a4d2e;font-weight:600;}
-        .lang-content {display:none;padding:2.5rem;max-width:1400px;margin:0 auto;}
-        .lang-content.active {display:block;}
-        .section-title {color:#1a4d2e;font-size:2.2rem;font-weight:400;margin:2.5rem 0 1.5rem 0;padding-bottom:0.8rem;border-bottom:3px solid #00703c;}
-        .members-grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:2rem;margin:2rem 0;}
-        .member-card {background:#fafaf8;padding:2rem;border-left:5px solid #00703c;border-top:1px solid #c9a961;display:flex;gap:1.5rem;align-items:start;}
-        .member-photo {flex-shrink:0;width:120px;height:120px;border-radius:50%;background:linear-gradient(135deg,#00703c,#c9a961);display:flex;align-items:center;justify-content:center;color:white;font-size:2.5rem;font-weight:300;border:3px solid #c9a961;}
-        .member-photo img {width:100%;height:100%;border-radius:50%;object-fit:cover;}
-        .member-info {flex:1;}
-        .member-name {color:#00703c;font-size:1.4rem;font-weight:600;margin-bottom:0.5rem;}
-        .member-title {color:#666;font-size:1.1rem;margin-bottom:0.8rem;font-style:italic;}
-        .member-research {font-size:1.05rem;line-height:1.7;margin-bottom:1rem;}
-        .member-links {display:flex;gap:1rem;flex-wrap:wrap;margin-top:1rem;}
-        .member-links a {color:#00703c;text-decoration:none;font-size:0.95rem;padding:0.4rem 0.8rem;border:1px solid #00703c;border-radius:3px;transition:all 0.3s;display:inline-flex;align-items:center;gap:0.3rem;word-break:break-word;}
-        .member-links a:hover {background:#00703c;color:white;}
-        h3 {color:#00703c;font-size:1.5rem;margin:2.5rem 0 1.5rem 0;font-weight:500;}
-        footer {background:#1a4d2e;color:white;padding:2.5rem;text-align:center;font-size:1.05rem;margin-top:3rem;border-top:4px solid #c9a961;}
-        footer p {margin-bottom:0.8rem;}
-        footer a {color:#c9a961;text-decoration:none;}
-        footer a:hover {text-decoration:underline;color:#d4b871;}
-        @media (max-width:768px) {
-            body{font-size:18px;}
-            header h1{font-size:2rem;}
-            nav a{padding:1rem 1.5rem;font-size:1rem;}
-            .lang-content{padding:1.5rem;}
-            .members-grid{grid-template-columns:1fr;}
-            .member-card{flex-direction:column;align-items:center;text-align:center;}
-            .member-links{justify-content:center;}
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Geometry Research Seminar - UdeS</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+    .section-title { font-size: 1.8em; margin-top: 2rem; }
+    .members-grid { display: flex; flex-wrap: wrap; gap: 1rem; }
+    .member-card { border: 1px solid #ccc; border-radius: 8px; padding: 1rem; width: 250px; text-align: center; }
+    .member-photo img { width: 100%; border-radius: 50%; }
+    .member-name { font-weight: bold; margin-top: 0.5rem; }
+    .member-title { font-style: italic; font-size: 0.9em; }
+    .member-research { margin-top: 0.5rem; font-size: 0.85em; }
+    .member-links a { display: block; margin-top: 0.5rem; text-decoration: none; color: #00703c; }
+    .lang-content { display: none; }
+    .lang-content.active { display: block; }
+    .lang-buttons { margin: 1rem; }
+    .lang-buttons button { margin-right: 0.5rem; padding: 0.5rem 1rem; }
+  </style>
 </head>
 <body>
-<div class="container">
-<header>
-    <canvas id="networkCanvas"></canvas>
-    <div class="university-name">
-        <a href="https://www.usherbrooke.ca/" target="_blank">Université de Sherbrooke</a> · 
-        <a href="https://www.usherbrooke.ca/mathematiques/" target="_blank">Département de mathématiques</a>
-    </div>
-    <h1 class="lang-content lang-fr active">Séminaire en géométrie et physique mathématique</h1>
-    <h1 class="lang-content lang-en">Seminar in Geometry and Mathematical Physics</h1>
-    <div class="lang-switch">
-        <button class="active" onclick="switchLanguage('fr')" data-lang="fr">Français</button>
-        <button onclick="switchLanguage('en')" data-lang="en">English</button>
-    </div>
-</header>
 
-<!-- Navigation -->
-<nav class="lang-content lang-fr active">
-    <ul>
-        <li><a href="index.html">Accueil</a></li>
-        <li><a href="upcoming.html">Séminaires à venir</a></li>
-        <li><a href="past.html">Séminaires passés</a></li>
-        <li><a href="members.html" class="active">Membres du groupe</a></li>
-        <li><a href="events.html">Événements</a></li>
-    </ul>
-</nav>
-<nav class="lang-content lang-en">
-    <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="upcoming.html">Upcoming Seminars</a></li>
-        <li><a href="past.html">Past Seminars</a></li>
-        <li><a href="members.html" class="active">Group Members</a></li>
-        <li><a href="events.html">Events</a></li>
-    </ul>
-</nav>
+<div class="lang-buttons">
+  <button onclick="switchLang('fr')">Français</button>
+  <button onclick="switchLang('en')">English</button>
+</div>
 
-<!-- Contenu Français -->
+<!-- VERSION FRANÇAISE -->
 <div class="lang-content lang-fr active">
-    <h2 class="section-title">Organisateurs du séminaire</h2>
-    <div class="members-grid">
-        <div class="member-card">
-            <div class="member-photo"><img src="photos/mmm.jpg" alt="Mohamed Moussadek Maiza"></div>
-            <div class="member-info">
-                <div class="member-name">Mohamed Moussadek Maiza</div>
-                <div class="member-research">Structures géométriques, théorie des représentations des groupes, espaces de Teichmüller supérieurs</div>
-                <div class="member-links"><a href="mailto:mohamed.moussadek.maiza@usherbrooke.ca">mohamed.moussadek.maiza@usherbrooke.ca</a></div>
-            </div>
-        </div>
-        <div class="member-card">
-            <div class="member-photo"><img src="photos/yam.jpg" alt="Yassine Ait Mohamed"></div>
-            <div class="member-info">
-                <div class="member-name">Yassine Ait Mohamed</div>
-                <div class="member-research">Géométrie algébrique, groupes de Lie, théories des champs quantiques topologiques, géométrie symplectique décalée</div>
-                <div class="member-links"><a href="mailto:yassine.ait.mohamed@usherbrooke.ca">yassine.ait.mohamed@usherbrooke.ca</a></div>
-            </div>
-        </div>
+  <h2 class="section-title">Organisateurs du séminaire</h2>
+  <div class="members-grid">
+    <div class="member-card">
+      <div class="member-photo"><img src="photos/mmm.jpg" alt="Mohamed Moussadek Maiza"></div>
+      <div class="member-info">
+        <div class="member-name">Mohamed Moussadek Maiza</div>
+        <div class="member-research">Structures géométriques, théorie des représentations de groupes, espaces de Teichmüller supérieurs</div>
+        <div class="member-links"><a href="mailto:mohamed.moussadek.maiza@usherbrooke.ca">mohamed.moussadek.maiza@usherbrooke.ca</a></div>
+      </div>
     </div>
-
-    <h2 class="section-title">Membres du groupe de recherche</h2>
-    <h3>Professeurs</h3>
-    <div class="members-grid">
-        <div class="member-card">
-            <div class="member-photo"><img src="photos/mm.jpg" alt="Maxence Mayrand"></div>
-            <div class="member-info">
-                <div class="member-name">Maxence Mayrand</div>
-                <div class="member-title">Professeur adjoint</div>
-                <div class="member-research">Géométrie différentielle, groupes de Lie, théories des champs quantiques topologiques, géométrie symplectique décalée</div>
-                <div class="member-links"><a href="mailto:maxence.mayrand@usherbrooke.ca">maxence.mayrand@usherbrooke.ca</a></div>
-            </div>
-        </div>
-        <div class="member-card">
-            <div class="member-photo"><img src="photos/jpb.jpg" alt="Jean-Philippe Burelle"></div>
-            <div class="member-info">
-                <div class="member-name">Jean-Philippe Burelle</div>
-                <div class="member-title">Professeur agrégé</div>
-                <div class="member-research">Sous-groupes discrets des groupes de Lie, théorie de Teichmüller en rang supérieur, structures géométriques localement homogènes</div>
-                <div class="member-links"><a href="mailto:jean-philippe.burelle@usherbrooke.ca">jean-philippe.burelle@usherbrooke.ca</a></div>
-            </div>
-        </div>
-        <div class="member-card">
-            <div class="member-photo"><img src="photos/vasi.jpg" alt="Vasilisa Shramchenko"></div>
-            <div class="member-info">
-                <div class="member-name">Vasilisa Shramchenko</div>
-                <div class="member-title">Professeure titulaire</div>
-                <div class="member-research">Variétés de Frobenius, systèmes intégrables, problèmes de Riemann-Hilbert, déformations isomonodromiques de systèmes d'équations différentielles linéaires, théorie des fonctions sur les surfaces de Riemann, algèbres amassées, récurrence topologique d’Eynard-Orantin</div>
-                <div class="member-links"><a href="mailto:vasilisa.Shramchenko@USherbrooke.ca">vasilisa.Shramchenko@USherbrooke.ca</a></div>
-            </div>
-        </div>
+    <div class="member-card">
+      <div class="member-photo"><img src="photos/yam.jpg" alt="Yassine Ait Mohamed"></div>
+      <div class="member-info">
+        <div class="member-name">Yassine Ait Mohamed</div>
+        <div class="member-research">Géométrie algébrique, groupes de Lie, TQFT, géométrie symplectique décalée</div>
+        <div class="member-links"><a href="mailto:yassine.ait.mohamed@usherbrooke.ca">yassine.ait.mohamed@usherbrooke.ca</a></div>
+      </div>
     </div>
+  </div>
 
-    <h3>Doctorants</h3>
-    <div class="members-grid">
-        <div class="member-card">
-            <div class="member-photo"><img src="photos/mmm.jpg" alt="Mohamed Moussadek Maiza
+  <h2 class="section-title">Membres du groupe de recherche</h2>
+  <h3>Professeurs</h3>
+  <div class="members-grid">
+    <div class="member-card">
+      <div class="member-photo"><img src="photos/mm.jpg" alt="Maxence Mayrand"></div>
+      <div class="member-info">
+        <div class="member-name">Maxence Mayrand</div>
+        <div class="member-title">Professeur adjoint</div>
+        <div class="member-research">Géométrie différentielle, groupes de Lie, TQFT, géométrie symplectique décalée</div>
+        <div class="member-links"><a href="mailto:maxence.mayrand@usherbrooke.ca">maxence.mayrand@usherbrooke.ca</a></div>
+      </div>
+    </div>
+    <div class="member-card">
+      <div class="member-photo"><img src="photos/jpb.jpg" alt="Jean-Philippe Burelle"></div>
+      <div class="member-info">
+        <div class="member-name">Jean-Philippe Burelle</div>
+        <div class="member-title">Professeur agrégé</div>
+        <div class="member-research">Sous-groupes discrets de Lie, théorie de Teichmüller supérieure, structures géométriques localement homogènes</div>
+        <div class="member-links"><a href="mailto:jean-philippe.burelle@usherbrooke.ca">jean-philippe.burelle@usherbrooke.ca</a></div>
+      </div>
+    </div>
+    <div class="member-card">
+      <div class="member-photo"><img src="photos/vasi.jpg" alt="Vasilisa Shramchenko"></div>
+      <div class="member-info">
+        <div class="member-name">Vasilisa Shramchenko</div>
+        <div class="member-title">Professeure titulaire</div>
+        <div class="member-research">Variétés de Frobenius, systèmes intégrables, problèmes Riemann-Hilbert, déformations isomonodromiques, théorie des fonctions sur surfaces de Riemann, algèbres en grappes, récurrence topologique Eynard-Orantin</div>
+        <div class="member-links"><a href="mailto:vasilisa.Shramchenko@USherbrooke.ca">vasilisa.Shramchenko@USherbrooke.ca</a></div>
+      </div>
+    </div>
+  </div>
+
+  <h3>Doctorants</h3>
+  <div class="members-grid">
+    <div class="member-card">
+      <div class="member-photo"><img src="photos/mmm.jpg" alt="Mohamed Moussadek Maiza"></div>
+      <div class="member-info">
+        <div class="member-name">Mohamed Moussadek Maiza</div>
+        <div class="member-research">Structures géométriques, théorie des représentations de groupes, espaces de Teichmüller supérieurs</div>
+        <div class="member-links"><a href="mailto:mohamed.moussadek.maiza@usherbrooke.ca">mohamed.moussadek.maiza@usherbrooke.ca</a></div>
+      </div>
+    </div>
+    <div class="member-card">
+      <div class="member-photo"><img src="photos/yam.jpg" alt="Yassine Ait Mohamed"></div>
+      <div class="member-info">
+        <div class="member-name">Yassine Ait Mohamed</div>
+        <div class="member-research">Géométrie algébrique, groupes de Lie, TQFT, géométrie symplectique décalée</div>
+        <div class="member-links"><a href="mailto:yassine.ait.mohamed@usherbrooke.ca">yassine.ait.mohamed@usherbrooke.ca</a></div>
+      </div>
+    </div>
+    <div class="member-card">
+      <div class="member-photo"><img src="photos/sd.jpg" alt="Samuel Dobchies"></div>
+      <div class="member-info">
+        <div class="member-name">Samuel Dobchies</div>
+        <div class="member-research">Surfaces de Riemann et physique mathématique</div>
+        <div class="member-links"><a href="mailto:samuel.dobchies@usherbrooke.ca">samuel.dobchies@usherbrooke.ca</a></div>
+      </div>
+    </div>
+    <div class="member-card">
+      <div class="member-photo"><img src="photos/adj.jpg" alt="Adji Madjou"></div>
+      <div class="member-info">
+        <div class="member-name">Adji Madjou</div>
+        <div class="member-research">Géométrie complexe</div>
+        <div class="member-links"><a href="mailto:adji.Madjou@usherbrooke.ca">adji.Madjou@usherbrooke.ca</a></div>
+      </div>
+    </div>
+    <div class="member-card">
+      <div class="member-photo"><img src="photos/as.jpg" alt="Ablanvi Songo"></div>
+      <div class="member-info">
+        <div class="member-name">Ablanvi Songo</div>
+        <div class="member-research">Équations aux dérivées partielles, physique mathématique</div>
+        <div class="member-links"><a href="mailto:ablanvi.songo@usherbrooke.ca">ablanvi.songo@usherbrooke.ca</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- VERSION ANGLAISE -->
+<div class="lang-content lang-en">
+  <h2 class="section-title">Seminar Organizers</h2>
+  <div class="members-grid">
+    <div class="member-card">
+      <div class="member-photo"><img src="photos/mmm.jpg" alt="Mohamed Moussadek Maiza"></div>
+      <div class="member-info">
+        <div class="member-name">Mohamed Moussadek Maiza</div>
+        <div class="member-research">Geometric structures, group representation theory, higher Teichmüller spaces</div>
+        <div class="member-links"><a href="mailto:mohamed.moussadek.maiza@usherbrooke.ca">mohamed.moussadek.maiza@usherbrooke.ca</a></div>
+      </div>
+    </div>
+    <div class="member-card">
+      <div class="member-photo"><img src="photos/yam.jpg" alt="Yassine Ait Mohamed"></div>
+      <div class="member-info">
+        <div class="member-name">Yassine Ait Mohamed</div>
+        <div class="member-research">Algebraic geometry, Lie groups, TQFT, shifted symplectic geometry</div>
+        <div class="member-links"><a href="mailto:yassine.ait.mohamed@usherbrooke.ca">yassine.ait.mohamed@usherbrooke.ca</a></div>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="section-title">Research Group Members</h2>
+  <h3>Faculty</h3>
+  <div class="members-grid">
+    <div class="member-card">
+      <div class="member-photo"><img src="photos/mm.jpg" alt="Maxence Mayrand"></div>
+      <div class="member-info">
+        <div class="member-name">Maxence Mayrand</div>
+        <div class="member-title">Assistant Professor</div>
+        <div class="member-research">Differential geometry, Lie groups, TQFT, shifted symplectic geometry</div>
+        <div class="member-links"><a href="mailto:maxence.mayrand@usherbrooke.ca">maxence.mayrand@usherbrooke.ca</a></div>
+      </div>
+    </div>
+    <div class="member-card">
+      <div class="member-photo"><img src="photos/jpb.jpg" alt="Jean-Philippe Burelle"></div>
+      <div class="member-info">
+        <div class="member-name">Jean-Philippe Burelle</div>
+        <div class="member-title">Associate Professor</div>
+        <div class="member-research">Discrete subgroups of Lie groups, higher Teichmüller theory, locally homogeneous geometric structures</div>
+        <div class="member-links"><a href="mailto:jean-philippe.burelle@usherbrooke.ca">jean-philippe.burelle@usherbrooke.ca</a></div>
+      </div>
+    </div>
+    <div class="member-card">
+      <div class="member-photo"><img src="photos/vasi.jpg" alt="Vasilisa Shramchenko"></div>
+      <div class="member-info">
+        <div class="member-name">Vasilisa Shramchenko</div>
+        <div class="member-title">Full Professor</div>
+        <div class="member-research">Frobenius varieties, integrable systems, Riemann-Hilbert problems, isomonodromic deformations, function theory on Riemann surfaces, cluster algebras, Eynard-Orantin topological recursion</div>
+        <div class="member-links"><a href="mailto:vasilisa.Shramchenko@USherbrooke.ca">vasilisa.Shramchenko@USherbrooke.ca</a></div>
+      </div>
+    </div>
+  </div>
+
+  <h3>PhD Students</h3>
+  <div class="members-grid">
+    <div class="member-card">
+      <div class="member-photo"><img src="photos/mmm.jpg" alt="Mohamed Moussadek Maiza"></div>
+      <div class="member-info">
+        <div class="member-name">Mohamed Moussadek Maiza</div>
+        <div class="member-research">Geometric structures, group representation theory, higher Teichmüller spaces</div>
+        <div class="member-links"><a href="mailto:mohamed.moussadek.maiza@usherbrooke.ca">mohamed.moussadek.maiza@usherbrooke.ca</a></div>
+      </div>
+    </div>
+    <div class="member-card">
+      <div class="member-photo"><img src="photos/yam.jpg" alt="Yassine Ait Mohamed"></div>
+      <div class="member-info">
+        <div class="member-name">Yassine Ait Mohamed</div>
+        <div class="member-research">Algebraic geometry, Lie groups, TQFT, shifted symplectic geometry</div>
+        <div class="member-links"><a href="mailto:yassine.ait.mohamed@usherbrooke.ca">yassine.ait.mohamed@usherbrooke.ca</a></div>
+      </div>
+    </div>
+    <div class="member-card">
+      <div class="member-photo"><img src="photos/sd.jpg" alt="Samuel Dobchies"></div>
+      <div class="member-info">
+        <div class="member-name">Samuel Dobchies</div>
+        <div class="member-research">Riemann surfaces and mathematical physics</div>
+        <div class="member-links"><a href="mailto:samuel.dobchies@usherbrooke.ca">samuel.dobchies@usherbrooke.ca</a></div>
+      </div>
+    </div>
+    <div class="member-card">
+      <div class="member-photo"><img src="photos/adj.jpg" alt="Adji Madjou"></div>
+      <div class="member-info">
+        <div class="member-name">Adji Madjou</div>
+        <div class="member-research">Complex geometry</div>
+        <div class="member-links"><a href="mailto:adji.Madjou@usherbrooke.ca">adji.Madjou@usherbrooke.ca</a></div>
+      </div>
+    </div>
+    <div class="member-card">
+      <div class="member-photo"><img src="photos/as.jpg" alt="Ablanvi Songo"></div>
+      <div class="member-info">
+        <div class="member-name">Ablanvi Songo</div>
+        <div class="member-research">Partial differential equations, mathematical physics</div>
+        <div class="member-links"><a href="mailto:ablanvi.songo@usherbrooke.ca">ablanvi.songo@usherbrooke.ca</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer style="margin-top:2rem; text-align:center;">
+  <p>&copy; 2025 <a href="https://www.usherbrooke.ca/" target="_blank">Université de Sherbrooke</a> - <a href="https://www.usherbrooke.ca/mathematiques/" target="_blank">Département de mathématiques</a></p>
+</footer>
+
+<script>
+  function switchLang(lang) {
+    document.querySelectorAll('.lang-content').forEach(div => div.classList.remove('active'));
+    document.querySelector('.lang-' + lang).classList.add('active');
+  }
+</script>
+
+</body>
+</html>
