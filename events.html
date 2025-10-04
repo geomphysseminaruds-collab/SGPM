@@ -12,135 +12,103 @@
         }
 
         body {
-            font-family: 'Georgia', serif;
-            line-height: 1.7;
-            color: #333;
-            background: #f8f8f8;
-            font-size: 18px;
+            font-family: 'Garamond', 'Georgia', serif;
+            line-height: 1.8;
+            color: #2c2c2c;
+            background: #f5f5f0;
+            font-size: 20px;
         }
 
         .container {
-            max-width: 900px;
+            max-width: 100%;
             margin: 0 auto;
             background: white;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
         }
 
         header {
-            background: linear-gradient(135deg, #00703c 0%, #008d4c 50%, #00a35c 100%);
+            background: linear-gradient(135deg, #00703c 0%, #1a4d2e 100%);
             color: white;
-            padding: 1.2rem;
+            padding: 2.5rem 2rem;
             text-align: center;
             position: relative;
             overflow: hidden;
+            border-bottom: 5px solid #c9a961;
+            min-height: 300px;
         }
 
-        header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.15) 0%, transparent 40%),
-                radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 40%),
-                radial-gradient(circle at 60% 20%, rgba(255,255,255,0.12) 0%, transparent 45%),
-                radial-gradient(circle at 40% 70%, rgba(255,255,255,0.08) 0%, transparent 35%);
-            animation: quantum-wave 20s ease-in-out infinite;
-        }
-
-        @keyframes quantum-wave {
-            0%, 100% { 
-                transform: translate(0, 0) rotate(0deg); 
-                opacity: 0.6;
-            }
-            25% { 
-                transform: translate(15px, -15px) rotate(3deg); 
-                opacity: 0.8;
-            }
-            50% { 
-                transform: translate(-10px, 10px) rotate(-2deg); 
-                opacity: 0.7;
-            }
-            75% { 
-                transform: translate(20px, 5px) rotate(4deg); 
-                opacity: 0.9;
-            }
-        }
-
-        header::after {
-            content: '';
+        #quantumCanvas {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: 
-                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,0.03) 35px, rgba(255,255,255,0.03) 70px),
-                repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(255,255,255,0.02) 35px, rgba(255,255,255,0.02) 70px);
-            animation: manifold-shift 30s linear infinite;
-        }
-
-        @keyframes manifold-shift {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(70px, 70px); }
+            opacity: 0.35;
         }
 
         .university-name {
-            font-size: 0.95rem;
-            margin-bottom: 0.4rem;
+            font-size: 1.15rem;
+            margin-bottom: 0.8rem;
             opacity: 0.95;
             position: relative;
             z-index: 1;
+            letter-spacing: 0.5px;
         }
 
         header h1 {
-            font-size: 2rem;
-            font-weight: normal;
-            margin: 0.8rem 0;
+            font-size: 2.8rem;
+            font-weight: 400;
+            margin: 1rem 0;
             position: relative;
             z-index: 1;
+            line-height: 1.3;
         }
 
         .lang-switch {
-            margin-top: 0.8rem;
+            margin-top: 1.5rem;
             display: flex;
-            gap: 0.5rem;
+            gap: 1rem;
             justify-content: center;
             position: relative;
             z-index: 1;
         }
 
         .lang-switch button {
-            background: rgba(255,255,255,0.15);
-            border: 1px solid rgba(255,255,255,0.4);
+            background: rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.5);
             color: white;
-            padding: 0.4rem 1rem;
+            padding: 0.7rem 1.8rem;
             cursor: pointer;
-            font-size: 0.9rem;
+            font-size: 1.1rem;
+            font-family: 'Garamond', 'Georgia', serif;
             transition: all 0.3s;
             backdrop-filter: blur(5px);
+            font-weight: 500;
+            letter-spacing: 0.5px;
         }
 
         .lang-switch button.active {
-            background: rgba(255,255,255,0.95);
-            color: #00703c;
-            border-color: white;
+            background: #c9a961;
+            color: #1a4d2e;
+            border-color: #c9a961;
+            font-weight: 600;
+            transform: scale(1.05);
         }
 
         .lang-switch button:hover {
-            background: rgba(255,255,255,0.25);
+            background: rgba(201, 169, 97, 0.3);
+            border-color: #c9a961;
             transform: translateY(-2px);
         }
 
         .lang-switch button.active:hover {
-            background: white;
+            background: #d4b871;
+            transform: scale(1.05) translateY(-2px);
         }
 
         nav {
-            background: #f5f5f5;
-            border-bottom: 3px solid #00703c;
+            background: #f8f8f5;
+            border-bottom: 4px solid #00703c;
+            border-top: 2px solid #c9a961;
         }
 
         nav ul {
@@ -157,11 +125,12 @@
 
         nav a {
             display: block;
-            padding: 1rem 1.5rem;
-            color: #333;
+            padding: 1.2rem 2rem;
+            color: #2c2c2c;
             text-decoration: none;
-            font-size: 1rem;
+            font-size: 1.15rem;
             transition: all 0.3s;
+            font-weight: 500;
         }
 
         nav a:hover,
@@ -172,7 +141,9 @@
 
         .lang-content {
             display: none;
-            padding: 2rem;
+            padding: 2.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
         .lang-content.active {
@@ -180,69 +151,45 @@
         }
 
         .section-title {
-            color: #00703c;
-            font-size: 1.8rem;
-            font-weight: normal;
-            margin: 2rem 0 1.5rem 0;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid #00703c;
-        }
-
-        .event-card {
-            background: #fafafa;
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-            border-left: 4px solid #00703c;
-        }
-
-        .event-title {
-            color: #00703c;
-            font-size: 1.4rem;
-            font-weight: normal;
-            margin-bottom: 0.8rem;
-        }
-
-        .event-date {
-            color: #666;
-            font-size: 1rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        .event-card p {
-            margin-bottom: 0.8rem;
-            line-height: 1.8;
-        }
-
-        .event-card ul {
-            line-height: 1.8;
+            color: #1a4d2e;
+            font-size: 2.2rem;
+            font-weight: 400;
+            margin: 2.5rem 0 1.5rem 0;
+            padding-bottom: 0.8rem;
+            border-bottom: 3px solid #00703c;
         }
 
         footer {
-            background: #333;
+            background: #1a4d2e;
             color: white;
-            padding: 2rem;
+            padding: 2.5rem;
             text-align: center;
-            font-size: 0.95rem;
+            font-size: 1.05rem;
             margin-top: 3rem;
+            border-top: 4px solid #c9a961;
         }
 
         footer p {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
         }
 
         footer a {
-            color: #00a35c;
+            color: #c9a961;
             text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+            color: #d4b871;
         }
 
         @media (max-width: 768px) {
             body {
-                font-size: 16px;
+                font-size: 18px;
             }
 
             header h1 {
-                font-size: 1.5rem;
+                font-size: 2rem;
             }
 
             nav ul {
@@ -250,7 +197,7 @@
             }
 
             .lang-content {
-                padding: 1rem;
+                padding: 1.5rem;
             }
         }
     </style>
@@ -258,6 +205,7 @@
 <body>
     <div class="container">
         <header>
+            <canvas id="quantumCanvas"></canvas>
             <div class="university-name">Université de Sherbrooke · Département de mathématiques</div>
             <h1 class="lang-content lang-fr active">Séminaire en géométrie et physique mathématique</h1>
             <h1 class="lang-content lang-en">Seminar in Geometry and Mathematical Physics</h1>
@@ -274,7 +222,6 @@
                 <li><a href="past.html">Séminaires passés</a></li>
                 <li><a href="members.html">Membres du groupe</a></li>
                 <li><a href="events.html" class="active">Événements</a></li>
-                <li><a href="gallery.html">Galerie</a></li>
             </ul>
         </nav>
 
@@ -290,112 +237,12 @@
 
         <!-- VERSION FRANÇAISE -->
         <div class="lang-content lang-fr active">
-            <h2 class="section-title">Événements spéciaux</h2>
-
-            <div class="event-card">
-                <div class="event-title">Semaine intensive en géométrie symplectique</div>
-                <div class="event-date">📅 3-7 mars 2026 | 📍 Campus principal, UdeS</div>
-                <p>Une semaine intensive de cours et de conférences sur les développements récents en géométrie symplectique. Programme incluant des mini-cours par des experts internationaux, des sessions de problèmes et des présentations de doctorants.</p>
-                <p style="margin-top: 1rem;"><strong>Conférenciers invités :</strong></p>
-                <ul style="margin-left: 2rem; margin-top: 0.5rem;">
-                    <li>Prof. Ana Cannas da Silva (ETH Zürich)</li>
-                    <li>Prof. Dusa McDuff (Columbia University)</li>
-                    <li>Prof. Yakov Eliashberg (Stanford University)</li>
-                </ul>
-            </div>
-
-            <div class="event-card">
-                <div class="event-title">Atelier sur les groupes de Poisson-Lie</div>
-                <div class="event-date">📅 15-17 mai 2026 | 📍 Département de mathématiques</div>
-                <p>Atelier de trois jours consacré aux structures de Poisson sur les groupes de Lie, avec des applications en physique mathématique et en théorie de la quantification. Conférenciers invités du Canada et d'Europe.</p>
-                <p style="margin-top: 1rem;"><strong>Thèmes principaux :</strong></p>
-                <ul style="margin-left: 2rem; margin-top: 0.5rem;">
-                    <li>Classification des structures de Poisson</li>
-                    <li>Quantification par déformation</li>
-                    <li>Applications aux systèmes intégrables</li>
-                </ul>
-            </div>
-
-            <div class="event-card">
-                <div class="event-title">Conférence annuelle de géométrie algébrique du Québec</div>
-                <div class="event-date">📅 10-12 juin 2026 | 📍 En rotation (cette année à l'UdeS)</div>
-                <p>La conférence annuelle rassemble des chercheurs en géométrie algébrique de tout le Québec. Programme couvrant les schémas, la cohomologie, les variétés algébriques et leurs applications.</p>
-                <p style="margin-top: 1rem;"><strong>Comité d'organisation :</strong></p>
-                <ul style="margin-left: 2rem; margin-top: 0.5rem;">
-                    <li>Prof. Jean Bertrand (UdeS)</li>
-                    <li>Prof. Catherine Leblanc (UdeM)</li>
-                    <li>Prof. David Chen (ULaval)</li>
-                </ul>
-            </div>
-
-            <h2 class="section-title">Événements passés</h2>
-
-            <div class="event-card" style="opacity: 0.8;">
-                <div class="event-title">École d'été en géométrie différentielle</div>
-                <div class="event-date">📅 15-19 juillet 2025 | 📍 Campus principal, UdeS</div>
-                <p>École d'été de 5 jours pour étudiants gradués et postdoctorants. Cours intensifs sur les variétés différentielles, les formes différentielles, et les connexions.</p>
-            </div>
-
-            <div class="event-card" style="opacity: 0.8;">
-                <div class="event-title">Colloque de géométrie symplectique</div>
-                <div class="event-date">📅 20-22 mai 2025 | 📍 Département de mathématiques</div>
-                <p>Trois jours de présentations sur les dernières avancées en topologie symplectique et homologie de Floer.</p>
-            </div>
+            <h2 class="section-title">Événements</h2>
         </div>
 
         <!-- VERSION ANGLAISE -->
         <div class="lang-content lang-en">
-            <h2 class="section-title">Special Events</h2>
-
-            <div class="event-card">
-                <div class="event-title">Intensive Week in Symplectic Geometry</div>
-                <div class="event-date">📅 March 3-7, 2026 | 📍 Main Campus, UdeS</div>
-                <p>An intensive week of courses and conferences on recent developments in symplectic geometry. Program includes mini-courses by international experts, problem sessions, and PhD student presentations.</p>
-                <p style="margin-top: 1rem;"><strong>Invited speakers:</strong></p>
-                <ul style="margin-left: 2rem; margin-top: 0.5rem;">
-                    <li>Prof. Ana Cannas da Silva (ETH Zürich)</li>
-                    <li>Prof. Dusa McDuff (Columbia University)</li>
-                    <li>Prof. Yakov Eliashberg (Stanford University)</li>
-                </ul>
-            </div>
-
-            <div class="event-card">
-                <div class="event-title">Workshop on Poisson-Lie Groups</div>
-                <div class="event-date">📅 May 15-17, 2026 | 📍 Department of Mathematics</div>
-                <p>Three-day workshop dedicated to Poisson structures on Lie groups, with applications in mathematical physics and quantization theory. Invited speakers from Canada and Europe.</p>
-                <p style="margin-top: 1rem;"><strong>Main themes:</strong></p>
-                <ul style="margin-left: 2rem; margin-top: 0.5rem;">
-                    <li>Classification of Poisson structures</li>
-                    <li>Deformation quantization</li>
-                    <li>Applications to integrable systems</li>
-                </ul>
-            </div>
-
-            <div class="event-card">
-                <div class="event-title">Annual Quebec Algebraic Geometry Conference</div>
-                <div class="event-date">📅 June 10-12, 2026 | 📍 Rotating (this year at UdeS)</div>
-                <p>The annual conference brings together algebraic geometry researchers from across Quebec. Program covering schemes, cohomology, algebraic varieties and their applications.</p>
-                <p style="margin-top: 1rem;"><strong>Organizing committee:</strong></p>
-                <ul style="margin-left: 2rem; margin-top: 0.5rem;">
-                    <li>Prof. Jean Bertrand (UdeS)</li>
-                    <li>Prof. Catherine Leblanc (UdeM)</li>
-                    <li>Prof. David Chen (ULaval)</li>
-                </ul>
-            </div>
-
-            <h2 class="section-title">Past Events</h2>
-
-            <div class="event-card" style="opacity: 0.8;">
-                <div class="event-title">Summer School in Differential Geometry</div>
-                <div class="event-date">📅 July 15-19, 2025 | 📍 Main Campus, UdeS</div>
-                <p>Five-day summer school for graduate students and postdocs. Intensive courses on differential manifolds, differential forms, and connections.</p>
-            </div>
-
-            <div class="event-card" style="opacity: 0.8;">
-                <div class="event-title">Symplectic Geometry Colloquium</div>
-                <div class="event-date">📅 May 20-22, 2025 | 📍 Department of Mathematics</div>
-                <p>Three days of presentations on the latest advances in symplectic topology and Floer homology.</p>
-            </div>
+            <h2 class="section-title">Events</h2>
         </div>
 
         <footer>
@@ -405,6 +252,240 @@
     </div>
 
     <script>
+        // Animations de théorie quantique et cordes vibrantes
+        const canvas = document.getElementById('quantumCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        function resizeCanvas() {
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+        }
+        
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+        
+        class VibratingSring {
+            constructor() {
+                this.y = Math.random() * canvas.height;
+                this.amplitude = 20 + Math.random() * 30;
+                this.frequency = 0.02 + Math.random() * 0.03;
+                this.phase = Math.random() * Math.PI * 2;
+                this.time = 0;
+                this.harmonics = 3 + Math.floor(Math.random() * 4);
+            }
+            
+            update() {
+                this.time += 0.05;
+            }
+            
+            draw() {
+                ctx.strokeStyle = `rgba(201, 169, 97, ${0.3 + Math.sin(this.time * 0.1) * 0.1})`;
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                
+                for (let x = 0; x <= canvas.width; x += 2) {
+                    let y = this.y;
+                    
+                    // Superposition d'harmoniques (cordes vibrantes)
+                    for (let n = 1; n <= this.harmonics; n++) {
+                        y += (this.amplitude / n) * Math.sin(
+                            n * this.frequency * x + this.phase + this.time * n * 0.1
+                        );
+                    }
+                    
+                    if (x === 0) {
+                        ctx.moveTo(x, y);
+                    } else {
+                        ctx.lineTo(x, y);
+                    }
+                }
+                
+                ctx.stroke();
+            }
+        }
+        
+        class QuantumParticle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 2;
+                this.vy = (Math.random() - 0.5) * 2;
+                this.phase = Math.random() * Math.PI * 2;
+                this.waveLength = 20 + Math.random() * 30;
+            }
+            
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.phase += 0.1;
+                
+                // Rebond quantique
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+                
+                this.x = Math.max(0, Math.min(canvas.width, this.x));
+                this.y = Math.max(0, Math.min(canvas.height, this.y));
+            }
+            
+            draw() {
+                // Fonction d'onde (paquet d'ondes)
+                const numWaves = 30;
+                
+                ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
+                ctx.lineWidth = 1;
+                
+                for (let i = 0; i < numWaves; i++) {
+                    const angle = (i / numWaves) * Math.PI * 2;
+                    const r = this.waveLength * Math.sin(this.phase + i * 0.5);
+                    
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, Math.abs(r), 0, Math.PI * 2);
+                    ctx.stroke();
+                }
+                
+                // Particule centrale
+                ctx.fillStyle = `rgba(201, 169, 97, ${0.6 + Math.sin(this.phase) * 0.2})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, 3, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+        
+        class FeynmanDiagram {
+            constructor() {
+                this.x1 = Math.random() * canvas.width;
+                this.y1 = Math.random() * canvas.height;
+                this.x2 = this.x1 + (Math.random() - 0.5) * 200;
+                this.y2 = this.y1 + (Math.random() - 0.5) * 200;
+                this.time = 0;
+                this.frequency = 0.05 + Math.random() * 0.05;
+            }
+            
+            update() {
+                this.time += 0.02;
+            }
+            
+            draw() {
+                ctx.strokeStyle = 'rgba(201, 169, 97, 0.2)';
+                ctx.lineWidth = 1.5;
+                ctx.beginPath();
+                
+                // Ligne ondulée (propagateur de photon)
+                const steps = 30;
+                for (let i = 0; i <= steps; i++) {
+                    const t = i / steps;
+                    const x = this.x1 + (this.x2 - this.x1) * t;
+                    const y = this.y1 + (this.y2 - this.y1) * t;
+                    const offset = Math.sin(t * Math.PI * 8 + this.time * 2) * 10;
+                    
+                    const perpX = -(this.y2 - this.y1);
+                    const perpY = (this.x2 - this.x1);
+                    const len = Math.sqrt(perpX * perpX + perpY * perpY);
+                    
+                    if (i === 0) {
+                        ctx.moveTo(x + (perpX / len) * offset, y + (perpY / len) * offset);
+                    } else {
+                        ctx.lineTo(x + (perpX / len) * offset, y + (perpY / len) * offset);
+                    }
+                }
+                
+                ctx.stroke();
+                
+                // Points d'interaction
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+                ctx.beginPath();
+                ctx.arc(this.x1, this.y1, 4, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.beginPath();
+                ctx.arc(this.x2, this.y2, 4, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+        
+        class WaveFunction {
+            constructor() {
+                this.centerX = canvas.width / 2;
+                this.centerY = canvas.height / 2;
+                this.time = 0;
+            }
+            
+            update() {
+                this.time += 0.02;
+            }
+            
+            draw() {
+                const gridSize = 40;
+                
+                for (let i = 0; i < canvas.width; i += gridSize) {
+                    for (let j = 0; j < canvas.height; j += gridSize) {
+                        const dx = i - this.centerX;
+                        const dy = j - this.centerY;
+                        const r = Math.sqrt(dx * dx + dy * dy);
+                        
+                        // Fonction d'onde radiale
+                        const psi = Math.sin(r * 0.05 - this.time * 3) * Math.exp(-r * 0.003);
+                        const opacity = Math.abs(psi) * 0.3;
+                        
+                        if (opacity > 0.05) {
+                            ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
+                            ctx.beginPath();
+                            ctx.arc(i, j, 2, 0, Math.PI * 2);
+                            ctx.fill();
+                        }
+                    }
+                }
+            }
+        }
+        
+        // Créer les objets
+        const strings = [];
+        for (let i = 0; i < 5; i++) {
+            strings.push(new VibratingSring());
+        }
+        
+        const particles = [];
+        for (let i = 0; i < 8; i++) {
+            particles.push(new QuantumParticle());
+        }
+        
+        const diagrams = [];
+        for (let i = 0; i < 3; i++) {
+            diagrams.push(new FeynmanDiagram());
+        }
+        
+        const waveFunction = new WaveFunction();
+        
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Dessiner la fonction d'onde
+            waveFunction.update();
+            waveFunction.draw();
+            
+            // Dessiner les cordes vibrantes
+            strings.forEach(string => {
+                string.update();
+                string.draw();
+            });
+            
+            // Dessiner les diagrammes de Feynman
+            diagrams.forEach(diagram => {
+                diagram.update();
+                diagram.draw();
+            });
+            
+            // Dessiner les particules quantiques
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+            
+            requestAnimationFrame(animate);
+        }
+        
+        animate();
+        
+        // Changement de langue
         function switchLanguage(lang) {
             document.querySelectorAll('.lang-content').forEach(el => {
                 el.classList.remove('active');
