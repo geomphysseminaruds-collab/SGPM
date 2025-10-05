@@ -34,6 +34,7 @@
             overflow: hidden;
             border-bottom: 5px solid #c9a961;
             min-height: 350px;
+            perspective: 1000px;
         }
 
         #vectorCanvas {
@@ -61,13 +62,64 @@
             position: relative;
             z-index: 1;
             line-height: 1.3;
+            color: white;
+            transform-style: preserve-3d;
+            perspective: 1000px;
             display: flex;
-            justify-content: center;
             flex-wrap: wrap;
-            gap: 0.2rem;
+            justify-content: center;
+            gap: 0;
         }
 
+        header h1 span {
+            display: inline-block;
+            transform-style: preserve-3d;
+            animation: letterWave 3.5s ease-in-out infinite;
+            text-shadow: 
+                0 0 10px rgba(140, 198, 63, 0.8),
+                0 0 20px rgba(0, 166, 81, 0.6),
+                0 0 30px rgba(201, 169, 97, 0.5),
+                3px 3px 6px rgba(0, 0, 0, 0.5);
+            white-space: pre;
+        }
 
+        @keyframes letterWave {
+            0%, 100% {
+                transform: translateZ(0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skewX(0deg);
+                text-shadow: 
+                    0 0 10px rgba(140, 198, 63, 0.8),
+                    0 0 20px rgba(0, 166, 81, 0.6),
+                    3px 3px 6px rgba(0, 0, 0, 0.5);
+            }
+            20% {
+                transform: translateZ(35px) rotateX(var(--randomX, 18deg)) rotateY(var(--randomY, -12deg)) rotateZ(var(--randomZ, 6deg)) skewX(var(--skewX, 5deg));
+                text-shadow: 
+                    0 0 15px rgba(201, 169, 97, 0.9),
+                    0 0 30px rgba(140, 198, 63, 0.7),
+                    5px 5px 10px rgba(0, 0, 0, 0.6);
+            }
+            40% {
+                transform: translateZ(-25px) rotateX(calc(var(--randomX, 0deg) * -0.9)) rotateY(calc(var(--randomY, 0deg) * 1.3)) rotateZ(calc(var(--randomZ, 0deg) * -1.4)) skewX(calc(var(--skewX, 0deg) * -1));
+                text-shadow: 
+                    0 0 18px rgba(0, 166, 81, 0.9),
+                    0 0 38px rgba(140, 198, 63, 0.7),
+                    6px 6px 12px rgba(0, 0, 0, 0.5);
+            }
+            60% {
+                transform: translateZ(28px) rotateX(calc(var(--randomX, 0deg) * 0.8)) rotateY(calc(var(--randomY, 0deg) * -1.1)) rotateZ(calc(var(--randomZ, 0deg) * 1.3)) skewX(calc(var(--skewX, 0deg) * 0.8));
+                text-shadow: 
+                    0 0 16px rgba(201, 169, 97, 0.9),
+                    0 0 33px rgba(0, 166, 81, 0.7),
+                    5px 5px 10px rgba(0, 0, 0, 0.6);
+            }
+            80% {
+                transform: translateZ(-15px) rotateX(calc(var(--randomX, 0deg) * -0.6)) rotateY(calc(var(--randomY, 0deg) * 0.9)) rotateZ(calc(var(--randomZ, 0deg) * -1.1)) skewX(calc(var(--skewX, 0deg) * -0.7));
+                text-shadow: 
+                    0 0 14px rgba(140, 198, 63, 0.8),
+                    0 0 28px rgba(201, 169, 97, 0.6),
+                    4px 4px 8px rgba(0, 0, 0, 0.5);
+            }
+        }
 
         .lang-switch {
             margin-top: 1.5rem;
@@ -164,6 +216,12 @@
             padding: 2.5rem;
             text-align: center;
             margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
@@ -330,11 +388,45 @@
 
         animate();
 
+        // Animation des lettres du titre
+        function animateTitle() {
+            const titles = document.querySelectorAll('header h1');
+            titles.forEach(title => {
+                const text = title.textContent;
+                title.innerHTML = '';
+                
+                for (let i = 0; i < text.length; i++) {
+                    const span = document.createElement('span');
+                    span.textContent = text[i];
+                    span.style.animationDelay = `${i * 0.04}s`;
+                    span.style.animationDuration = `${3.5 + (i % 4) * 0.4}s`;
+                    
+                    // Variations aléatoires pour chaque lettre
+                    const randomX = (Math.random() - 0.5) * 40;
+                    const randomY = (Math.random() - 0.5) * 40;
+                    const randomZ = (Math.random() - 0.5) * 20;
+                    const skewX = (Math.random() - 0.5) * 15;
+                    
+                    span.style.setProperty('--randomX', `${randomX}deg`);
+                    span.style.setProperty('--randomY', `${randomY}deg`);
+                    span.style.setProperty('--randomZ', `${randomZ}deg`);
+                    span.style.setProperty('--skewX', `${skewX}deg`);
+                    
+                    title.appendChild(span);
+                }
+            });
+        }
+
+        animateTitle();
+
         function switchLanguage(lang) {
             document.querySelectorAll('.lang-content').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.lang-' + lang).forEach(el => el.classList.add('active'));
             document.querySelectorAll('.lang-switch button').forEach(btn => btn.classList.remove('active'));
             document.querySelector('.lang-switch button[data-lang="' + lang + '"]').classList.add('active');
+            
+            // Réanimer les lettres après changement de langue
+            setTimeout(animateTitle, 100);
         }
     </script>
 </body>
