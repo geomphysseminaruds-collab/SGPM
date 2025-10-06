@@ -750,6 +750,259 @@
             }
         }
 
+        // NOUVEAU: Ondes horizontales
+        class HorizontalWave {
+            constructor(index) {
+                this.y = (canvas.height / 6) * (index + 1);
+                this.amplitude = 20 + Math.random() * 30;
+                this.frequency = 0.01 + Math.random() * 0.02;
+                this.phase = Math.random() * Math.PI * 2;
+                this.speed = 0.02 + Math.random() * 0.03;
+                this.color = `hsla(${180 + index * 30}, 70%, 60%, 0.4)`;
+                this.lineWidth = 2 + Math.random() * 2;
+            }
+
+            draw(t) {
+                ctx.strokeStyle = this.color;
+                ctx.lineWidth = this.lineWidth;
+                ctx.beginPath();
+                
+                for (let x = 0; x <= canvas.width; x += 5) {
+                    const y = this.y + Math.sin(x * this.frequency + t * this.speed * 0.01 + this.phase) * this.amplitude;
+                    if (x === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                }
+                ctx.stroke();
+
+                // Points lumineux sur l'onde
+                for (let x = 0; x <= canvas.width; x += 50) {
+                    const y = this.y + Math.sin(x * this.frequency + t * this.speed * 0.01 + this.phase) * this.amplitude;
+                    ctx.fillStyle = this.color.replace('0.4', '0.7');
+                    ctx.beginPath();
+                    ctx.arc(x, y, 3, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+        }
+
+        // NOUVEAU: Icosaèdre (polyèdre à 20 faces)
+        class Icosahedron {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.size = 50;
+                this.rotation = { x: 0, y: 0, z: 0 };
+                this.rotSpeed = { x: 0.01, y: 0.015, z: 0.008 };
+                this.vertices = this.createVertices();
+            }
+
+            createVertices() {
+                const phi = (1 + Math.sqrt(5)) / 2;
+                const a = this.size / 2;
+                const b = this.size / (2 * phi);
+                
+                return [
+                    [0, b, -a], [b, a, 0], [-b, a, 0], [0, b, a],
+                    [0, -b, a], [-a, 0, b], [a, 0, b], [0, -b, -a],
+                    [a, 0, -b], [-a, 0, -b], [b, -a, 0], [-b, -a, 0]
+                ];
+            }
+
+            rotatePoint(point) {
+                let [x, y, z] = point;
+                
+                // Rotation X
+                let y1 = y * Math.cos(this.rotation.x) - z * Math.sin(this.rotation.x);
+                let z1 = y * Math.sin(this.rotation.x) + z * Math.cos(this.rotation.x);
+                
+                // Rotation Y
+                let x1 = x * Math.cos(this.rotation.y) + z1 * Math.sin(this.rotation.y);
+                let z2 = -x * Math.sin(this.rotation.y) + z1 * Math.cos(this.rotation.y);
+                
+                // Rotation Z
+                let x2 = x1 * Math.cos(this.rotation.z) - y1 * Math.sin(this.rotation.z);
+                let y2 = x1 * Math.sin(this.rotation.z) + y1 * Math.cos(this.rotation.z);
+                
+                return [x2, y2, z2];
+            }
+
+            draw(t) {
+                this.rotation.x += this.rotSpeed.x;
+                this.rotation.y += this.rotSpeed.y;
+                this.rotation.z += this.rotSpeed.z;
+
+                const edges = [
+                    [0,1],[0,2],[0,8],[0,9],[1,2],[1,6],[1,8],
+                    [2,3],[2,9],[3,4],[3,5],[4,5],[4,6],[4,10],
+                    [5,9],[5,11],[6,8],[6,10],[7,8],[7,9],[7,10],
+                    [7,11],[10,11],[11,9]
+                ];
+
+                ctx.save();
+                ctx.translate(this.x, this.y);
+
+                edges.forEach(([i, j]) => {
+                    const p1 = this.rotatePoint(this.vertices[i]);
+                    const p2 = this.rotatePoint(this.vertices[j]);
+                    
+                    const depth = (p1[2] + p2[2]) / 2;
+                    const opacity = 0.3 + (depth + this.size) / (this.size * 2) * 0.5;
+                    
+                    ctx.strokeStyle = `rgba(100, 200, 255, ${opacity})`;
+                    ctx.lineWidth = 2;
+                    ctx.beginPath();
+                    ctx.moveTo(p1[0], p1[1]);
+                    ctx.lineTo(p2[0], p2[1]);
+                    ctx.stroke();
+                });
+
+                // Points aux sommets
+                this.vertices.forEach(vertex => {
+                    const [x, y, z] = this.rotatePoint(vertex);
+                    const depth = z;
+                    const opacity = 0.5 + (depth + this.size) / (this.size * 2) * 0.5;
+                    
+                    ctx.fillStyle = `rgba(150, 220, 255, ${opacity})`;
+                    ctx.beginPath();
+                    ctx.arc(x, y, 4, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+
+                ctx.restore();
+            }
+        }
+
+        // NOUVEAU: Dodécaèdre (polyèdre à 12 faces)
+        class Dodecahedron {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.size = 45;
+                this.rotation = { x: 0, y: 0, z: 0 };
+                this.rotSpeed = { x: 0.012, y: 0.018, z: 0.01 };
+                this.vertices = this.createVertices();
+            }
+
+            createVertices() {
+                const phi = (1 + Math.sqrt(5)) / 2;
+                const a = this.size / 2;
+                const b = a / phi;
+                const c = a * phi;
+                
+                return [
+                    [a, a, a], [a, a, -a], [a, -a, a], [a, -a, -a],
+                    [-a, a, a], [-a, a, -a], [-a, -a, a], [-a, -a, -a],
+                    [0, b, c], [0, b, -c], [0, -b, c], [0, -b, -c],
+                    [b, c, 0], [b, -c, 0], [-b, c, 0], [-b, -c, 0],
+                    [c, 0, b], [c, 0, -b], [-c, 0, b], [-c, 0, -b]
+                ];
+            }
+
+            rotatePoint(point) {
+                let [x, y, z] = point;
+                
+                let y1 = y * Math.cos(this.rotation.x) - z * Math.sin(this.rotation.x);
+                let z1 = y * Math.sin(this.rotation.x) + z * Math.cos(this.rotation.x);
+                let x1 = x * Math.cos(this.rotation.y) + z1 * Math.sin(this.rotation.y);
+                let z2 = -x * Math.sin(this.rotation.y) + z1 * Math.cos(this.rotation.y);
+                let x2 = x1 * Math.cos(this.rotation.z) - y1 * Math.sin(this.rotation.z);
+                let y2 = x1 * Math.sin(this.rotation.z) + y1 * Math.cos(this.rotation.z);
+                
+                return [x2, y2, z2];
+            }
+
+            draw(t) {
+                this.rotation.x += this.rotSpeed.x;
+                this.rotation.y += this.rotSpeed.y;
+                this.rotation.z += this.rotSpeed.z;
+
+                const edges = [
+                    [0,8],[0,12],[0,16],[1,9],[1,12],[1,17],[2,10],[2,13],[2,16],
+                    [3,11],[3,13],[3,17],[4,8],[4,14],[4,18],[5,9],[5,14],[5,19],
+                    [6,10],[6,15],[6,18],[7,11],[7,15],[7,19],[8,10],[9,11],
+                    [12,14],[13,15],[16,17],[18,19]
+                ];
+
+                ctx.save();
+                ctx.translate(this.x, this.y);
+
+                edges.forEach(([i, j]) => {
+                    const p1 = this.rotatePoint(this.vertices[i]);
+                    const p2 = this.rotatePoint(this.vertices[j]);
+                    
+                    const depth = (p1[2] + p2[2]) / 2;
+                    const opacity = 0.3 + (depth + this.size * 2) / (this.size * 4) * 0.5;
+                    
+                    ctx.strokeStyle = `rgba(255, 150, 100, ${opacity})`;
+                    ctx.lineWidth = 2;
+                    ctx.beginPath();
+                    ctx.moveTo(p1[0], p1[1]);
+                    ctx.lineTo(p2[0], p2[1]);
+                    ctx.stroke();
+                });
+
+                this.vertices.forEach(vertex => {
+                    const [x, y, z] = this.rotatePoint(vertex);
+                    const depth = z;
+                    const opacity = 0.5 + (depth + this.size * 2) / (this.size * 4) * 0.5;
+                    
+                    ctx.fillStyle = `rgba(255, 180, 120, ${opacity})`;
+                    ctx.beginPath();
+                    ctx.arc(x, y, 3.5, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+
+                ctx.restore();
+            }
+        }
+
+        // NOUVEAU: Sierpinski Triangle (fractal)
+        class SierpinskiTriangle {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.size = 80;
+                this.rotation = 0;
+                this.rotSpeed = 0.01;
+                this.depth = 4;
+            }
+
+            drawTriangle(x, y, size, depth) {
+                if (depth === 0) {
+                    const h = size * Math.sqrt(3) / 2;
+                    const opacity = 0.3 + depth * 0.15;
+                    
+                    ctx.strokeStyle = `rgba(100, 255, 150, ${opacity})`;
+                    ctx.lineWidth = 1.5;
+                    ctx.beginPath();
+                    ctx.moveTo(x, y - size / 2);
+                    ctx.lineTo(x - h, y + size / 2);
+                    ctx.lineTo(x + h, y + size / 2);
+                    ctx.closePath();
+                    ctx.stroke();
+                } else {
+                    const newSize = size / 2;
+                    const h = newSize * Math.sqrt(3) / 2;
+                    
+                    this.drawTriangle(x, y - newSize / 2, newSize, depth - 1);
+                    this.drawTriangle(x - h, y + newSize / 2, newSize, depth - 1);
+                    this.drawTriangle(x + h, y + newSize / 2, newSize, depth - 1);
+                }
+            }
+
+            draw(t) {
+                this.rotation += this.rotSpeed;
+                
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.rotation);
+                
+                this.drawTriangle(0, 0, this.size, this.depth);
+                
+                ctx.restore();
+            }
+        }
+
         // Initialisation
         const curves = [
             new ParametricCurve3D(1, 0),
@@ -760,6 +1013,12 @@
 
         const spiralParticles = Array.from({ length: 60 }, () => new SpiralParticle());
         const memberAvatars = members.map((member, index) => new MemberAvatar(member, index));
+        
+        // Nouveaux éléments
+        const horizontalWaves = Array.from({ length: 5 }, (_, i) => new HorizontalWave(i));
+        const icosahedron = new Icosahedron(canvas.width * 0.25, canvas.height * 0.6);
+        const dodecahedron = new Dodecahedron(canvas.width * 0.75, canvas.height * 0.55);
+        const sierpinski = new SierpinskiTriangle(canvas.width * 0.15, canvas.height * 0.3);
 
         function animate() {
             ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
@@ -770,6 +1029,9 @@
             const rotX = time * 0.002;
             const rotY = time * 0.003;
 
+            // Dessiner les ondes horizontales
+            horizontalWaves.forEach(wave => wave.draw(time));
+
             // Dessiner les courbes paramétriques
             curves.forEach(curve => curve.draw(time));
 
@@ -778,6 +1040,11 @@
                 p.update(time);
                 p.draw(centerX, centerY, rotX, rotY);
             });
+
+            // Dessiner les formes géométriques
+            icosahedron.draw(time);
+            dodecahedron.draw(time);
+            sierpinski.draw(time);
 
             // Dessiner les avatars des membres
             memberAvatars.forEach(avatar => {
@@ -788,6 +1055,16 @@
             time++;
             requestAnimationFrame(animate);
         }
+
+        // Repositionner les éléments au redimensionnement
+        window.addEventListener('resize', () => {
+            icosahedron.x = canvas.width * 0.25;
+            icosahedron.y = canvas.height * 0.6;
+            dodecahedron.x = canvas.width * 0.75;
+            dodecahedron.y = canvas.height * 0.55;
+            sierpinski.x = canvas.width * 0.15;
+            sierpinski.y = canvas.height * 0.3;
+        });
 
         animate();
 
