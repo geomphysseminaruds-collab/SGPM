@@ -175,6 +175,35 @@
             transform: scale(1.05);
         }
 
+        .audio-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            background: rgba(0, 112, 60, 0.9);
+            border: 2px solid #c9a961;
+            color: white;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            font-size: 1rem;
+            font-family: 'Garamond', 'Georgia', serif;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .audio-toggle:hover {
+            background: rgba(0, 112, 60, 1);
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .audio-toggle.active {
+            background: #c9a961;
+            color: #1a4d2e;
+        }
+
         .lang-switch button:hover {
             background: rgba(201, 169, 97, 0.3);
             border-color: #c9a961;
@@ -449,6 +478,9 @@
             </ul>
         </nav>
 
+        <!-- Bouton Audio -->
+        <button id="audioToggle" class="audio-toggle" onclick="toggleAudio()">🔇 Son OFF</button>
+
         <!-- VERSION FRANÇAISE -->
         <div class="lang-content lang-fr active">
             <div class="organizers">
@@ -599,6 +631,111 @@
         
         resizeCanvas();
         window.addEventListener('resize', resizeCanvas);
+
+        // ===== SYSTÈME AUDIO =====
+        let audioContext = null;
+        let audioEnabled = false;
+        let noiseNode = null;
+        let filterNode = null;
+        let gainNode = null;
+        let lfoGain = null;
+        let lfoOscillator = null;
+
+        function createWhiteNoise() {
+            const bufferSize = 2 * audioContext.sampleRate;
+            const noiseBuffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
+            const output = noiseBuffer.getChannelData(0);
+            
+            for (let i = 0; i < bufferSize; i++) {
+                output[i] = Math.random() * 2 - 1;
+            }
+            
+            const whiteNoise = audioContext.createBufferSource();
+            whiteNoise.buffer = noiseBuffer;
+            whiteNoise.loop = true;
+            return whiteNoise;
+        }
+
+        function initAudio() {
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                
+                // Créer le bruit blanc
+                noiseNode = createWhiteNoise();
+                
+                // Filtre passe-bas pour le son de l'eau
+                filterNode = audioContext.createBiquadFilter();
+                filterNode.type = 'lowpass';
+                filterNode.frequency.value = 1200;
+                filterNode.Q.value = 1;
+                
+                // Gain principal
+                gainNode = audioContext.createGain();
+                gainNode.gain.value = 0.15;
+                
+                // LFO (oscillateur basse fréquence) pour simuler les vagues
+                lfoOscillator = audioContext.createOscillator();
+                lfoOscillator.frequency.value = 0.2; // Vagues lentes
+                lfoOscillator.type = 'sine';
+                
+                lfoGain = audioContext.createGain();
+                lfoGain.gain.value = 0.08;
+                
+                // Connexions
+                noiseNode.connect(filterNode);
+                filterNode.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                // LFO pour moduler le volume (effet de vagues)
+                lfoOscillator.connect(lfoGain);
+                lfoGain.connect(gainNode.gain);
+            }
+        }
+
+        function toggleAudio() {
+            const button = document.getElementById('audioToggle');
+            
+            if (!audioEnabled) {
+                initAudio();
+                audioEnabled = true;
+                
+                // Démarrer le bruit et le LFO
+                try {
+                    noiseNode.start();
+                    lfoOscillator.start();
+                } catch(e) {
+                    // Déjà démarré
+                }
+                
+                button.textContent = '🔊 Son ON';
+                button.classList.add('active');
+                
+                // Fondu entrant
+                gainNode.gain.setTargetAtTime(0.15, audioContext.currentTime, 0.5);
+            } else {
+                audioEnabled = false;
+                button.textContent = '🔇 Son OFF';
+                button.classList.remove('active');
+                
+                // Fondu sortant
+                gainNode.gain.setTargetAtTime(0, audioContext.currentTime, 0.3);
+            }
+        }
+
+        // Moduler le son selon les animations
+        function updateAudio(time) {
+            if (audioEnabled && audioContext && filterNode) {
+                // Moduler légèrement la fréquence du filtre pour varier le son des vagues
+                const filterFreq = 1200 + Math.sin(time * 0.0005) * 300;
+                filterNode.frequency.setValueAtTime(filterFreq, audioContext.currentTime);
+                
+                // Varier légèrement la vitesse des vagues
+                const waveSpeed = 0.2 + Math.sin(time * 0.0002) * 0.08;
+                lfoOscillator.frequency.setValueAtTime(waveSpeed, audioContext.currentTime);
+            }
+        }
+        
+        // ===== FIN SYSTÈME AUDIO =====
         
         // Animation 3D de l'expansion de l'univers (Big Bang) - ORIGINAL
         class UniverseExpansion {
@@ -995,6 +1132,9 @@
             riemannSphere.draw(timestamp);
             manifold.draw(timestamp);
             vectorBundle.draw(timestamp);
+            
+            // Moduler l'audio selon l'animation
+            updateAudio(timestamp);
             
             requestAnimationFrame(animate);
         }
