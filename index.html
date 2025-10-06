@@ -431,7 +431,7 @@
 
         <nav class="lang-content lang-fr active">
             <ul>
-                <li><a href="index.html" class="active">Accueil</a></li>
+                <li><a href="index.html" class="active">Vue d'ensemble</a></li>
                 <li><a href="upcoming.html">Séminaires à venir</a></li>
                 <li><a href="past.html">Séminaires passés</a></li>
                 <li><a href="members.html">Membres du groupe</a></li>
@@ -441,7 +441,7 @@
 
         <nav class="lang-content lang-en">
             <ul>
-                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="index.html" class="active">Overview</a></li>
                 <li><a href="upcoming.html">Upcoming Seminars</a></li>
                 <li><a href="past.html">Past Seminars</a></li>
                 <li><a href="members.html">Group Members</a></li>
@@ -477,11 +477,6 @@
                 <li><strong>Physique mathématique :</strong> mécanique quantique, théorie des champs, équations aux dérivées partielles</li>
             </ul>
 
-
-
-
-
-            
             <h2 class="section-title">Prochains séminaires</h2>
             <div class="seminar-item">
                 <span class="upcoming-label">À VENIR...</span>
@@ -517,7 +512,6 @@
                 <li><strong>Topological quantum field theories:</strong> TQFT, geometric applications</li>
                 <li><strong>Riemann surfaces:</strong> surface geometry, applications to mathematical physics</li>
                 <li><strong>Conformal field theory and related structures:</strong> geometric representation theory, chiral algebras, factorization algebras, mathematical aspects of conformal field theory</li>
-
                 <li><strong>Mathematical physics:</strong> quantum mechanics, field theory, partial differential equations</li>
             </ul>
 
@@ -566,7 +560,7 @@
         resizeCanvas();
         window.addEventListener('resize', resizeCanvas);
         
-        // Animation 3D de l'expansion de l'univers (Big Bang)
+        // Animation 3D de l'expansion de l'univers (Big Bang) - ORIGINAL
         class UniverseExpansion {
             constructor() {
                 this.centerX = canvas.width / 2;
@@ -590,7 +584,6 @@
             }
             
             getGradientColor(t) {
-                // Dégradé du vert au jaune, orange, rouge
                 if (t < 0.25) return `rgba(0, 166, 81, ${0.3 + t * 2})`;
                 if (t < 0.5) return `rgba(140, 198, 63, ${0.4 + t})`;
                 if (t < 0.75) return `rgba(247, 147, 30, ${0.5 + t})`;
@@ -602,10 +595,8 @@
                 this.centerY = canvas.height / 2;
                 this.rotation += 0.001;
                 
-                // Dessiner l'entonnoir 3D (trompette cosmique)
                 this.drawCosmicTrumpet(time);
                 
-                // Dessiner les particules en expansion
                 this.particles.forEach(p => {
                     p.distance += p.speed;
                     if (p.distance > canvas.width) {
@@ -623,7 +614,6 @@
                     ctx.arc(x, y, p.size * scale, 0, Math.PI * 2);
                     ctx.fill();
                     
-                    // Traînée lumineuse
                     const gradient = ctx.createRadialGradient(x, y, 0, x, y, p.size * 5);
                     gradient.addColorStop(0, p.color);
                     gradient.addColorStop(1, 'rgba(0,0,0,0)');
@@ -642,14 +632,12 @@
                     const y = this.centerY - 100 + progress * 150;
                     const opacity = 0.1 + (1 - progress) * 0.3;
                     
-                    // Déterminer la couleur basée sur la progression
                     let color;
                     if (progress < 0.3) color = `rgba(0, 166, 81, ${opacity})`;
                     else if (progress < 0.5) color = `rgba(140, 198, 63, ${opacity})`;
                     else if (progress < 0.7) color = `rgba(247, 147, 30, ${opacity})`;
                     else color = `rgba(255, 107, 53, ${opacity})`;
                     
-                    // Ellipse rotative pour effet 3D
                     ctx.save();
                     ctx.translate(this.centerX, y);
                     ctx.rotate(time * 0.0003 + progress * 0.5);
@@ -661,7 +649,6 @@
                     ctx.arc(0, 0, radius, 0, Math.PI * 2);
                     ctx.stroke();
                     
-                    // Anneaux lumineux
                     const gradient = ctx.createRadialGradient(0, 0, radius - 10, 0, 0, radius + 10);
                     gradient.addColorStop(0, 'rgba(0,0,0,0)');
                     gradient.addColorStop(0.5, color);
@@ -673,7 +660,6 @@
                     ctx.restore();
                 }
                 
-                // Point lumineux central (Big Bang)
                 const gradient = ctx.createRadialGradient(
                     this.centerX, this.centerY - 100, 0,
                     this.centerX, this.centerY - 100, 30
@@ -688,7 +674,245 @@
             }
         }
         
-        // Ondes cosmiques
+        // NOUVEAU: Tore en rotation 3D
+        class Torus {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.majorRadius = 40;
+                this.minorRadius = 15;
+                this.rotation = 0;
+                this.rotationSpeed = 0.015;
+                this.tilt = Math.PI / 6;
+            }
+            
+            draw(time) {
+                this.rotation += this.rotationSpeed;
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                
+                const segments = 30;
+                const tubes = 20;
+                
+                for (let i = 0; i < segments; i++) {
+                    const angle = (i / segments) * Math.PI * 2;
+                    
+                    for (let j = 0; j < tubes; j++) {
+                        const tubeAngle = (j / tubes) * Math.PI * 2;
+                        
+                        const x = (this.majorRadius + this.minorRadius * Math.cos(tubeAngle)) * Math.cos(angle + this.rotation);
+                        const y = (this.majorRadius + this.minorRadius * Math.cos(tubeAngle)) * Math.sin(angle + this.rotation) * Math.sin(this.tilt);
+                        const z = this.minorRadius * Math.sin(tubeAngle);
+                        
+                        const depth = z + y * 0.3;
+                        const scale = 1 + depth * 0.01;
+                        const opacity = 0.2 + (depth + 20) / 60;
+                        
+                        ctx.fillStyle = `rgba(201, 169, 97, ${opacity})`;
+                        ctx.beginPath();
+                        ctx.arc(x, y + z * Math.cos(this.tilt), 2 * scale, 0, Math.PI * 2);
+                        ctx.fill();
+                    }
+                }
+                
+                ctx.restore();
+            }
+        }
+        
+        // NOUVEAU: Sphère de Riemann avec lignes de flux
+        class RiemannSphere {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.radius = 50;
+                this.rotation = 0;
+                this.points = [];
+                this.initPoints();
+            }
+            
+            initPoints() {
+                const numPoints = 200;
+                for (let i = 0; i < numPoints; i++) {
+                    const theta = Math.random() * Math.PI * 2;
+                    const phi = Math.acos(2 * Math.random() - 1);
+                    this.points.push({ theta, phi, speed: 0.01 + Math.random() * 0.02 });
+                }
+            }
+            
+            draw(time) {
+                this.rotation += 0.005;
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                
+                // Méridiens
+                for (let i = 0; i < 12; i++) {
+                    const theta = (i / 12) * Math.PI * 2 + this.rotation;
+                    ctx.strokeStyle = 'rgba(0, 112, 60, 0.2)';
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    
+                    for (let phi = 0; phi <= Math.PI; phi += 0.1) {
+                        const x = this.radius * Math.sin(phi) * Math.cos(theta);
+                        const y = this.radius * Math.sin(phi) * Math.sin(theta) * 0.5;
+                        const z = this.radius * Math.cos(phi);
+                        
+                        if (phi === 0) ctx.moveTo(x, y - z * 0.3);
+                        else ctx.lineTo(x, y - z * 0.3);
+                    }
+                    ctx.stroke();
+                }
+                
+                // Points sur la sphère
+                this.points.forEach(p => {
+                    p.theta += p.speed;
+                    const x = this.radius * Math.sin(p.phi) * Math.cos(p.theta + this.rotation);
+                    const y = this.radius * Math.sin(p.phi) * Math.sin(p.theta + this.rotation) * 0.5;
+                    const z = this.radius * Math.cos(p.phi);
+                    
+                    const depth = z;
+                    const opacity = 0.3 + (depth + this.radius) / (2 * this.radius) * 0.5;
+                    
+                    ctx.fillStyle = `rgba(247, 147, 30, ${opacity})`;
+                    ctx.beginPath();
+                    ctx.arc(x, y - z * 0.3, 2, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+                
+                ctx.restore();
+            }
+        }
+        
+        // NOUVEAU: Variété (Manifold) avec courbure
+        class Manifold {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.time = 0;
+            }
+            
+            draw(time) {
+                this.time = time * 0.001;
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                
+                const gridSize = 15;
+                const cellSize = 8;
+                
+                for (let i = -gridSize; i <= gridSize; i++) {
+                    ctx.strokeStyle = 'rgba(140, 198, 63, 0.25)';
+                    ctx.lineWidth = 1.5;
+                    ctx.beginPath();
+                    
+                    for (let j = -gridSize; j <= gridSize; j++) {
+                        const x = i * cellSize;
+                        const y = j * cellSize;
+                        
+                        const warp = Math.sin(x * 0.05 + this.time) * Math.cos(y * 0.05 + this.time) * 15;
+                        const warpedX = x + warp * 0.5;
+                        const warpedY = y + warp;
+                        
+                        if (j === -gridSize) ctx.moveTo(warpedX, warpedY);
+                        else ctx.lineTo(warpedX, warpedY);
+                    }
+                    ctx.stroke();
+                }
+                
+                for (let j = -gridSize; j <= gridSize; j++) {
+                    ctx.strokeStyle = 'rgba(0, 166, 81, 0.25)';
+                    ctx.lineWidth = 1.5;
+                    ctx.beginPath();
+                    
+                    for (let i = -gridSize; i <= gridSize; i++) {
+                        const x = i * cellSize;
+                        const y = j * cellSize;
+                        
+                        const warp = Math.sin(x * 0.05 + this.time) * Math.cos(y * 0.05 + this.time) * 15;
+                        const warpedX = x + warp * 0.5;
+                        const warpedY = y + warp;
+                        
+                        if (i === -gridSize) ctx.moveTo(warpedX, warpedY);
+                        else ctx.lineTo(warpedX, warpedY);
+                    }
+                    ctx.stroke();
+                }
+                
+                ctx.restore();
+            }
+        }
+        
+        // NOUVEAU: Fibré vectoriel (Vector Bundle)
+        class VectorBundle {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.vectors = [];
+                this.initVectors();
+            }
+            
+            initVectors() {
+                for (let i = 0; i < 20; i++) {
+                    const angle = (i / 20) * Math.PI * 2;
+                    this.vectors.push({
+                        baseX: Math.cos(angle) * 40,
+                        baseY: Math.sin(angle) * 40,
+                        angle: angle,
+                        length: 25
+                    });
+                }
+            }
+            
+            draw(time) {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                
+                // Base circle
+                ctx.strokeStyle = 'rgba(201, 169, 97, 0.3)';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.arc(0, 0, 40, 0, Math.PI * 2);
+                ctx.stroke();
+                
+                // Vecteurs tangents
+                this.vectors.forEach((v, i) => {
+                    const rotation = time * 0.001;
+                    const vecAngle = v.angle + rotation + Math.sin(time * 0.002 + i) * 0.5;
+                    
+                    const endX = v.baseX + Math.cos(vecAngle) * v.length;
+                    const endY = v.baseY + Math.sin(vecAngle) * v.length;
+                    
+                    const gradient = ctx.createLinearGradient(v.baseX, v.baseY, endX, endY);
+                    gradient.addColorStop(0, 'rgba(0, 112, 60, 0.6)');
+                    gradient.addColorStop(1, 'rgba(247, 147, 30, 0.4)');
+                    
+                    ctx.strokeStyle = gradient;
+                    ctx.lineWidth = 2;
+                    ctx.beginPath();
+                    ctx.moveTo(v.baseX, v.baseY);
+                    ctx.lineTo(endX, endY);
+                    ctx.stroke();
+                    
+                    // Pointe de flèche
+                    const arrowSize = 5;
+                    ctx.fillStyle = 'rgba(247, 147, 30, 0.6)';
+                    ctx.beginPath();
+                    ctx.moveTo(endX, endY);
+                    ctx.lineTo(
+                        endX - arrowSize * Math.cos(vecAngle - Math.PI / 6),
+                        endY - arrowSize * Math.sin(vecAngle - Math.PI / 6)
+                    );
+                    ctx.lineTo(
+                        endX - arrowSize * Math.cos(vecAngle + Math.PI / 6),
+                        endY - arrowSize * Math.sin(vecAngle + Math.PI / 6)
+                    );
+                    ctx.closePath();
+                    ctx.fill();
+                });
+                
+                ctx.restore();
+            }
+        }
+        
+        // Ondes cosmiques - ORIGINAL
         class CosmicWave {
             constructor() {
                 this.y = Math.random() * canvas.height;
@@ -696,7 +920,7 @@
                 this.frequency = 0.015 + Math.random() * 0.02;
                 this.phase = Math.random() * Math.PI * 2;
                 this.speed = 0.0008 + Math.random() * 0.0012;
-                this.hue = Math.random() * 60 + 30; // Orange-Rouge
+                this.hue = Math.random() * 60 + 30;
             }
             
             draw(time) {
@@ -713,8 +937,13 @@
             }
         }
         
+        // Initialisation de tous les objets
         const universe = new UniverseExpansion();
         const waves = Array.from({ length: 8 }, () => new CosmicWave());
+        const torus = new Torus(canvas.width * 0.15, canvas.height * 0.7);
+        const riemannSphere = new RiemannSphere(canvas.width * 0.85, canvas.height * 0.65);
+        const manifold = new Manifold(canvas.width * 0.5, canvas.height * 0.85);
+        const vectorBundle = new VectorBundle(canvas.width * 0.3, canvas.height * 0.3);
         
         function animate(timestamp) {
             ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
@@ -722,11 +951,27 @@
             
             waves.forEach(wave => wave.draw(timestamp));
             universe.draw(timestamp);
+            torus.draw(timestamp);
+            riemannSphere.draw(timestamp);
+            manifold.draw(timestamp);
+            vectorBundle.draw(timestamp);
             
             requestAnimationFrame(animate);
         }
         
         animate(0);
+        
+        // Réinitialisation des positions au redimensionnement
+        window.addEventListener('resize', () => {
+            torus.x = canvas.width * 0.15;
+            torus.y = canvas.height * 0.7;
+            riemannSphere.x = canvas.width * 0.85;
+            riemannSphere.y = canvas.height * 0.65;
+            manifold.x = canvas.width * 0.5;
+            manifold.y = canvas.height * 0.85;
+            vectorBundle.x = canvas.width * 0.3;
+            vectorBundle.y = canvas.height * 0.3;
+        });
         
         // Horloge en temps réel
         function updateClock() {
