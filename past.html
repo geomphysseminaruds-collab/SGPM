@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Séminaires passés | Séminaire en géométrie et physique mathématique</title>
+    <title>Séminaires passés | Séminaire Junior en Géométrie et Physique Mathématique</title>
     <style>
         * {
             margin: 0;
@@ -193,8 +193,8 @@
         <header>
             <canvas id="wormholeCanvas"></canvas>
             <div class="university-name">Université de Sherbrooke · Département de mathématiques</div>
-            <h1 class="lang-content lang-fr active">Séminaire en géométrie et physique mathématique</h1>
-            <h1 class="lang-content lang-en">Seminar in Geometry and Mathematical Physics</h1>
+            <h1 class="lang-content lang-fr active">Séminaire Junior en Géométrie et Physique Mathématique</h1>
+            <h1 class="lang-content lang-en">Junior Seminar in Geometry and Mathematical Physics</h1>
             <div class="lang-switch">
                 <button class="active" onclick="switchLanguage('fr')" data-lang="fr">Français</button>
                 <button onclick="switchLanguage('en')" data-lang="en">English</button>
@@ -235,7 +235,7 @@
                 <a href="https://www.usherbrooke.ca/mathematiques/" style="color: white;">Département de mathématiques</a>
             </p>
             <p>Contact: <a href="mailto:geomphys.seminar.uds@gmail.com" style="color: white;">geomphys.seminar.uds@gmail.com</a></p>
-            <p style="font-size: 0.9rem;">© Tous droits réservés — Séminaire en géométrie et physique mathématique (SGPM)</p>
+            <p style="font-size: 0.9rem;">© Tous droits réservés — Séminaire Junior en Géométrie et Physique Mathématique (SJGPM)</p>
         </footer>
     </div>
 
@@ -255,7 +255,6 @@
         const centerX = canvas.width / 2;
         const centerY = canvas.height / 2;
 
-        // ORIGINAL: Trou de ver (Wormhole)
         class Wormhole {
             constructor() {
                 this.rings = [];
@@ -297,11 +296,11 @@
                     
                     if (colorProgress < 0.3) {
                         r = 138 + (255 - 138) * (colorProgress / 0.3);
-                        g = 43 + (140 - 43) * (colorProgress / 0.3);
+                        g = 43 + (255 - 43) * (colorProgress / 0.3);
                         b = 226;
                     } else if (colorProgress < 0.7) {
                         r = 255;
-                        g = 140 + (100 - 140) * ((colorProgress - 0.3) / 0.4);
+                        g = 255 - (255 - 100) * ((colorProgress - 0.3) / 0.4);
                         b = 226 - (226 - 150) * ((colorProgress - 0.3) / 0.4);
                     } else {
                         r = 255;
@@ -368,7 +367,6 @@
             }
         }
 
-        // NOUVEAU: Champ de sphères flottantes
         class SphereField {
             constructor() {
                 this.spheres = [];
@@ -398,7 +396,6 @@
                     ctx.translate(sphere.x, sphere.y);
                     ctx.rotate(sphere.rotation);
 
-                    // Méridiens de la sphère
                     for (let i = 0; i < 8; i++) {
                         const angle = (i / 8) * Math.PI * 2;
                         ctx.strokeStyle = 'rgba(255, 215, 0, 0.4)';
@@ -416,7 +413,6 @@
                         ctx.stroke();
                     }
 
-                    // Gradient lumineux
                     const gradient = ctx.createRadialGradient(0, 0, 0, 0, 0, sphere.radius);
                     gradient.addColorStop(0, 'rgba(255, 215, 0, 0.3)');
                     gradient.addColorStop(0.7, 'rgba(255, 150, 100, 0.2)');
@@ -431,7 +427,6 @@
             }
         }
 
-        // NOUVEAU: Bouteille de Klein
         class KleinBottle {
             constructor(x, y) {
                 this.x = x;
@@ -449,7 +444,6 @@
                 const uSteps = 30;
                 const vSteps = 20;
 
-                // Paramétrage de la bouteille de Klein
                 for (let i = 0; i <= uSteps; i++) {
                     const u = (i / uSteps) * Math.PI * 2;
                     for (let j = 0; j <= vSteps; j++) {
@@ -460,7 +454,6 @@
                         const y = 16 * Math.sin(u);
                         const z = r * Math.sin(v);
 
-                        // Rotation 3D
                         const rotX = x * Math.cos(this.rotation) - z * Math.sin(this.rotation);
                         const rotZ = x * Math.sin(this.rotation) + z * Math.cos(this.rotation);
                         
@@ -472,7 +465,6 @@
                     }
                 }
 
-                // Dessiner les lignes de la bouteille
                 points.sort((a, b) => a.depth - b.depth);
                 
                 points.forEach((point, i) => {
@@ -487,7 +479,6 @@
             }
         }
 
-        // NOUVEAU: Groupe fondamental (lacets/loops)
         class FundamentalGroup {
             constructor(x, y) {
                 this.x = x;
@@ -509,13 +500,11 @@
                 ctx.save();
                 ctx.translate(this.x, this.y);
 
-                // Point base
                 ctx.fillStyle = 'rgba(255, 100, 100, 0.8)';
                 ctx.beginPath();
                 ctx.arc(0, 0, 5, 0, Math.PI * 2);
                 ctx.fill();
 
-                // Dessiner les lacets (loops)
                 this.loops.forEach((loop, index) => {
                     loop.phase += loop.speed;
                     
@@ -536,7 +525,6 @@
                     ctx.closePath();
                     ctx.stroke();
 
-                    // Points sur le lacet
                     for (let i = 0; i < 8; i++) {
                         const t = (i / 8) * Math.PI * 2;
                         const r = loop.radius * (1 + 0.3 * Math.sin(3 * t + loop.phase));
@@ -554,7 +542,6 @@
             }
         }
 
-        // NOUVEAU: Surface de Calabi-Yau simplifiée
         class CalabiYau {
             constructor(x, y) {
                 this.x = x;
@@ -596,7 +583,6 @@
                     ctx.arc(x, y - z * 0.2, 2, 0, Math.PI * 2);
                     ctx.fill();
 
-                    // Connexions
                     if (Math.random() > 0.98) {
                         ctx.strokeStyle = `rgba(200, 100, 255, ${opacity * 0.5})`;
                         ctx.lineWidth = 1;
@@ -611,7 +597,6 @@
             }
         }
 
-        // Initialisation
         const wormhole = new Wormhole();
         const sphereField = new SphereField();
         const kleinBottle = new KleinBottle(canvas.width * 0.2, canvas.height * 0.25);
@@ -629,7 +614,6 @@
             requestAnimationFrame(animate);
         }
 
-        // Repositionner au redimensionnement
         window.addEventListener('resize', () => {
             kleinBottle.x = canvas.width * 0.2;
             kleinBottle.y = canvas.height * 0.25;
