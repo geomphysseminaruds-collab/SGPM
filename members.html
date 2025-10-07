@@ -216,6 +216,9 @@
             border: 1px solid #00703c;
             border-radius: 3px;
             transition: all 0.3s;
+            display: inline-block;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
         }
 
         .member-links a:hover {
@@ -323,6 +326,7 @@
                         <div class="member-research">Géométrie différentielle, groupes de Lie, théories des champs quantiques topologiques, géométrie symplectique décalée</div>
                         <div class="member-links">
                             <a href="mailto:maxence.mayrand@usherbrooke.ca">Email</a>
+                            <a href="https://maxencemayrand.github.io/" target="_blank">🌐 Site web</a>
                         </div>
                     </div>
                 </div>
@@ -335,6 +339,7 @@
                         <div class="member-research">Sous-groupes discrets des groupes de Lie, théorie de Teichmüller en rang supérieur, structures géométriques localement homogènes</div>
                         <div class="member-links">
                             <a href="mailto:jean-philippe.burelle@usherbrooke.ca">Email</a>
+                            <a href="https://jpburelle.espaceweb.usherbrooke.ca/" target="_blank">🌐 Site web</a>
                         </div>
                     </div>
                 </div>
@@ -347,6 +352,7 @@
                         <div class="member-research">La théorie géométrique des représentations, Les algèbres chirales, Les algèbres de factorisation</div>
                         <div class="member-links">
                             <a href="mailto:Emily.Cliff@USherbrooke.ca">Email</a>
+                            <a href="https://emilycliff.espaceweb.usherbrooke.ca/" target="_blank">🌐 Site web</a>
                         </div>
                     </div>
                 </div>
@@ -383,6 +389,7 @@
                         <div class="member-research">Théorie de la représentation, algèbre, géométrie algébrique, physique mathématique</div>
                         <div class="member-links">
                             <a href="mailto:alex.Weekes@USherbrooke.ca">Email</a>
+                            <a href="https://researchers.usask.ca/alex-weekes/index.php" target="_blank">🌐 Site web</a>
                         </div>
                     </div>
                 </div>
@@ -495,6 +502,7 @@
                         <div class="member-research">Differential geometry, Lie groups, topological quantum field theories, shifted symplectic geometry</div>
                         <div class="member-links">
                             <a href="mailto:maxence.mayrand@usherbrooke.ca">Email</a>
+                            <a href="https://maxencemayrand.github.io/" target="_blank">🌐 Website</a>
                         </div>
                     </div>
                 </div>
@@ -507,6 +515,7 @@
                         <div class="member-research">Discrete subgroups of Lie groups, higher Teichmüller theory, locally homogeneous geometric structures</div>
                         <div class="member-links">
                             <a href="mailto:jean-philippe.burelle@usherbrooke.ca">Email</a>
+                            <a href="https://jpburelle.espaceweb.usherbrooke.ca/" target="_blank">🌐 Website</a>
                         </div>
                     </div>
                 </div>
@@ -519,6 +528,7 @@
                         <div class="member-research">Geometric representation theory, Chiral algebras, Factorization algebras</div>
                         <div class="member-links">
                             <a href="mailto:Emily.Cliff@USherbrooke.ca">Email</a>
+                            <a href="https://emilycliff.espaceweb.usherbrooke.ca/" target="_blank">🌐 Website</a>
                         </div>
                     </div>
                 </div>
@@ -555,6 +565,7 @@
                         <div class="member-research">Representation theory, algebra, algebraic geometry, mathematical physics</div>
                         <div class="member-links">
                             <a href="mailto:alex.Weekes@USherbrooke.ca">Email</a>
+                            <a href="https://researchers.usask.ca/alex-weekes/index.php" target="_blank">🌐 Website</a>
                         </div>
                     </div>
                 </div>
@@ -650,7 +661,6 @@
 
         let time = 0;
 
-        // Données des membres avec leurs photos
         const members = [
             { initials: 'MMM', name: 'Mohamed Moussadek Maiza', photo: 'photos/mmm.jpg', color: '#00703c' },
             { initials: 'YAM', name: 'Yassine Ait Mohamed', photo: 'photos/yam.jpg', color: '#1a4d2e' },
@@ -666,7 +676,6 @@
             { initials: 'AS', name: 'Ablanvi Songo', photo: 'photos/as.jpg', color: '#4682B4' }
         ];
 
-        // Avatar flottant des membres
         class MemberAvatar {
             constructor(member, index) {
                 this.member = member;
@@ -682,7 +691,6 @@
                 this.scale = 1;
                 this.opacity = 0.9;
                 
-                // Charger l'image
                 this.image = new Image();
                 this.image.src = member.photo;
                 this.imageLoaded = false;
@@ -707,7 +715,6 @@
                 const y = this.height + Math.sin(time * this.bobSpeed * 0.001) * this.bobAmount;
                 const z = this.radius * Math.sin(this.angle);
 
-                // Rotation 3D
                 const cosX = Math.cos(rotX);
                 const sinX = Math.sin(rotX);
                 const cosY = Math.cos(rotY);
@@ -726,7 +733,6 @@
                 ctx.translate(px, py);
                 ctx.scale(this.scale * perspective, this.scale * perspective);
 
-                // Halo lumineux
                 const haloGradient = ctx.createRadialGradient(0, 0, 0, 0, 0, this.size * 2);
                 haloGradient.addColorStop(0, `${this.member.color}40`);
                 haloGradient.addColorStop(0.5, `${this.member.color}20`);
@@ -736,7 +742,6 @@
                 ctx.arc(0, 0, this.size * 2, 0, Math.PI * 2);
                 ctx.fill();
 
-                // Fond du cercle
                 const gradient = ctx.createLinearGradient(-this.size, -this.size, this.size, this.size);
                 gradient.addColorStop(0, this.member.color);
                 gradient.addColorStop(1, this.lightenColor(this.member.color, 30));
@@ -745,19 +750,15 @@
                 ctx.arc(0, 0, this.size, 0, Math.PI * 2);
                 ctx.fill();
 
-                // Afficher la photo si chargée
                 if (this.imageLoaded && this.image.complete) {
                     ctx.save();
-                    // Créer un clip circulaire pour l'image
                     ctx.beginPath();
                     ctx.arc(0, 0, this.size, 0, Math.PI * 2);
                     ctx.clip();
                     
-                    // Dessiner l'image
                     ctx.drawImage(this.image, -this.size, -this.size, this.size * 2, this.size * 2);
                     ctx.restore();
                 } else {
-                    // Afficher les initiales en attendant le chargement
                     ctx.fillStyle = 'white';
                     ctx.font = `bold ${this.size * 0.5}px 'Garamond', 'Georgia', serif`;
                     ctx.textAlign = 'center';
@@ -765,14 +766,12 @@
                     ctx.fillText(this.member.initials, 0, 0);
                 }
 
-                // Bordure blanche
                 ctx.strokeStyle = 'rgba(255, 255, 255, 0.8)';
                 ctx.lineWidth = 3;
                 ctx.beginPath();
                 ctx.arc(0, 0, this.size, 0, Math.PI * 2);
                 ctx.stroke();
 
-                // Nom en petit sous l'avatar
                 ctx.font = `${this.size * 0.25}px 'Garamond', 'Georgia', serif`;
                 ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
                 ctx.shadowColor = 'rgba(0, 0, 0, 0.8)';
@@ -796,7 +795,6 @@
             }
         }
 
-        // Courbes paramétriques 3D originales
         class ParametricCurve3D {
             constructor(type, offset) {
                 this.type = type;
@@ -874,7 +872,6 @@
             }
         }
 
-        // Particules spirales originales
         class SpiralParticle {
             constructor() {
                 this.angle = Math.random() * Math.PI * 2;
@@ -917,7 +914,6 @@
             }
         }
 
-        // NOUVEAU: Ondes horizontales
         class HorizontalWave {
             constructor(index) {
                 this.y = (canvas.height / 6) * (index + 1);
@@ -941,7 +937,6 @@
                 }
                 ctx.stroke();
 
-                // Points lumineux sur l'onde
                 for (let x = 0; x <= canvas.width; x += 50) {
                     const y = this.y + Math.sin(x * this.frequency + t * this.speed * 0.01 + this.phase) * this.amplitude;
                     ctx.fillStyle = this.color.replace('0.4', '0.7');
@@ -952,7 +947,6 @@
             }
         }
 
-        // NOUVEAU: Icosaèdre (polyèdre à 20 faces)
         class Icosahedron {
             constructor(x, y) {
                 this.x = x;
@@ -978,15 +972,12 @@
             rotatePoint(point) {
                 let [x, y, z] = point;
                 
-                // Rotation X
                 let y1 = y * Math.cos(this.rotation.x) - z * Math.sin(this.rotation.x);
                 let z1 = y * Math.sin(this.rotation.x) + z * Math.cos(this.rotation.x);
                 
-                // Rotation Y
                 let x1 = x * Math.cos(this.rotation.y) + z1 * Math.sin(this.rotation.y);
                 let z2 = -x * Math.sin(this.rotation.y) + z1 * Math.cos(this.rotation.y);
                 
-                // Rotation Z
                 let x2 = x1 * Math.cos(this.rotation.z) - y1 * Math.sin(this.rotation.z);
                 let y2 = x1 * Math.sin(this.rotation.z) + y1 * Math.cos(this.rotation.z);
                 
@@ -1023,7 +1014,6 @@
                     ctx.stroke();
                 });
 
-                // Points aux sommets
                 this.vertices.forEach(vertex => {
                     const [x, y, z] = this.rotatePoint(vertex);
                     const depth = z;
@@ -1039,7 +1029,6 @@
             }
         }
 
-        // NOUVEAU: Dodécaèdre (polyèdre à 12 faces)
         class Dodecahedron {
             constructor(x, y) {
                 this.x = x;
@@ -1123,7 +1112,6 @@
             }
         }
 
-        // NOUVEAU: Sierpinski Triangle (fractal)
         class SierpinskiTriangle {
             constructor(x, y) {
                 this.x = x;
@@ -1170,7 +1158,6 @@
             }
         }
 
-        // Initialisation
         const curves = [
             new ParametricCurve3D(1, 0),
             new ParametricCurve3D(2, Math.PI / 3),
@@ -1181,7 +1168,6 @@
         const spiralParticles = Array.from({ length: 60 }, () => new SpiralParticle());
         const memberAvatars = members.map((member, index) => new MemberAvatar(member, index));
         
-        // Nouveaux éléments
         const horizontalWaves = Array.from({ length: 5 }, (_, i) => new HorizontalWave(i));
         const icosahedron = new Icosahedron(canvas.width * 0.25, canvas.height * 0.6);
         const dodecahedron = new Dodecahedron(canvas.width * 0.75, canvas.height * 0.55);
@@ -1196,24 +1182,17 @@
             const rotX = time * 0.002;
             const rotY = time * 0.003;
 
-            // Dessiner les ondes horizontales
             horizontalWaves.forEach(wave => wave.draw(time));
-
-            // Dessiner les courbes paramétriques
             curves.forEach(curve => curve.draw(time));
-
-            // Dessiner les particules spirales
             spiralParticles.forEach(p => {
                 p.update(time);
                 p.draw(centerX, centerY, rotX, rotY);
             });
 
-            // Dessiner les formes géométriques
             icosahedron.draw(time);
             dodecahedron.draw(time);
             sierpinski.draw(time);
 
-            // Dessiner les avatars des membres
             memberAvatars.forEach(avatar => {
                 avatar.update(time);
                 avatar.draw(centerX, centerY, rotX, rotY);
@@ -1223,7 +1202,6 @@
             requestAnimationFrame(animate);
         }
 
-        // Repositionner les éléments au redimensionnement
         window.addEventListener('resize', () => {
             icosahedron.x = canvas.width * 0.25;
             icosahedron.y = canvas.height * 0.6;
