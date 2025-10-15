@@ -16,7 +16,7 @@
             line-height: 1.8;
             color: #2c2c2c;
             background: #f5f5f0;
-            font-size: 20px;
+            font-size: 18px;
         }
 
         .container {
@@ -196,18 +196,113 @@
 
         .section-title {
             color: #1a4d2e;
-            font-size: 2.2rem;
+            font-size: 2rem;
             font-weight: 400;
-            margin: 2.5rem 0 1.5rem 0;
-            padding-bottom: 0.8rem;
-            border-bottom: 3px solid #00703c;
+            margin: 2rem 0 1.5rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #00703c;
         }
 
-        .seminar-item {
-            background: #fafaf8;
-            padding: 2rem;
+        .semester-title {
+            color: #00703c;
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin: 2rem 0 1rem 0;
+        }
+
+        /* Style tableau ETH */
+        .seminar-table {
+            width: 100%;
+            border-collapse: collapse;
             margin: 2rem 0;
-            border-left: 5px solid #00703c;
+            background: white;
+        }
+
+        .seminar-table th {
+            background: #f5f5f0;
+            color: #1a4d2e;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid #00703c;
+            font-size: 1rem;
+        }
+
+        .seminar-table td {
+            padding: 1.5rem 1rem;
+            border-bottom: 1px solid #e0e0e0;
+            vertical-align: top;
+        }
+
+        .seminar-table tr:hover {
+            background: #fafaf8;
+        }
+
+        .date-time {
+            color: #00703c;
+            font-weight: 500;
+            white-space: nowrap;
+            min-width: 150px;
+        }
+
+        .speaker-info {
+            min-width: 200px;
+        }
+
+        .speaker-name {
+            color: #1a4d2e;
+            font-weight: 600;
+            font-size: 1.05rem;
+        }
+
+        .speaker-affiliation {
+            color: #666;
+            font-size: 0.95rem;
+            font-style: italic;
+            margin-top: 0.3rem;
+        }
+
+        .talk-title {
+            color: #2c2c2c;
+            font-weight: 500;
+            font-size: 1.05rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .talk-abstract {
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-top: 0.5rem;
+            text-align: justify;
+        }
+
+        .location {
+            color: #00703c;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .expand-btn {
+            color: #00703c;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            display: inline-block;
+            text-decoration: underline;
+        }
+
+        .expand-btn:hover {
+            color: #1a4d2e;
+        }
+
+        .abstract-content {
+            display: none;
+            margin-top: 0.8rem;
+        }
+
+        .abstract-content.show {
+            display: block;
         }
 
         footer {
@@ -218,9 +313,27 @@
             margin-top: 3rem;
         }
 
+        footer a {
+            color: #c9a961;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
         @media (max-width: 768px) {
             header h1 {
                 font-size: 2rem;
+            }
+
+            .seminar-table {
+                font-size: 0.9rem;
+            }
+
+            .seminar-table th,
+            .seminar-table td {
+                padding: 0.8rem 0.5rem;
             }
         }
     </style>
@@ -258,79 +371,89 @@
             </ul>
         </nav>
 
+        <!-- VERSION FRANÇAISE -->
         <div class="lang-content lang-fr active">
             <h2 class="section-title">Séminaires à venir</h2>
+            <h3 class="semester-title">Automne 2025</h3>
 
-            <div class="seminar-item" style="margin-bottom: 2rem; padding: 2rem; border: 1px solid #d0d0d0; border-radius: 8px; background: linear-gradient(135deg, #fafaf8 0%, #f5f5f0 100%); box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
-                <span style="background: #c9a961; color: #1a4d2e; padding: 0.6rem 1.2rem; font-weight: bold; border-radius: 5px; display: inline-block; margin-bottom: 1.2rem;">
-                    À VENIR
-                </span>
-
-                <h3 style="color: #00703c; font-size: 1.8rem; margin: 0 0 0.8rem 0; font-weight: 500;">
-                    <strong style="color: #1a4d2e;">Titre :</strong> <span style="color: #00703c;">Espaces de déformation des espaces quasi-hamiltoniens</span>
-                </h3>
-
-                <h4 style="color: #1a4d2e; font-size: 1.4rem; margin: 0 0 1.5rem 0; font-weight: 500;">
-                    <strong>Conférencier :</strong> Mohamed Moussadek Maiza
-                </h4>
-
-                <div style="background: white; padding: 1.5rem; border-left: 4px solid #00703c; border-radius: 4px; margin-bottom: 1.5rem;">
-                    <p style="color: #333; font-size: 1.1rem; line-height: 1.8; text-align: justify; margin: 0;">
-                        La géométrie symplectique, branche fondamentale de la géométrie différentielle, étudie les variétés différentiables de dimension paire munies d'une 2-forme fermée non dégénérée ω. Elle est apparue comme une formulation géométrique de la mécanique classique, où l'espace des phases d'un système physique admet une riche structure symplectique.
-                        <br><br>
-                        Deux aspects importants de la géométrie symplectique se sont développés : les variétés hamiltoniennes <em>G</em> et les variétés quasi-hamiltoniennes <em>G</em>. Les exemples fondamentaux de variétés quasi-hamiltoniennes <em>G</em> sont les classes de conjugaison <em>C</em> dans <em>G</em>, dont les contreparties hamiltoniennes sont les orbites coadjointes dans le dual de l'algèbre de Lie <em>𝔤*</em>.
-                        <br><br>
-                        Dans cet exposé, nous présentons une théorie de la déformation des variétés quasi-hamiltoniennes <em>G</em> en variétés hamiltoniennes <em>G</em> pour tout groupe de Lie compact. Cette théorie fournit des déformations explicites dans plusieurs cas fondamentaux : la déformation du double <em>D(G)=G×G</em> vers le fibré cotangent <em>T*G</em>, la déformation d'une classe de conjugaison dans <em>G</em> vers l'orbite coadjointe dans <em>𝔤*</em>, et enfin la déformation de l'espace des modules de connexions plates à valeurs dans <em>𝔤</em> sur une surface orientable lisse de genre <em>k</em> ayant <em>r+1</em> composantes de bord vers <em>T*G<sup>g+r</sup></em>.
-                    </p>
-                </div>
-
-                <div style="background: #f0f8f0; padding: 1rem 1.5rem; border-radius: 5px; border: 1px solid #c9e4c9;">
-                    <p style="color: #1a4d2e; font-size: 1.1rem; margin: 0;">
-                        <strong style="color: #00703c;">Date :</strong> 16 octobre 2025 &nbsp; | &nbsp;
-                        <strong style="color: #00703c;">Lieu :</strong> D3-2035
-                    </p>
-                </div>
-            </div>
+            <table class="seminar-table">
+                <thead>
+                    <tr>
+                        <th>Date / Heure</th>
+                        <th>Conférencier</th>
+                        <th>Titre</th>
+                        <th>Lieu</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="date-time">16 octobre 2025<br>14:00-15:00</td>
+                        <td class="speaker-info">
+                            <div class="speaker-name">Mohamed Moussadek Maiza</div>
+                            <div class="speaker-affiliation">Université de Sherbrooke</div>
+                        </td>
+                        <td>
+                            <div class="talk-title">Espaces de déformation des espaces quasi-hamiltoniens</div>
+                            <span class="expand-btn" onclick="toggleAbstract('abstract1')">Lire le résumé ▼</span>
+                            <div id="abstract1" class="abstract-content">
+                                <p class="talk-abstract">
+                                    La géométrie symplectique, branche fondamentale de la géométrie différentielle, étudie les variétés différentiables de dimension paire munies d'une 2-forme fermée non dégénérée ω. Elle est apparue comme une formulation géométrique de la mécanique classique, où l'espace des phases d'un système physique admet une riche structure symplectique.
+                                    <br><br>
+                                    Deux aspects importants de la géométrie symplectique se sont développés : les variétés hamiltoniennes <em>G</em> et les variétés quasi-hamiltoniennes <em>G</em>. Les exemples fondamentaux de variétés quasi-hamiltoniennes <em>G</em> sont les classes de conjugaison <em>C</em> dans <em>G</em>, dont les contreparties hamiltoniennes sont les orbites coadjointes dans le dual de l'algèbre de Lie <em>𝔤*</em>.
+                                    <br><br>
+                                    Dans cet exposé, nous présentons une théorie de la déformation des variétés quasi-hamiltoniennes <em>G</em> en variétés hamiltoniennes <em>G</em> pour tout groupe de Lie compact. Cette théorie fournit des déformations explicites dans plusieurs cas fondamentaux : la déformation du double <em>D(G)=G×G</em> vers le fibré cotangent <em>T*G</em>, la déformation d'une classe de conjugaison dans <em>G</em> vers l'orbite coadjointe dans <em>𝔤*</em>, et enfin la déformation de l'espace des modules de connexions plates à valeurs dans <em>𝔤</em> sur une surface orientable lisse de genre <em>k</em> ayant <em>r+1</em> composantes de bord vers <em>T*G<sup>g+r</sup></em>.
+                                </p>
+                            </div>
+                        </td>
+                        <td class="location">D3-2012</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
 
+        <!-- VERSION ANGLAISE -->
         <div class="lang-content lang-en">
             <h2 class="section-title">Upcoming Seminars</h2>
+            <h3 class="semester-title">Autumn Semester 2025</h3>
 
-            <div class="seminar-item" style="margin-bottom: 2rem; padding: 2rem; border: 1px solid #d0d0d0; border-radius: 8px; background: linear-gradient(135deg, #fafaf8 0%, #f5f5f0 100%); box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
-                <span style="background: #c9a961; color: #1a4d2e; padding: 0.6rem 1.2rem; font-weight: bold; border-radius: 5px; display: inline-block; margin-bottom: 1.2rem;">
-                    UPCOMING
-                </span>
-
-                <h3 style="color: #00703c; font-size: 1.8rem; margin: 0 0 0.8rem 0; font-weight: 500;">
-                    <strong style="color: #1a4d2e;">Title:</strong> <span style="color: #00703c;">Deformation Spaces of quasi-Hamiltonian Spaces</span>
-                </h3>
-
-                <h4 style="color: #1a4d2e; font-size: 1.4rem; margin: 0 0 1.5rem 0; font-weight: 500;">
-                    <strong>Speaker:</strong> Mohamed Moussadek Maiza
-                </h4>
-
-                <div style="background: white; padding: 1.5rem; border-left: 4px solid #00703c; border-radius: 4px; margin-bottom: 1.5rem;">
-                    <p style="color: #333; font-size: 1.1rem; line-height: 1.8; text-align: justify; margin: 0;">
-                        Symplectic geometry, a fundamental branch of differential geometry, studies even-dimensional differentiable manifolds equipped with a non-degenerate closed two-form ω. It emerged as a geometric formulation of classical mechanics, where the phase space of a physical system admits a rich symplectic structure.
-                        <br><br>
-                        Two important aspects of symplectic geometry have emerged: Hamiltonian <em>G</em>-manifolds and quasi-Hamiltonian <em>G</em>-manifolds. Basic examples of quasi-Hamiltonian <em>G</em>-manifolds are the conjugacy classes <em>C</em> in <em>G</em>, whose Hamiltonian <em>G</em>-manifold counterparts are the coadjoint orbits in the dual of the Lie algebra <em>𝔤*</em>.
-                        <br><br>
-                        In this talk, we present a theory of deformation of quasi-Hamiltonian <em>G</em>-manifolds to Hamiltonian <em>G</em>-manifolds for any compact Lie group. This theory gives explicit deformations in several fundamental cases: the deformation of the double <em>D(G)=G×G</em> to the cotangent bundle <em>T*G</em>, the conjugacy class in <em>G</em> to the coadjoint orbit in <em>𝔤*</em>, and finally the moduli space of <em>𝔤</em>-valued flat connections on a smooth orientable surface of genus <em>k</em> with <em>r+1</em> boundary components to <em>T*G<sup>g+r</sup></em>.
-                    </p>
-                </div>
-
-                <div style="background: #f0f8f0; padding: 1rem 1.5rem; border-radius: 5px; border: 1px solid #c9e4c9;">
-                    <p style="color: #1a4d2e; font-size: 1.1rem; margin: 0;">
-                        <strong style="color: #00703c;">Date:</strong> October 16, 2025 &nbsp; | &nbsp;
-                        <strong style="color: #00703c;">Location:</strong> D3-2035
-                    </p>
-                </div>
-            </div>
+            <table class="seminar-table">
+                <thead>
+                    <tr>
+                        <th>Date / Time</th>
+                        <th>Speaker</th>
+                        <th>Title</th>
+                        <th>Location</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="date-time">October 16, 2025<br>14:00-15:00</td>
+                        <td class="speaker-info">
+                            <div class="speaker-name">Mohamed Moussadek Maiza</div>
+                            <div class="speaker-affiliation">Université de Sherbrooke</div>
+                        </td>
+                        <td>
+                            <div class="talk-title">Deformation Spaces of quasi-Hamiltonian Spaces</div>
+                            <span class="expand-btn" onclick="toggleAbstract('abstract1-en')">Read abstract ▼</span>
+                            <div id="abstract1-en" class="abstract-content">
+                                <p class="talk-abstract">
+                                    Symplectic geometry, a fundamental branch of differential geometry, studies even-dimensional differentiable manifolds equipped with a non-degenerate closed two-form ω. It emerged as a geometric formulation of classical mechanics, where the phase space of a physical system admits a rich symplectic structure.
+                                    <br><br>
+                                    Two important aspects of symplectic geometry have emerged: Hamiltonian <em>G</em>-manifolds and quasi-Hamiltonian <em>G</em>-manifolds. Basic examples of quasi-Hamiltonian <em>G</em>-manifolds are the conjugacy classes <em>C</em> in <em>G</em>, whose Hamiltonian <em>G</em>-manifold counterparts are the coadjoint orbits in the dual of the Lie algebra <em>𝔤*</em>.
+                                    <br><br>
+                                    In this talk, we present a theory of deformation of quasi-Hamiltonian <em>G</em>-manifolds to Hamiltonian <em>G</em>-manifolds for any compact Lie group. This theory gives explicit deformations in several fundamental cases: the deformation of the double <em>D(G)=G×G</em> to the cotangent bundle <em>T*G</em>, the conjugacy class in <em>G</em> to the coadjoint orbit in <em>𝔤*</em>, and finally the moduli space of <em>𝔤</em>-valued flat connections on a smooth orientable surface of genus <em>k</em> with <em>r+1</em> boundary components to <em>T*G<sup>g+r</sup></em>.
+                                </p>
+                            </div>
+                        </td>
+                        <td class="location">D3-2012</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
 
         <footer>
             <p>&copy; 2025 Université de Sherbrooke - Département de mathématiques</p>
-            <p>Contact: <a href="mailto:junior-seminar.gmp@outlook.com" style="color: #c9a961;">junior-seminar.gmp@outlook.com</a></p>
+            <p>Contact: <a href="mailto:junior-seminar.gmp@outlook.com">junior-seminar.gmp@outlook.com</a></p>
         </footer>
     </div>
 
@@ -762,6 +885,19 @@
             document.querySelector('.lang-switch button[data-lang="' + lang + '"]').classList.add('active');
             
             setTimeout(animateTitle, 100);
+        }
+
+        function toggleAbstract(id) {
+            const element = document.getElementById(id);
+            const btn = element.previousElementSibling;
+            
+            if (element.classList.contains('show')) {
+                element.classList.remove('show');
+                btn.innerHTML = btn.innerHTML.replace('▲', '▼').replace('Hide', 'Read').replace('Masquer', 'Lire');
+            } else {
+                element.classList.add('show');
+                btn.innerHTML = btn.innerHTML.replace('▼', '▲').replace('Read', 'Hide').replace('Lire', 'Masquer');
+            }
         }
     </script>
 </body>
