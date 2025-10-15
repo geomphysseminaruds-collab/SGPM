@@ -16,7 +16,7 @@
             line-height: 1.8;
             color: #2c2c2c;
             background: #f5f5f0;
-            font-size: 20px;
+            font-size: 18px;
         }
 
         .container {
@@ -78,12 +78,8 @@
         }
 
         @keyframes shimmer {
-            0% {
-                background-position: 0% center;
-            }
-            100% {
-                background-position: 200% center;
-            }
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
         }
 
         .lang-switch {
@@ -161,11 +157,112 @@
 
         .section-title {
             color: #1a4d2e;
-            font-size: 2.2rem;
+            font-size: 2rem;
             font-weight: 400;
-            margin: 2.5rem 0 1.5rem 0;
-            padding-bottom: 0.8rem;
-            border-bottom: 3px solid #00703c;
+            margin: 2rem 0 1.5rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #00703c;
+        }
+
+        .semester-title {
+            color: #00703c;
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin: 2rem 0 1rem 0;
+        }
+
+        .seminar-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: white;
+        }
+
+        .seminar-table th {
+            background: #f5f5f0;
+            color: #1a4d2e;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid #00703c;
+            font-size: 1rem;
+        }
+
+        .seminar-table td {
+            padding: 1.5rem 1rem;
+            border-bottom: 1px solid #e0e0e0;
+            vertical-align: top;
+        }
+
+        .seminar-table tr:hover {
+            background: #fafaf8;
+        }
+
+        .date-time {
+            color: #00703c;
+            font-weight: 500;
+            white-space: nowrap;
+            min-width: 150px;
+        }
+
+        .speaker-info {
+            min-width: 200px;
+        }
+
+        .speaker-name {
+            color: #1a4d2e;
+            font-weight: 600;
+            font-size: 1.05rem;
+        }
+
+        .speaker-affiliation {
+            color: #666;
+            font-size: 0.95rem;
+            font-style: italic;
+            margin-top: 0.3rem;
+        }
+
+        .talk-title {
+            color: #2c2c2c;
+            font-weight: 500;
+            font-size: 1.05rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .talk-abstract {
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-top: 0.5rem;
+            text-align: justify;
+        }
+
+        .location {
+            color: #00703c;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .expand-btn {
+            color: #00703c;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            display: inline-block;
+            text-decoration: underline;
+        }
+
+        .expand-btn:hover {
+            color: #1a4d2e;
+        }
+
+        .abstract-content {
+            display: none;
+            margin-top: 0.8rem;
+        }
+
+        .abstract-content.show {
+            display: block;
         }
 
         footer {
@@ -181,9 +278,29 @@
             text-decoration: none;
         }
 
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .no-seminars {
+            text-align: center;
+            padding: 3rem;
+            color: #666;
+            font-style: italic;
+        }
+
         @media (max-width: 768px) {
             header h1 {
                 font-size: 2rem;
+            }
+
+            .seminar-table {
+                font-size: 0.9rem;
+            }
+
+            .seminar-table th,
+            .seminar-table td {
+                padding: 0.8rem 0.5rem;
             }
         }
     </style>
@@ -221,23 +338,123 @@
             </ul>
         </nav>
 
+        <!-- VERSION FRANÇAISE -->
         <div class="lang-content lang-fr active">
             <h2 class="section-title">Séminaires passés</h2>
+            
+            <!-- Semestre Automne 2024 -->
+            <h3 class="semester-title">Automne 2024</h3>
+            <table class="seminar-table">
+                <thead>
+                    <tr>
+                        <th>Date / Heure</th>
+                        <th>Conférencier</th>
+                        <th>Titre</th>
+                        <th>Lieu</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Exemple de séminaire passé - à remplir avec vos données -->
+                    <tr>
+                        <td class="date-time">15 novembre 2024<br>14:00-15:00</td>
+                        <td class="speaker-info">
+                            <div class="speaker-name">Nom du conférencier</div>
+                            <div class="speaker-affiliation">Institution</div>
+                        </td>
+                        <td>
+                            <div class="talk-title">Titre de la présentation</div>
+                            <span class="expand-btn" onclick="toggleAbstract('abstract-f24-1')">Lire le résumé ▼</span>
+                            <div id="abstract-f24-1" class="abstract-content">
+                                <p class="talk-abstract">
+                                    Insérez ici le résumé de la présentation...
+                                </p>
+                            </div>
+                        </td>
+                        <td class="location">D3-2012</td>
+                    </tr>
+                    <!-- Ajoutez d'autres séminaires ici -->
+                </tbody>
+            </table>
+
+            <!-- Semestre Hiver 2024 -->
+            <h3 class="semester-title">Hiver 2024</h3>
+            <table class="seminar-table">
+                <thead>
+                    <tr>
+                        <th>Date / Heure</th>
+                        <th>Conférencier</th>
+                        <th>Titre</th>
+                        <th>Lieu</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="4" class="no-seminars">Aucun séminaire pour cette période</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
 
+        <!-- VERSION ANGLAISE -->
         <div class="lang-content lang-en">
             <h2 class="section-title">Past Seminars</h2>
+            
+            <!-- Fall Semester 2024 -->
+            <h3 class="semester-title">Fall Semester 2024</h3>
+            <table class="seminar-table">
+                <thead>
+                    <tr>
+                        <th>Date / Time</th>
+                        <th>Speaker</th>
+                        <th>Title</th>
+                        <th>Location</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Example past seminar - fill with your data -->
+                    <tr>
+                        <td class="date-time">November 15, 2024<br>14:00-15:00</td>
+                        <td class="speaker-info">
+                            <div class="speaker-name">Speaker Name</div>
+                            <div class="speaker-affiliation">Institution</div>
+                        </td>
+                        <td>
+                            <div class="talk-title">Presentation Title</div>
+                            <span class="expand-btn" onclick="toggleAbstract('abstract-f24-1-en')">Read abstract ▼</span>
+                            <div id="abstract-f24-1-en" class="abstract-content">
+                                <p class="talk-abstract">
+                                    Insert abstract here...
+                                </p>
+                            </div>
+                        </td>
+                        <td class="location">D3-2012</td>
+                    </tr>
+                    <!-- Add more seminars here -->
+                </tbody>
+            </table>
+
+            <!-- Winter Semester 2024 -->
+            <h3 class="semester-title">Winter Semester 2024</h3>
+            <table class="seminar-table">
+                <thead>
+                    <tr>
+                        <th>Date / Time</th>
+                        <th>Speaker</th>
+                        <th>Title</th>
+                        <th>Location</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="4" class="no-seminars">No seminars for this period</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
 
         <footer>
-            <p>&copy; 2025 
-                <a href="https://www.usherbrooke.ca/" style="color: white;">Université de Sherbrooke</a> - 
-                <a href="https://www.usherbrooke.ca/mathematiques/" style="color: white;">Département de mathématiques</a>
-            </p>
-            <p>Contact: <a href="mailto:
-junior-seminar.gmp@outlook.com" style="color: white;">
-junior-seminar.gmp@outlook.com</a></p>
-            <p style="font-size: 0.9rem;">© Tous droits réservés — Séminaire Junior en Géométrie et Physique Mathématique (SJGPM)</p>
+            <p>&copy; 2025 <a href="https://www.usherbrooke.ca/" style="color: white;">Université de Sherbrooke</a> - <a href="https://www.usherbrooke.ca/mathematiques/" style="color: white;">Département de mathématiques</a></p>
+            <p>Contact: <a href="mailto:junior-seminar.gmp@outlook.com" style="color: white;">junior-seminar.gmp@outlook.com</a></p>
         </footer>
     </div>
 
@@ -632,6 +849,19 @@ junior-seminar.gmp@outlook.com</a></p>
             document.querySelectorAll('.lang-' + lang).forEach(el => el.classList.add('active'));
             document.querySelectorAll('.lang-switch button').forEach(btn => btn.classList.remove('active'));
             document.querySelector('.lang-switch button[data-lang="' + lang + '"]').classList.add('active');
+        }
+
+        function toggleAbstract(id) {
+            const element = document.getElementById(id);
+            const btn = element.previousElementSibling;
+            
+            if (element.classList.contains('show')) {
+                element.classList.remove('show');
+                btn.innerHTML = btn.innerHTML.replace('▲', '▼').replace('Hide', 'Read').replace('Masquer', 'Lire');
+            } else {
+                element.classList.add('show');
+                btn.innerHTML = btn.innerHTML.replace('▼', '▲').replace('Read', 'Hide').replace('Lire', 'Masquer');
+            }
         }
     </script>
 </body>
